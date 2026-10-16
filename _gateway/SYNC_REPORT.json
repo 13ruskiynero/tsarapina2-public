@@ -1,0 +1,72 @@
+{
+ "generated_at": "2026-10-16T08:16:39Z",
+ "included": 292,
+ "excluded_total": 890,
+ "included_by_ext": {
+  ".md": {
+   "count": 130,
+   "bytes": 1026284
+  },
+  ".py": {
+   "count": 160,
+   "bytes": 1460468
+  },
+  ".sh": {
+   "count": 2,
+   "bytes": 825
+  }
+ },
+ "excluded_by_reason": {
+  "deny_bak": {
+   "count": 1,
+   "examples": [
+    "experiments/vertical1/tsasvc.service.bak_20260912"
+   ]
+  },
+  "deny_ext": {
+   "count": 863,
+   "examples": [
+    "tests/tmp_evaluation/tsarapina.db",
+    "tests/tmp_update/tsarapina.db",
+    "tests/tmp_strategy/tsarapina.db",
+    "tests/tmp_experience/tsarapina.db",
+    "tests/tmp_exclusion/empty/tsarapina.db",
+    "tests/tmp_exclusion/temp_fail/tsarapina.db",
+    "tests/tmp_exclusion/pool/tsarapina.db",
+    "tests/tmp_exclusion/fc/tsarapina.db",
+    "tests/tmp_exclusion/hist/tsarapina.db",
+    "tests/tmp_exclusion/temp_ok/tsarapina.db"
+   ]
+  },
+  "deny_glob": {
+   "count": 10,
+   "examples": [
+    "experiments/exclude_tried1/ET1_TABLE.md",
+    "experiments/min_mechanism1/MM1_CUT2_TABLE.md",
+    "experiments/min_mechanism1/MM1_TABLE.md",
+    "experiments/min_mechanism1/MM1_TABLE_run2.md",
+    "experiments/min_mechanism1/MM1_CUT3_TABLE.md",
+    "experiments/min_exploration1/MX1_TABLE.md",
+    "experiments/robust_advantage1/RB1_TABLE.md",
+    "experiments/recon1/RECON1_EQUILIBRIUM_OBSERVATION.md",
+    "experiments/single_action_fixation1/SAF1_TABLE.md",
+    "experiments/min_advantage1/MA1_TABLE.md"
+   ]
+  },
+  "public_scan": {
+   "count": 16,
+   "examples": [
+    "README.md",
+    "ACCESS_GATEWAY_PLAN.md",
+    "experiments/vertical1/analyze_run.py",
+    "experiments/vertical1/analyze_v2.py",
+    "experiments/recon1/recon1_preanalysis.py",
+    "experiments/stale_exact1/audit_stale.py",
+    "experiments/event_sufficiency1/e0_compare.py",
+    "experiments/event_sufficiency1/e2_recover.py",
+    "experiments/relevance1/ab_cmp.py",
+    "experiments/relevance1/ab_diag.py"
+   ]
+  }
+ }
+}
