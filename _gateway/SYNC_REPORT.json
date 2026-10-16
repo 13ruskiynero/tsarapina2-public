@@ -1,11 +1,11 @@
 {
- "generated_at": "2026-10-16T14:59:09Z",
- "included": 293,
+ "generated_at": "2026-10-16T15:07:41Z",
+ "included": 295,
  "excluded_total": 890,
  "included_by_ext": {
   ".md": {
-   "count": 131,
-   "bytes": 1031765
+   "count": 133,
+   "bytes": 1043156
   },
   ".py": {
    "count": 160,
