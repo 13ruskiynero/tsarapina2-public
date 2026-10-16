@@ -1,0 +1,45 @@
+--- version-history/K0_SESSION_v31.py
++++ code/session.py
+@@ -133,6 +133,7 @@
+     notes: tuple = ()
+     battery: tuple = ()      # перечень клеток батареи (F1/F3; без исходов)
+     last_labels: tuple = (0, 0, 0, 0)   # (Q, H, P, V) — §7 «эхо меток»
++    hypotheses: tuple = ()   # v32: зарегистрированные гипотезы — ({"n","cell","prediction"}, …)
+ 
+ 
+ @dataclass
+@@ -349,6 +350,9 @@
+         obs = tuple((c.as_text(), y) for c, y in self.observations)
+         labels = (self.registry.last["Q"], self.registry.last["H"],
+                   self.registry.last["P"], self.registry.last["V"])
++        hyp = tuple({"n": n, "cell": h["cell"].as_text(),
++                     "prediction": h["prediction"]}
++                    for n, h in sorted(self.registry.hypotheses.items()))
+         return AgentContext(phase=phase, history=self.history, observations=obs,
+                             rejections=tuple(self.rejections[-5:]),
+                             budget_remaining=self.world.remaining,
+@@ -357,7 +361,8 @@
+                             notes=tuple(self.notes),
+                             battery=(tuple(c.as_text() for c in self.cells)
+                                      if phase in ("F1", "F3") else ()),
+-                            last_labels=labels)
++                            last_labels=labels,
++                            hypotheses=(hyp if phase == "F2" else ()))
+ 
+     # --- F1 / F3 --------------------------------------------------------------
+ 
+@@ -608,11 +613,11 @@
+             "status": status, "stop_reason": self.stop_reason,
+             "respond_calls": self.respond_calls, "malformed": self.malformed,
+             "n_E": (len(self.world.e_set()["E"]) if self.world is not None else None),
+-            "protocol_version": "v31",
+-            "protocol_sha256": file_sha(ARTIFACTS.parent / "K0_PROTOCOL_v31.md"),
++            "protocol_version": "v32",
++            "protocol_sha256": file_sha(ARTIFACTS.parent / "K0_PROTOCOL_v32.md"),
+             "protocol_base_sha256": file_sha(ARTIFACTS.parent / "K0_PROTOCOL.md"),
+             "protocol_diff_sha256": file_sha(ARTIFACTS.parent / "version-history"
+-                                             / "K0_PROTOCOL_v30_to_v31.diff"),
++                                             / "K0_PROTOCOL_v31_to_v32.diff"),
+             "spec_sha256": file_sha(autonomy / "WORLD_C_SPEC.md"),
+             "package_sha256": file_sha(autonomy / "WORLD_C_DECISIONS_PACKAGE.md"),
+             "prompts_sha256": file_sha(code_dir / "prompts.py"),

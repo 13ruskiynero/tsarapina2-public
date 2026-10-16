@@ -1,0 +1,31 @@
+--- version-history/K0_PROMPTS_v31.py
++++ code/prompts.py
+@@ -96,11 +96,10 @@
+ )
+ 
+ 
+-F2_NEXT_STEP = ("[СЛЕДУЮЩИЙ ШАГ] Вопрос и гипотеза приняты; проб пока нет. "
+-                "Повторная регистрация не нужна. Выполни пробу на основе "
+-                "гипотезы: строка PREDICT: <объект> T=<t> H=<h> = "
+-                "<present|disappeared>, затем строка ACTION: probe <объект> "
+-                "T=<t> H=<h>.")
++F2_NEXT_STEP = ("[СЛЕДУЮЩИЙ ШАГ] Гипотеза {label} зарегистрирована: клетка "
++                "{cell}, прогноз {pred}. Повторная регистрация не нужна. "
++                "Проверь именно эту клетку: строка PREDICT: {cell} = {pred}, "
++                "затем строка ACTION: probe {cell}.")
+ 
+ 
+ def static_text() -> str:
+@@ -185,8 +184,10 @@
+         parts += ["", f"[ПОСЛЕДНЯЯ ПРОБА] {ctx.last_probe} (цель для repeat)."]
+     parts += ["", _labels_line(ctx), "", F2_ACTIONS]
+     _q, _h, _p, _v = ctx.last_labels
+-    if _q >= 1 and _h >= 1 and _p == 0:
+-        parts += ["", F2_NEXT_STEP]
++    if _p == 0 and ctx.hypotheses:
++        _h0 = ctx.hypotheses[0]
++        parts += ["", F2_NEXT_STEP.format(label=f"H{_h0['n']}", cell=_h0["cell"],
++                                          pred=_h0["prediction"])]
+     return "\n".join(parts)
+ 
+ 

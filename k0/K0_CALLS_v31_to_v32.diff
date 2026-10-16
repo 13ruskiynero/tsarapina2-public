@@ -1,0 +1,11 @@
+--- version-history/K0_CALLS_v31.py
++++ code/calls.py
+@@ -49,6 +49,8 @@
+         "last_probe": ctx.last_probe,
+         "last_labels": list(getattr(ctx, "last_labels", (0, 0, 0, 0))),
+     }
++    if ctx.phase == "F2":   # v32: вход секции «СЛЕДУЮЩИЙ ШАГ» — виден в артефакте
++        payload["hypotheses"] = [dict(h) for h in getattr(ctx, "hypotheses", ())]
+     return json.dumps(payload, ensure_ascii=False, indent=1)
+ 
+ 
