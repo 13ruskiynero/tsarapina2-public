@@ -1,0 +1,112 @@
+--- version-history/K0_SESSION_v29.py
++++ code/session.py
+@@ -70,6 +70,35 @@
+ 
+ PHASES = ("F1", "F2", "F3", "F4", "F5")
+ 
++# v30: сообщения агенту об отказах F2 (контракт валидации НЕ меняется; hint — только текст)
++REJECTION_HINTS = {
++    "predict_invalid": "нужна отдельная строка PREDICT перед ACTION с прогнозом исхода этой же клетки",
++    "action_invalid": "проверь форму строки действия (probe/repeat/reset)",
++    "decision_invalid": "DECISION указывает на существующий записанный вердикт V<n> и тот же дескриптор действия",
++    "prediction_inconsistent": "прогноз в PREDICT должен быть present или disappeared",
++}
++QH_HINTS = {
++    "dup": "уже зарегистрировано — повторно регистрировать не нужно; используй существующие метки и продолжай работу (следующий шаг — действие)",
++    "skip": "нумерация должна идти по порядку без пропуска",
++    "ref": "в REF укажи существующий trial_id из наблюдений истории",
++    "noq": "сначала зарегистрируй сам вопрос (строка QUESTION), затем гипотезу OF Q<n>",
++    "other": "проверь формат регистрации и ссылки между метками",
++}
++
++
++def qh_hint(kind: str, reason: str) -> str:
++    """v30: подсказка агенту для отказа регистрации Q/H."""
++    r = reason or ""
++    if ("повтор или уменьшение" in r) or ("уже" in r):
++        return QH_HINTS["dup"]
++    if "пропуск номера" in r:
++        return QH_HINTS["skip"]
++    if ("неизвестн" in r) or ("REF" in r):
++        return QH_HINTS["ref"]
++    if "не зарегистрирован" in r:
++        return QH_HINTS["noq"]
++    return QH_HINTS["other"]
++
+ STOP_FILE_REASON = "STOP-файл оператора"
+ REASON_BUDGET = "бюджет исчерпан"
+ REASON_K = "K достигнут (проб не осталось)"
+@@ -121,6 +150,7 @@
+     """Прогон K0-M1 (одна серия/сид), строго по §6/§12."""
+ 
+     MAX_INVALID_F2_DEFAULT = 10
++    LOOP_FUSE_K = 3                # v30: K подряд итераций без прогресса в F2
+     CONTEXT_WARN_THRESHOLD = 3900   # предупреждение при приближении к C1
+ 
+     def __init__(self, run_dir, respond: Callable, seed: int = 101,
+@@ -141,6 +171,9 @@
+         self.state = "INIT"        # INIT → RUNNING → DONE | HALTED | FAILED
+         self.phase = "F1"
+         self.stop_reason: Optional[str] = None
++        self.last_response: Optional[str] = None      # v30: предохранитель цикла
++        self.last_journal_seq: Optional[int] = None   # v30
++        self.loop_streak = 0                          # v30
+         self.journal: Optional[Journal] = None
+         self.world: Optional[World] = None
+         self.registry: Optional[LabelRegistry] = None
+@@ -400,6 +433,17 @@
+             self.invalid_f2 = 0
+             self.registry = scratch        # регистрации Q/H/V переносятся разом
+             self._apply_f2_response(v)
++
++            # --- v30: предохранитель цикла: K итераций без прогресса ---
++            _seq_now = self.journal.seq
++            if text == self.last_response and _seq_now == self.last_journal_seq:
++                self.loop_streak += 1
++            else:
++                self.loop_streak = 0
++            self.last_response = text
++            self.last_journal_seq = _seq_now
++            if self.loop_streak >= self.LOOP_FUSE_K:
++                raise SessionHalt("response_loop")
+         self.phase = "F3"
+ 
+     def _apply_f2_response(self, v):
+@@ -417,6 +461,11 @@
+                 "line": f["index"], "phase": "F2", "kind": f["kind"],
+                 "label": label, "reason": f["reason"], "call": call_ref,
+                 "created": False})
++        for f in v.qh_failures:         # v30: сообщения об отказах Q/H — агенту
++            label = f"Q{f['n']}" if f["kind"] == "question" else f"H{f['n']}"
++            self.rejections.append(
++                {"requested": label, "reason": f["reason"],
++                 "hint": qh_hint(f["kind"], f.get("reason", ""))})
+         for f in v.verdict_failures:
+             self.rejection_audit.append({
+                 "line": f["index"], "phase": "F2", "kind": "verdict",
+@@ -437,7 +486,9 @@
+                     self.journal.action_rejected(b.requested, b.reason,
+                         distinguish_confirmed=b.distinguish_confirmed,
+                         distinguish_ok=b.distinguish_ok)
+-                    self.rejections.append({"requested": b.requested, "reason": b.reason})
++                    self.rejections.append(
++                        {"requested": b.requested, "reason": b.reason,
++                         "hint": REJECTION_HINTS.get(b.reason, "")})
+                     self.malformed += 1
+                     continue
+                 self._execute_block(b)
+@@ -554,11 +605,11 @@
+             "status": status, "stop_reason": self.stop_reason,
+             "respond_calls": self.respond_calls, "malformed": self.malformed,
+             "n_E": (len(self.world.e_set()["E"]) if self.world is not None else None),
+-            "protocol_version": "v29",
+-            "protocol_sha256": file_sha(ARTIFACTS.parent / "K0_PROTOCOL_v29.md"),
++            "protocol_version": "v30",
++            "protocol_sha256": file_sha(ARTIFACTS.parent / "K0_PROTOCOL_v30.md"),
+             "protocol_base_sha256": file_sha(ARTIFACTS.parent / "K0_PROTOCOL.md"),
+             "protocol_diff_sha256": file_sha(ARTIFACTS.parent / "version-history"
+-                                             / "K0_PROTOCOL_v28_to_v29.diff"),
++                                             / "K0_PROTOCOL_v29_to_v30.diff"),
+             "spec_sha256": file_sha(autonomy / "WORLD_C_SPEC.md"),
+             "package_sha256": file_sha(autonomy / "WORLD_C_DECISIONS_PACKAGE.md"),
+             "prompts_sha256": file_sha(code_dir / "prompts.py"),

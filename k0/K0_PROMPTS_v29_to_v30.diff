@@ -1,0 +1,17 @@
+--- version-history/K0_PROMPTS_v29.py
++++ code/prompts.py
+@@ -134,7 +134,13 @@
+ 
+ 
+ def _rej_lines(ctx) -> str:
+-    return "\n".join(f"{r.get('requested') or '—'}: {r['reason']}" for r in ctx.rejections)
++    out = []
++    for r in ctx.rejections:
++        line = f"{r.get('requested') or '—'}: {r['reason']}"
++        if r.get("hint"):
++            line += f" — {r['hint']}"
++        out.append(line)
++    return "\n".join(out)
+ 
+ 
+ def _note_lines(ctx) -> str:

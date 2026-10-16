@@ -1,6 +1,6 @@
 {
  "project": "tsarapina",
- "generated_at": "2026-10-16T16:00:26Z",
+ "generated_at": "2026-10-16T16:22:38Z",
  "policy": {
   "allow_ext": [
    ".md",
@@ -10,8 +10,8 @@
   "max_file_bytes": 65536,
   "include_jsonl": false
  },
- "count": 465,
- "total_bytes": 2728220,
+ "count": 469,
+ "total_bytes": 2749153,
  "files": [
   {
    "path": "MVP1_IMPLEMENTATION_PLAN.md",
@@ -1545,9 +1545,9 @@
   },
   {
    "path": "k0/K0_M2_RUN_REPORT.md",
-   "size": 6362,
-   "mtime": 1792166416,
-   "sha256": "58fb1d3ad83ed19cc6e90d2fc8d0eee242b0a010c253ad27e783119f8047d458"
+   "size": 7658,
+   "mtime": 1792167717,
+   "sha256": "5e23d2dd10bb39795c0c539f401ba30880672924aeb444d9732b339967d0b97a"
   },
   {
    "path": "k0/K0_PROMPTS_v27_to_v28.diff",
@@ -1560,6 +1560,12 @@
    "size": 1326,
    "mtime": 1792165881,
    "sha256": "776517e616700595769bd01a70899ce1e949073d9bb371ea7d85309be7fe7009"
+  },
+  {
+   "path": "k0/K0_PROMPTS_v29_to_v30.diff",
+   "size": 470,
+   "mtime": 1792167485,
+   "sha256": "2f3593010a385afe9f6e14e841759ea2abb35653145576264532c36118b2e2c4"
   },
   {
    "path": "k0/K0_PROTOCOL_v27_to_v28.diff",
@@ -1586,10 +1592,28 @@
    "sha256": "e68e2122d1cd851eae9db5017df7025adfca802fff41641c409e570660374eb5"
   },
   {
+   "path": "k0/K0_PROTOCOL_v29_to_v30.diff",
+   "size": 2018,
+   "mtime": 1792167485,
+   "sha256": "565d97671b44899dad16d8aad4245b15cc8130bf117b11e07c1b756807a91125"
+  },
+  {
+   "path": "k0/K0_PROTOCOL_v30_ACT.md",
+   "size": 9668,
+   "mtime": 1792167733,
+   "sha256": "19aad6b78cfe6aea3a65ca12bbd2d47a4af67dfdb275f3b07b777df2d0a1cb1a"
+  },
+  {
    "path": "k0/K0_RESULT_FIXATION.md",
    "size": 4713,
    "mtime": 1792165113,
    "sha256": "5d4059e44b0ba73de3f7d069a8dbfb09d18f49a015e961b5c9fafb8a995c4b16"
+  },
+  {
+   "path": "k0/K0_SESSION_v29_to_v30.diff",
+   "size": 6449,
+   "mtime": 1792167529,
+   "sha256": "60b105f1ee522604e9afdef49c49c3ab0386f718f9fab9e0b2c0b3fe59e2d853"
   },
   {
    "path": "k0/K0_THIRD_RUN_REPORT.md",
@@ -1605,9 +1629,9 @@
   },
   {
    "path": "k0/README.md",
-   "size": 4036,
-   "mtime": 1792166424,
-   "sha256": "ac70f9bc3006e0f404d3ba8c2edea69ea38895d2fdd34dab9a058bfaad8d9b14"
+   "size": 5068,
+   "mtime": 1792167750,
+   "sha256": "53ab639ebdd30588bf208268317e6acdb8a0ff01a72fb6c156e39938bd964648"
   },
   {
    "path": "k0/runs/run_K0-M1_101_v28/derived/audit.json",
