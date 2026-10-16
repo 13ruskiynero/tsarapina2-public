@@ -49,30 +49,33 @@
          self.phase = "F1"
          self.stop_reason: Optional[str] = None
 +        self.last_response: Optional[str] = None      # v30: предохранитель цикла
-+        self.last_journal_seq: Optional[int] = None   # v30
++        self.last_progress: Optional[int] = None      # v30 ред.2: seq−malformed
 +        self.loop_streak = 0                          # v30
          self.journal: Optional[Journal] = None
          self.world: Optional[World] = None
          self.registry: Optional[LabelRegistry] = None
-@@ -400,6 +433,17 @@
+@@ -400,6 +433,20 @@
              self.invalid_f2 = 0
              self.registry = scratch        # регистрации Q/H/V переносятся разом
              self._apply_f2_response(v)
 +
-+            # --- v30: предохранитель цикла: K итераций без прогресса ---
-+            _seq_now = self.journal.seq
-+            if text == self.last_response and _seq_now == self.last_journal_seq:
++            # --- v30 (ред.2): предохранитель цикла: K итераций без ПОЛЕЗНОГО
++            # прогресса. Прогресс = записи журнала за вычетом action_rejected
++            # (их счётчик — malformed, §7): повторяющиеся одинаковые отказы
++            # действия НЕ сбрасывают предохранитель; любые иные записи — сбрасывают.
++            _progress_now = self.journal.seq - self.malformed
++            if text == self.last_response and _progress_now == self.last_progress:
 +                self.loop_streak += 1
 +            else:
 +                self.loop_streak = 0
 +            self.last_response = text
-+            self.last_journal_seq = _seq_now
++            self.last_progress = _progress_now
 +            if self.loop_streak >= self.LOOP_FUSE_K:
 +                raise SessionHalt("response_loop")
          self.phase = "F3"
  
      def _apply_f2_response(self, v):
-@@ -417,6 +461,11 @@
+@@ -417,6 +464,11 @@
                  "line": f["index"], "phase": "F2", "kind": f["kind"],
                  "label": label, "reason": f["reason"], "call": call_ref,
                  "created": False})
@@ -84,7 +87,7 @@
          for f in v.verdict_failures:
              self.rejection_audit.append({
                  "line": f["index"], "phase": "F2", "kind": "verdict",
-@@ -437,7 +486,9 @@
+@@ -437,7 +489,9 @@
                      self.journal.action_rejected(b.requested, b.reason,
                          distinguish_confirmed=b.distinguish_confirmed,
                          distinguish_ok=b.distinguish_ok)
@@ -95,7 +98,7 @@
                      self.malformed += 1
                      continue
                  self._execute_block(b)
-@@ -554,11 +605,11 @@
+@@ -554,11 +608,11 @@
              "status": status, "stop_reason": self.stop_reason,
              "respond_calls": self.respond_calls, "malformed": self.malformed,
              "n_E": (len(self.world.e_set()["E"]) if self.world is not None else None),
