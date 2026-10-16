@@ -1,0 +1,2 @@
+QUESTION Q1: Зависит ли состояние объекта O3 от параметра T при фиксированном H=2? REF: t07
+HYPOTHESIS H1 OF Q1: Если объект O3 в клетке с T=0, H=2, то он будет present. PREDICT: O3 T=0 H=2 = present

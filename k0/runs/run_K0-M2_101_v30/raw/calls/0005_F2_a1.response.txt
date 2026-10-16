@@ -1,0 +1,2 @@
+QUESTION Q1: Какое влияние оказывает объект O3 при T=2 H=0? REF: t08
+HYPOTHESIS H1 OF Q1: Если в клетке O3 T=2 H=0, то она будет present. PREDICT: O3 T=2 H=0 = present

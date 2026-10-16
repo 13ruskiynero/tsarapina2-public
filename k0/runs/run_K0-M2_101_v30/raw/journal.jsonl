@@ -1,0 +1,14 @@
+{"seq": 1, "type": "history_shown", "origin": "none", "label_by": "none", "seed": 101, "trials": ["t01", "t02", "t03", "t04", "t05", "t06", "t07", "t08", "t09", "t10", "t11", "t12"]}
+{"seq": 2, "type": "forecast_status", "origin": "none", "label_by": "none", "phase": "F1", "attempt": 1, "status": "ok"}
+{"seq": 3, "type": "prediction_before", "origin": "agent", "label_by": "none", "cell": "O1 T=1 H=0", "outcome": "disappeared"}
+{"seq": 4, "type": "prediction_before", "origin": "agent", "label_by": "none", "cell": "O1 T=2 H=1", "outcome": "disappeared"}
+{"seq": 5, "type": "prediction_before", "origin": "agent", "label_by": "none", "cell": "O2 T=2 H=1", "outcome": "present"}
+{"seq": 6, "type": "prediction_before", "origin": "agent", "label_by": "none", "cell": "O2 T=2 H=2", "outcome": "present"}
+{"seq": 7, "type": "prediction_before", "origin": "agent", "label_by": "none", "cell": "O3 T=2 H=0", "outcome": "present"}
+{"seq": 8, "type": "prediction_before", "origin": "agent", "label_by": "none", "cell": "O3 T=2 H=1", "outcome": "present"}
+{"seq": 9, "type": "prediction_before", "origin": "agent", "label_by": "none", "cell": "O3 T=2 H=2", "outcome": "present"}
+{"seq": 10, "type": "prediction_before", "origin": "agent", "label_by": "none", "cell": "O4 T=2 H=1", "outcome": "present"}
+{"seq": 11, "type": "prediction_before", "origin": "agent", "label_by": "none", "cell": "O4 T=2 H=2", "outcome": "present"}
+{"seq": 12, "type": "question", "origin": "agent", "label_by": "agent", "label": "Q1", "text": "Какое влияние оказывает объект O3 при T=2 H=0?", "ref": "t07"}
+{"seq": 13, "type": "hypothesis", "origin": "agent", "label_by": "agent", "label": "H1", "of": "Q1", "text": "Если объект O3 находится в клетке с параметрами T=2 и H=0, он будет present.", "cell": "O3 T=2 H=0", "prediction": "present"}
+{"seq": 14, "type": "stop", "origin": "none", "label_by": "none", "reason": "response_loop"}
