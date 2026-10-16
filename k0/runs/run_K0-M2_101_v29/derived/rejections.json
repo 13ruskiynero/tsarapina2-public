@@ -1,0 +1,506 @@
+[
+ {
+  "line": 1,
+  "phase": "F2",
+  "kind": "question",
+  "label": "Q1",
+  "reason": "повтор или уменьшение номера (последняя Q1)",
+  "call": "0003_F2_a1",
+  "created": false
+ },
+ {
+  "line": 2,
+  "phase": "F2",
+  "kind": "hypothesis",
+  "label": "H1",
+  "reason": "повтор или уменьшение номера (последняя H1)",
+  "call": "0003_F2_a1",
+  "created": false
+ },
+ {
+  "line": 1,
+  "phase": "F2",
+  "kind": "question",
+  "label": "Q1",
+  "reason": "повтор или уменьшение номера (последняя Q1)",
+  "call": "0004_F2_a1",
+  "created": false
+ },
+ {
+  "line": 2,
+  "phase": "F2",
+  "kind": "hypothesis",
+  "label": "H1",
+  "reason": "повтор или уменьшение номера (последняя H1)",
+  "call": "0004_F2_a1",
+  "created": false
+ },
+ {
+  "line": 1,
+  "phase": "F2",
+  "kind": "question",
+  "label": "Q1",
+  "reason": "повтор или уменьшение номера (последняя Q1)",
+  "call": "0005_F2_a1",
+  "created": false
+ },
+ {
+  "line": 2,
+  "phase": "F2",
+  "kind": "hypothesis",
+  "label": "H1",
+  "reason": "повтор или уменьшение номера (последняя H1)",
+  "call": "0005_F2_a1",
+  "created": false
+ },
+ {
+  "line": 1,
+  "phase": "F2",
+  "kind": "question",
+  "label": "Q1",
+  "reason": "повтор или уменьшение номера (последняя Q1)",
+  "call": "0006_F2_a1",
+  "created": false
+ },
+ {
+  "line": 2,
+  "phase": "F2",
+  "kind": "hypothesis",
+  "label": "H1",
+  "reason": "повтор или уменьшение номера (последняя H1)",
+  "call": "0006_F2_a1",
+  "created": false
+ },
+ {
+  "line": 1,
+  "phase": "F2",
+  "kind": "question",
+  "label": "Q1",
+  "reason": "повтор или уменьшение номера (последняя Q1)",
+  "call": "0007_F2_a1",
+  "created": false
+ },
+ {
+  "line": 2,
+  "phase": "F2",
+  "kind": "hypothesis",
+  "label": "H1",
+  "reason": "повтор или уменьшение номера (последняя H1)",
+  "call": "0007_F2_a1",
+  "created": false
+ },
+ {
+  "line": 1,
+  "phase": "F2",
+  "kind": "question",
+  "label": "Q1",
+  "reason": "повтор или уменьшение номера (последняя Q1)",
+  "call": "0008_F2_a1",
+  "created": false
+ },
+ {
+  "line": 2,
+  "phase": "F2",
+  "kind": "hypothesis",
+  "label": "H1",
+  "reason": "повтор или уменьшение номера (последняя H1)",
+  "call": "0008_F2_a1",
+  "created": false
+ },
+ {
+  "line": 1,
+  "phase": "F2",
+  "kind": "question",
+  "label": "Q1",
+  "reason": "повтор или уменьшение номера (последняя Q1)",
+  "call": "0009_F2_a1",
+  "created": false
+ },
+ {
+  "line": 2,
+  "phase": "F2",
+  "kind": "hypothesis",
+  "label": "H1",
+  "reason": "повтор или уменьшение номера (последняя H1)",
+  "call": "0009_F2_a1",
+  "created": false
+ },
+ {
+  "line": 1,
+  "phase": "F2",
+  "kind": "question",
+  "label": "Q1",
+  "reason": "повтор или уменьшение номера (последняя Q1)",
+  "call": "0010_F2_a1",
+  "created": false
+ },
+ {
+  "line": 2,
+  "phase": "F2",
+  "kind": "hypothesis",
+  "label": "H1",
+  "reason": "повтор или уменьшение номера (последняя H1)",
+  "call": "0010_F2_a1",
+  "created": false
+ },
+ {
+  "line": 1,
+  "phase": "F2",
+  "kind": "question",
+  "label": "Q1",
+  "reason": "повтор или уменьшение номера (последняя Q1)",
+  "call": "0011_F2_a1",
+  "created": false
+ },
+ {
+  "line": 2,
+  "phase": "F2",
+  "kind": "hypothesis",
+  "label": "H1",
+  "reason": "повтор или уменьшение номера (последняя H1)",
+  "call": "0011_F2_a1",
+  "created": false
+ },
+ {
+  "line": 1,
+  "phase": "F2",
+  "kind": "question",
+  "label": "Q1",
+  "reason": "повтор или уменьшение номера (последняя Q1)",
+  "call": "0012_F2_a1",
+  "created": false
+ },
+ {
+  "line": 2,
+  "phase": "F2",
+  "kind": "hypothesis",
+  "label": "H1",
+  "reason": "повтор или уменьшение номера (последняя H1)",
+  "call": "0012_F2_a1",
+  "created": false
+ },
+ {
+  "line": 1,
+  "phase": "F2",
+  "kind": "question",
+  "label": "Q1",
+  "reason": "повтор или уменьшение номера (последняя Q1)",
+  "call": "0013_F2_a1",
+  "created": false
+ },
+ {
+  "line": 2,
+  "phase": "F2",
+  "kind": "hypothesis",
+  "label": "H1",
+  "reason": "повтор или уменьшение номера (последняя H1)",
+  "call": "0013_F2_a1",
+  "created": false
+ },
+ {
+  "line": 1,
+  "phase": "F2",
+  "kind": "question",
+  "label": "Q1",
+  "reason": "повтор или уменьшение номера (последняя Q1)",
+  "call": "0014_F2_a1",
+  "created": false
+ },
+ {
+  "line": 2,
+  "phase": "F2",
+  "kind": "hypothesis",
+  "label": "H1",
+  "reason": "повтор или уменьшение номера (последняя H1)",
+  "call": "0014_F2_a1",
+  "created": false
+ },
+ {
+  "line": 1,
+  "phase": "F2",
+  "kind": "question",
+  "label": "Q1",
+  "reason": "повтор или уменьшение номера (последняя Q1)",
+  "call": "0015_F2_a1",
+  "created": false
+ },
+ {
+  "line": 2,
+  "phase": "F2",
+  "kind": "hypothesis",
+  "label": "H1",
+  "reason": "повтор или уменьшение номера (последняя H1)",
+  "call": "0015_F2_a1",
+  "created": false
+ },
+ {
+  "line": 1,
+  "phase": "F2",
+  "kind": "question",
+  "label": "Q1",
+  "reason": "повтор или уменьшение номера (последняя Q1)",
+  "call": "0016_F2_a1",
+  "created": false
+ },
+ {
+  "line": 2,
+  "phase": "F2",
+  "kind": "hypothesis",
+  "label": "H1",
+  "reason": "повтор или уменьшение номера (последняя H1)",
+  "call": "0016_F2_a1",
+  "created": false
+ },
+ {
+  "line": 1,
+  "phase": "F2",
+  "kind": "question",
+  "label": "Q1",
+  "reason": "повтор или уменьшение номера (последняя Q1)",
+  "call": "0017_F2_a1",
+  "created": false
+ },
+ {
+  "line": 2,
+  "phase": "F2",
+  "kind": "hypothesis",
+  "label": "H1",
+  "reason": "повтор или уменьшение номера (последняя H1)",
+  "call": "0017_F2_a1",
+  "created": false
+ },
+ {
+  "line": 1,
+  "phase": "F2",
+  "kind": "question",
+  "label": "Q1",
+  "reason": "повтор или уменьшение номера (последняя Q1)",
+  "call": "0018_F2_a1",
+  "created": false
+ },
+ {
+  "line": 2,
+  "phase": "F2",
+  "kind": "hypothesis",
+  "label": "H1",
+  "reason": "повтор или уменьшение номера (последняя H1)",
+  "call": "0018_F2_a1",
+  "created": false
+ },
+ {
+  "line": 1,
+  "phase": "F2",
+  "kind": "question",
+  "label": "Q1",
+  "reason": "повтор или уменьшение номера (последняя Q1)",
+  "call": "0019_F2_a1",
+  "created": false
+ },
+ {
+  "line": 2,
+  "phase": "F2",
+  "kind": "hypothesis",
+  "label": "H1",
+  "reason": "повтор или уменьшение номера (последняя H1)",
+  "call": "0019_F2_a1",
+  "created": false
+ },
+ {
+  "line": 1,
+  "phase": "F2",
+  "kind": "question",
+  "label": "Q1",
+  "reason": "повтор или уменьшение номера (последняя Q1)",
+  "call": "0020_F2_a1",
+  "created": false
+ },
+ {
+  "line": 2,
+  "phase": "F2",
+  "kind": "hypothesis",
+  "label": "H1",
+  "reason": "повтор или уменьшение номера (последняя H1)",
+  "call": "0020_F2_a1",
+  "created": false
+ },
+ {
+  "line": 1,
+  "phase": "F2",
+  "kind": "question",
+  "label": "Q1",
+  "reason": "повтор или уменьшение номера (последняя Q1)",
+  "call": "0021_F2_a1",
+  "created": false
+ },
+ {
+  "line": 2,
+  "phase": "F2",
+  "kind": "hypothesis",
+  "label": "H1",
+  "reason": "повтор или уменьшение номера (последняя H1)",
+  "call": "0021_F2_a1",
+  "created": false
+ },
+ {
+  "line": 1,
+  "phase": "F2",
+  "kind": "question",
+  "label": "Q1",
+  "reason": "повтор или уменьшение номера (последняя Q1)",
+  "call": "0022_F2_a1",
+  "created": false
+ },
+ {
+  "line": 2,
+  "phase": "F2",
+  "kind": "hypothesis",
+  "label": "H1",
+  "reason": "повтор или уменьшение номера (последняя H1)",
+  "call": "0022_F2_a1",
+  "created": false
+ },
+ {
+  "line": 1,
+  "phase": "F2",
+  "kind": "question",
+  "label": "Q1",
+  "reason": "повтор или уменьшение номера (последняя Q1)",
+  "call": "0023_F2_a1",
+  "created": false
+ },
+ {
+  "line": 2,
+  "phase": "F2",
+  "kind": "hypothesis",
+  "label": "H1",
+  "reason": "повтор или уменьшение номера (последняя H1)",
+  "call": "0023_F2_a1",
+  "created": false
+ },
+ {
+  "line": 1,
+  "phase": "F2",
+  "kind": "question",
+  "label": "Q1",
+  "reason": "повтор или уменьшение номера (последняя Q1)",
+  "call": "0024_F2_a1",
+  "created": false
+ },
+ {
+  "line": 2,
+  "phase": "F2",
+  "kind": "hypothesis",
+  "label": "H1",
+  "reason": "повтор или уменьшение номера (последняя H1)",
+  "call": "0024_F2_a1",
+  "created": false
+ },
+ {
+  "line": 1,
+  "phase": "F2",
+  "kind": "question",
+  "label": "Q1",
+  "reason": "повтор или уменьшение номера (последняя Q1)",
+  "call": "0025_F2_a1",
+  "created": false
+ },
+ {
+  "line": 2,
+  "phase": "F2",
+  "kind": "hypothesis",
+  "label": "H1",
+  "reason": "повтор или уменьшение номера (последняя H1)",
+  "call": "0025_F2_a1",
+  "created": false
+ },
+ {
+  "line": 1,
+  "phase": "F2",
+  "kind": "question",
+  "label": "Q1",
+  "reason": "повтор или уменьшение номера (последняя Q1)",
+  "call": "0026_F2_a1",
+  "created": false
+ },
+ {
+  "line": 2,
+  "phase": "F2",
+  "kind": "hypothesis",
+  "label": "H1",
+  "reason": "повтор или уменьшение номера (последняя H1)",
+  "call": "0026_F2_a1",
+  "created": false
+ },
+ {
+  "line": 1,
+  "phase": "F2",
+  "kind": "question",
+  "label": "Q1",
+  "reason": "повтор или уменьшение номера (последняя Q1)",
+  "call": "0027_F2_a1",
+  "created": false
+ },
+ {
+  "line": 2,
+  "phase": "F2",
+  "kind": "hypothesis",
+  "label": "H1",
+  "reason": "повтор или уменьшение номера (последняя H1)",
+  "call": "0027_F2_a1",
+  "created": false
+ },
+ {
+  "line": 1,
+  "phase": "F2",
+  "kind": "question",
+  "label": "Q1",
+  "reason": "повтор или уменьшение номера (последняя Q1)",
+  "call": "0028_F2_a1",
+  "created": false
+ },
+ {
+  "line": 2,
+  "phase": "F2",
+  "kind": "hypothesis",
+  "label": "H1",
+  "reason": "повтор или уменьшение номера (последняя H1)",
+  "call": "0028_F2_a1",
+  "created": false
+ },
+ {
+  "line": 1,
+  "phase": "F2",
+  "kind": "question",
+  "label": "Q1",
+  "reason": "повтор или уменьшение номера (последняя Q1)",
+  "call": "0029_F2_a1",
+  "created": false
+ },
+ {
+  "line": 2,
+  "phase": "F2",
+  "kind": "hypothesis",
+  "label": "H1",
+  "reason": "повтор или уменьшение номера (последняя H1)",
+  "call": "0029_F2_a1",
+  "created": false
+ },
+ {
+  "line": 1,
+  "phase": "F2",
+  "kind": "question",
+  "label": "Q1",
+  "reason": "повтор или уменьшение номера (последняя Q1)",
+  "call": "0030_F2_a1",
+  "created": false
+ },
+ {
+  "line": 2,
+  "phase": "F2",
+  "kind": "hypothesis",
+  "label": "H1",
+  "reason": "повтор или уменьшение номера (последняя H1)",
+  "call": "0030_F2_a1",
+  "created": false
+ }
+]

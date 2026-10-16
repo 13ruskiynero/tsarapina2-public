@@ -1,0 +1,2 @@
+QUESTION Q1: Связь между параметрами T и H для объекта O2. REF: t01
+HYPOTHESIS H1 OF Q1: Если T=2, то состояние O2 не зависит от H. PREDICT: O2 T=2 H=1 = present
