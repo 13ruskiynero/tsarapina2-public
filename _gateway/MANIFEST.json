@@ -1,6 +1,6 @@
 {
  "project": "tsarapina",
- "generated_at": "2026-10-16T13:52:47Z",
+ "generated_at": "2026-10-16T14:59:09Z",
  "policy": {
   "allow_ext": [
    ".md",
@@ -10,8 +10,8 @@
   "max_file_bytes": 65536,
   "include_jsonl": false
  },
- "count": 292,
- "total_bytes": 2487577,
+ "count": 293,
+ "total_bytes": 2493058,
  "files": [
   {
    "path": "MVP1_IMPLEMENTATION_PLAN.md",
@@ -168,6 +168,12 @@
    "size": 6168,
    "mtime": 1788724057,
    "sha256": "095d0b4ae8167873b5f268569a2c24298cc200c8bf1ec7829de876423803f9af"
+  },
+  {
+   "path": "experiments/CHATGPT_REVIEW_1.md",
+   "size": 5481,
+   "mtime": 1792162745,
+   "sha256": "c96fc2f141bc6cc95e5f48f5ae5c978813b4fdcc4bd73010ebbdd17cad2eb605"
   },
   {
    "path": "experiments/COMPETE1_DESIGN.md",
