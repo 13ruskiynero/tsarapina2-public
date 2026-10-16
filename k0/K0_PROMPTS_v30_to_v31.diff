@@ -1,0 +1,33 @@
+--- version-history/K0_PROMPTS_v30.py
++++ code/prompts.py
+@@ -96,11 +96,19 @@
+ )
+ 
+ 
++F2_NEXT_STEP = ("[СЛЕДУЮЩИЙ ШАГ] Вопрос и гипотеза приняты; проб пока нет. "
++                "Повторная регистрация не нужна. Выполни пробу на основе "
++                "гипотезы: строка PREDICT: <объект> T=<t> H=<h> = "
++                "<present|disappeared>, затем строка ACTION: probe <объект> "
++                "T=<t> H=<h>.")
++
++
+ def static_text() -> str:
+     """Все статические тексты шаблонов (для лексикон-аудита)."""
+     return "\n".join([WORLD_TEXT, F1_HEAD, F3_HEAD, F4_HEAD, HIST_HEAD, BATT_HEAD,
+                       OBS_HEAD, REJ_HEAD, NOTE_HEAD, LABELS_HEAD, F1_TASK,
+-                      F3_TASK, F4_TASK, F2_HEAD, F2_SCOPE, F2_ACTIONS])
++                      F3_TASK, F4_TASK, F2_HEAD, F2_SCOPE, F2_ACTIONS,
++                      F2_NEXT_STEP])
+ 
+ 
+ FORBIDDEN_SUBSTRINGS = (
+@@ -176,6 +184,9 @@
+     if ctx.last_probe:
+         parts += ["", f"[ПОСЛЕДНЯЯ ПРОБА] {ctx.last_probe} (цель для repeat)."]
+     parts += ["", _labels_line(ctx), "", F2_ACTIONS]
++    _q, _h, _p, _v = ctx.last_labels
++    if _q >= 1 and _h >= 1 and _p == 0:
++        parts += ["", F2_NEXT_STEP]
+     return "\n".join(parts)
+ 
+ 

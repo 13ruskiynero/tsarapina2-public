@@ -1,6 +1,6 @@
 {
  "project": "tsarapina",
- "generated_at": "2026-10-16T18:01:49Z",
+ "generated_at": "2026-10-16T18:31:04Z",
  "policy": {
   "allow_ext": [
    ".md",
@@ -10,8 +10,8 @@
   "max_file_bytes": 65536,
   "include_jsonl": false
  },
- "count": 505,
- "total_bytes": 2810341,
+ "count": 511,
+ "total_bytes": 2838183,
  "files": [
   {
    "path": "MVP1_IMPLEMENTATION_PLAN.md",
@@ -1550,10 +1550,22 @@
    "sha256": "5e23d2dd10bb39795c0c539f401ba30880672924aeb444d9732b339967d0b97a"
   },
   {
+   "path": "k0/K0_M2_V30_FIXATION.md",
+   "size": 2863,
+   "mtime": 1792175084,
+   "sha256": "521305dc0abb2b5dc59df2f3d753dc569bd83aa2d0012c5f5234eb1f567016ad"
+  },
+  {
    "path": "k0/K0_M2_V30_RUN_REPORT.md",
    "size": 9330,
    "mtime": 1792173696,
    "sha256": "bb05c850c234bdb94b363583ad8d4f342b8b599107de73deaff7235bf455f3f5"
+  },
+  {
+   "path": "k0/K0_M3_DESIGN_DRAFT.md",
+   "size": 8170,
+   "mtime": 1792175447,
+   "sha256": "cdde788d2eaed9698f9a387d8170df28dd1931b07b9a472fa845211d60491d20"
   },
   {
    "path": "k0/K0_PROMPTS_v27_to_v28.diff",
@@ -1572,6 +1584,12 @@
    "size": 470,
    "mtime": 1792167485,
    "sha256": "2f3593010a385afe9f6e14e841759ea2abb35653145576264532c36118b2e2c4"
+  },
+  {
+   "path": "k0/K0_PROMPTS_v30_to_v31.diff",
+   "size": 1413,
+   "mtime": 1792175248,
+   "sha256": "2322b7feb52c653ec821761865d470a28609c9841f738feef04d9b2ac618a511"
   },
   {
    "path": "k0/K0_PROTOCOL_v27_to_v28.diff",
@@ -1616,6 +1634,18 @@
    "sha256": "2d8ccc9a90d5d789c8649474b01a88474d377cae18e027ec1d17e6aae2e2d882"
   },
   {
+   "path": "k0/K0_PROTOCOL_v30_to_v31.diff",
+   "size": 2892,
+   "mtime": 1792175248,
+   "sha256": "5d09b2e33ed8254287185780368afab9b27e73a6f801f57ace5a2f696e879e00"
+  },
+  {
+   "path": "k0/K0_PROTOCOL_v31_ACT.md",
+   "size": 8888,
+   "mtime": 1792175447,
+   "sha256": "5819291a6898a723dee0a28c94e2f74c4849816520a32322870257c740174a69"
+  },
+  {
    "path": "k0/K0_RESULT_FIXATION.md",
    "size": 4713,
    "mtime": 1792165113,
@@ -1626,6 +1656,12 @@
    "size": 6891,
    "mtime": 1792168169,
    "sha256": "fd6061e2b891553ae4195defeed6d7a6259125322550d390eec1b6c5a4430ba2"
+  },
+  {
+   "path": "k0/K0_SESSION_v30_to_v31.diff",
+   "size": 2410,
+   "mtime": 1792175248,
+   "sha256": "326d629cc6d7761b12ee6c943facdafdd4e7cb14b2441c07496db11beaf2ba21"
   },
   {
    "path": "k0/K0_THIRD_RUN_REPORT.md",
@@ -1641,9 +1677,9 @@
   },
   {
    "path": "k0/README.md",
-   "size": 6014,
-   "mtime": 1792173707,
-   "sha256": "270b91e554cf5a017830e59f1dac303cfa414c26ac03f49aab8e576f038f8fec"
+   "size": 7220,
+   "mtime": 1792175463,
+   "sha256": "c133b77268d4489109e23994865e5ff87726ae97805222a9c37d7f2ea7e21594"
   },
   {
    "path": "k0/runs/run_K0-M1_101_v28/derived/audit.json",

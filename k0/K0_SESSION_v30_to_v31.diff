@@ -1,0 +1,39 @@
+--- version-history/K0_SESSION_v30.py
++++ code/session.py
+@@ -154,13 +154,13 @@
+     CONTEXT_WARN_THRESHOLD = 3900   # предупреждение при приближении к C1
+ 
+     def __init__(self, run_dir, respond: Callable, seed: int = 101,
+-                 mode: str = "K0-M2", battery: Optional[Sequence[Cell]] = None,
++                 mode: str = "K0-M3", battery: Optional[Sequence[Cell]] = None,
+                  max_invalid_f2: int = MAX_INVALID_F2_DEFAULT,
+                  max_calls: int = 30, max_seconds: float = 2700.0,
+                  max_total_tokens: int = 100_000, max_prompt_tokens: int = 4000,
+                  require_token_counts: bool = False):
+-        if mode != "K0-M2":
+-            raise SessionError(f"режим {mode!r} не реализован в session v1 (только K0-M2)")
++        if mode != "K0-M3":
++            raise SessionError(f"режим {mode!r} не реализован в session v1 (только K0-M3)")
+         self.run_dir = Path(run_dir)
+         self.respond = respond
+         self.seed = seed
+@@ -604,15 +604,15 @@
+             "world.py", "parser.py", "journal.py", "auditor.py", "session.py",
+             "calls.py", "channel.py", "prompts.py")}
+         return {
+-            "series": "K0-M2", "seed": self.seed, "mode": self.mode,
++            "series": "K0-M3", "seed": self.seed, "mode": self.mode,
+             "status": status, "stop_reason": self.stop_reason,
+             "respond_calls": self.respond_calls, "malformed": self.malformed,
+             "n_E": (len(self.world.e_set()["E"]) if self.world is not None else None),
+-            "protocol_version": "v30",
+-            "protocol_sha256": file_sha(ARTIFACTS.parent / "K0_PROTOCOL_v30.md"),
++            "protocol_version": "v31",
++            "protocol_sha256": file_sha(ARTIFACTS.parent / "K0_PROTOCOL_v31.md"),
+             "protocol_base_sha256": file_sha(ARTIFACTS.parent / "K0_PROTOCOL.md"),
+             "protocol_diff_sha256": file_sha(ARTIFACTS.parent / "version-history"
+-                                             / "K0_PROTOCOL_v29_to_v30.diff"),
++                                             / "K0_PROTOCOL_v30_to_v31.diff"),
+             "spec_sha256": file_sha(autonomy / "WORLD_C_SPEC.md"),
+             "package_sha256": file_sha(autonomy / "WORLD_C_DECISIONS_PACKAGE.md"),
+             "prompts_sha256": file_sha(code_dir / "prompts.py"),
