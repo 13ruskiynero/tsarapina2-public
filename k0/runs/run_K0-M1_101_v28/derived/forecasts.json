@@ -1,0 +1,30 @@
+{
+ "F1": {
+  "status": "ok",
+  "predictions": {
+   "O1 T=1 H=0": "disappeared",
+   "O1 T=2 H=1": "disappeared",
+   "O2 T=2 H=1": "present",
+   "O2 T=2 H=2": "present",
+   "O3 T=2 H=0": "present",
+   "O3 T=2 H=1": "present",
+   "O3 T=2 H=2": "present",
+   "O4 T=2 H=1": "present",
+   "O4 T=2 H=2": "present"
+  }
+ },
+ "F3": {
+  "status": "ok",
+  "predictions": {
+   "O1 T=1 H=0": "present",
+   "O1 T=2 H=1": "present",
+   "O2 T=2 H=1": "present",
+   "O2 T=2 H=2": "present",
+   "O3 T=2 H=0": "disappeared",
+   "O3 T=2 H=1": "present",
+   "O3 T=2 H=2": "present",
+   "O4 T=2 H=1": "present",
+   "O4 T=2 H=2": "present"
+  }
+ }
+}

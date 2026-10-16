@@ -1,0 +1,12 @@
+{
+ "n_E": 8,
+ "e_min_ok": true,
+ "acc_before": 0.625,
+ "acc_after": 0.625,
+ "improvement": 0.0,
+ "o1_pass": false,
+ "final_present": true,
+ "malformed": 0,
+ "context_approx_max": 1270,
+ "context_warns": 0
+}

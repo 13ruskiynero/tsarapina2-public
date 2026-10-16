@@ -1,0 +1,2 @@
+ACTION: probe O4 T=1 H=0
+PREDICT: O4 T=1 H=0 = present

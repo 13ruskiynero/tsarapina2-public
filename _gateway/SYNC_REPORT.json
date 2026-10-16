@@ -1,15 +1,23 @@
 {
- "generated_at": "2026-10-16T15:25:08Z",
- "included": 299,
+ "generated_at": "2026-10-16T15:38:59Z",
+ "included": 366,
  "excluded_total": 890,
  "included_by_ext": {
   ".diff": {
    "count": 2,
    "bytes": 1944
   },
+  ".json": {
+   "count": 26,
+   "bytes": 7841
+  },
+  ".jsonl": {
+   "count": 1,
+   "bytes": 11784
+  },
   ".md": {
-   "count": 135,
-   "bytes": 1060597
+   "count": 137,
+   "bytes": 1073983
   },
   ".py": {
    "count": 160,
@@ -18,6 +26,10 @@
   ".sh": {
    "count": 2,
    "bytes": 825
+  },
+  ".txt": {
+   "count": 38,
+   "bytes": 46827
   }
  },
  "excluded_by_reason": {

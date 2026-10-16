@@ -1,0 +1,156 @@
+{
+ "phase": "F2",
+ "history": [
+  {
+   "trial_id": "t01",
+   "object_id": "O2",
+   "m": "A",
+   "T": 1,
+   "H": 0,
+   "y": "present",
+   "origin": "environment",
+   "cell": "O2 T=1 H=0"
+  },
+  {
+   "trial_id": "t02",
+   "object_id": "O1",
+   "m": "A",
+   "T": 2,
+   "H": 0,
+   "y": "disappeared",
+   "origin": "environment",
+   "cell": "O1 T=2 H=0"
+  },
+  {
+   "trial_id": "t03",
+   "object_id": "O4",
+   "m": "B",
+   "T": 2,
+   "H": 0,
+   "y": "present",
+   "origin": "environment",
+   "cell": "O4 T=2 H=0"
+  },
+  {
+   "trial_id": "t04",
+   "object_id": "O2",
+   "m": "A",
+   "T": 2,
+   "H": 0,
+   "y": "present",
+   "origin": "environment",
+   "cell": "O2 T=2 H=0"
+  },
+  {
+   "trial_id": "t05",
+   "object_id": "O4",
+   "m": "B",
+   "T": 0,
+   "H": 0,
+   "y": "present",
+   "origin": "environment",
+   "cell": "O4 T=0 H=0"
+  },
+  {
+   "trial_id": "t06",
+   "object_id": "O1",
+   "m": "A",
+   "T": 2,
+   "H": 2,
+   "y": "disappeared",
+   "origin": "environment",
+   "cell": "O1 T=2 H=2"
+  },
+  {
+   "trial_id": "t07",
+   "object_id": "O3",
+   "m": "B",
+   "T": 1,
+   "H": 2,
+   "y": "present",
+   "origin": "environment",
+   "cell": "O3 T=1 H=2"
+  },
+  {
+   "trial_id": "t08",
+   "object_id": "O3",
+   "m": "B",
+   "T": 0,
+   "H": 0,
+   "y": "present",
+   "origin": "environment",
+   "cell": "O3 T=0 H=0"
+  },
+  {
+   "trial_id": "t09",
+   "object_id": "O2",
+   "m": "A",
+   "T": 1,
+   "H": 2,
+   "y": "present",
+   "origin": "environment",
+   "cell": "O2 T=1 H=2"
+  },
+  {
+   "trial_id": "t10",
+   "object_id": "O1",
+   "m": "A",
+   "T": 0,
+   "H": 0,
+   "y": "present",
+   "origin": "environment",
+   "cell": "O1 T=0 H=0"
+  },
+  {
+   "trial_id": "t11",
+   "object_id": "O3",
+   "m": "B",
+   "T": 0,
+   "H": 1,
+   "y": "present",
+   "origin": "environment",
+   "cell": "O3 T=0 H=1"
+  },
+  {
+   "trial_id": "t12",
+   "object_id": "O4",
+   "m": "B",
+   "T": 1,
+   "H": 2,
+   "y": "present",
+   "origin": "environment",
+   "cell": "O4 T=1 H=2"
+  }
+ ],
+ "observations": [
+  [
+   "O3 T=1 H=0",
+   "present"
+  ],
+  [
+   "O1 T=0 H=2",
+   "present"
+  ],
+  [
+   "O1 T=0 H=2",
+   "present"
+  ],
+  [
+   "O1 T=0 H=2",
+   "present"
+  ],
+  [
+   "O3 T=2 H=0",
+   "disappeared"
+  ]
+ ],
+ "rejections": [],
+ "budget_remaining": 11,
+ "last_probe": "O3 T=2 H=0",
+ "last_labels": [
+  0,
+  0,
+  5,
+  0
+ ]
+}

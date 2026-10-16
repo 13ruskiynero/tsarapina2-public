@@ -1,0 +1,2 @@
+ACTION: probe O3 T=2 H=0
+PREDICT: O3 T=2 H=0 = present

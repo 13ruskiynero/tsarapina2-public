@@ -1,0 +1,74 @@
+{
+ "structural_full": false,
+ "agent_full": false,
+ "agent_valid_full": false,
+ "correct_s4": null,
+ "not_checked": false,
+ "status_hint": "normal",
+ "s6_complete": true,
+ "open_questions": [
+  "S6/N4: норма «эха текста» УТВЕРЖДЕНА (дополнение №1, v1.0, sha256 97141515…0141cec4); `s6_complete=true` установлен решением 2026-10-15 (K0_S6_DECISION_ACT.md, sha256 c334cfac…1953); A13 («явный пересмотр») остаётся открытым нормативным ограничением.",
+  "S6: «без явного пересмотра» — определение отсутствует; реализована консервативная механизация (использование опровергнутой гипотезы после refuted = нарушение).",
+  "N3/A14: свёртка нескольких вердиктов — предложено правило not_checked > mismatch > match (дополнение №1, 0.1-draft); результаты предварительны до утверждения.",
+  "Связь probe_outcome ↔ action_requested отсутствует в журнале; аудитор связывает по позиции (A24); предложение — action_ref в probe_outcome (к согласованию journal_schema.md)."
+ ],
+ "links": {
+  "S1": {
+   "structural": false,
+   "agent": false,
+   "details": {
+    "found": false
+   }
+  },
+  "S2": {
+   "structural": false,
+   "agent": false,
+   "details": {
+    "found": false
+   }
+  },
+  "S3": {
+   "structural": false,
+   "agent": false,
+   "details": {
+    "found": false
+   }
+  },
+  "S4": {
+   "structural": false,
+   "agent": false,
+   "details": {
+    "found": false,
+    "verdicts": [],
+    "reason": "нет вердикта после раскрытия исхода с валидной ссылкой"
+   }
+  },
+  "S5": {
+   "structural": false,
+   "agent": false,
+   "details": {
+    "found": false
+   }
+  },
+  "S6": {
+   "structural": true,
+   "agent": true,
+   "details": {
+    "pre_before_action": true,
+    "pre_problems": [],
+    "verdict_after_outcome": true,
+    "order_problems": [],
+    "reuse_refuted": true,
+    "reuse_problems": [],
+    "echo": {
+     "norm": "addendum-1.0",
+     "violations": []
+    },
+    "vacuous": false,
+    "open_components": [
+     "explicit_revision_not_defined"
+    ]
+   }
+  }
+ }
+}

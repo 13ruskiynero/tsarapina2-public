@@ -1,0 +1,2 @@
+PREDICT: O4 T=1 H=0 = present
+ACTION: repeat
