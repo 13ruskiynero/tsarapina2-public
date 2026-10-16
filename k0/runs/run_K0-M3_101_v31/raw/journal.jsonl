@@ -1,0 +1,60 @@
+{"seq": 1, "type": "history_shown", "origin": "none", "label_by": "none", "seed": 101, "trials": ["t01", "t02", "t03", "t04", "t05", "t06", "t07", "t08", "t09", "t10", "t11", "t12"]}
+{"seq": 2, "type": "forecast_status", "origin": "none", "label_by": "none", "phase": "F1", "attempt": 1, "status": "ok"}
+{"seq": 3, "type": "prediction_before", "origin": "agent", "label_by": "none", "cell": "O1 T=1 H=0", "outcome": "disappeared"}
+{"seq": 4, "type": "prediction_before", "origin": "agent", "label_by": "none", "cell": "O1 T=2 H=1", "outcome": "disappeared"}
+{"seq": 5, "type": "prediction_before", "origin": "agent", "label_by": "none", "cell": "O2 T=2 H=1", "outcome": "present"}
+{"seq": 6, "type": "prediction_before", "origin": "agent", "label_by": "none", "cell": "O2 T=2 H=2", "outcome": "present"}
+{"seq": 7, "type": "prediction_before", "origin": "agent", "label_by": "none", "cell": "O3 T=2 H=0", "outcome": "present"}
+{"seq": 8, "type": "prediction_before", "origin": "agent", "label_by": "none", "cell": "O3 T=2 H=1", "outcome": "present"}
+{"seq": 9, "type": "prediction_before", "origin": "agent", "label_by": "none", "cell": "O3 T=2 H=2", "outcome": "present"}
+{"seq": 10, "type": "prediction_before", "origin": "agent", "label_by": "none", "cell": "O4 T=2 H=1", "outcome": "present"}
+{"seq": 11, "type": "prediction_before", "origin": "agent", "label_by": "none", "cell": "O4 T=2 H=2", "outcome": "present"}
+{"seq": 12, "type": "question", "origin": "agent", "label_by": "agent", "label": "Q1", "text": "Какое влияние оказывает объект O3 при T=2 H=0?", "ref": "t07"}
+{"seq": 13, "type": "hypothesis", "origin": "agent", "label_by": "agent", "label": "H1", "of": "Q1", "text": "Если объект O3 находится в клетке с параметрами T=2 и H=0, он будет present.", "cell": "O3 T=2 H=0", "prediction": "present"}
+{"seq": 14, "type": "prediction_pre", "origin": "agent", "label_by": "none", "cell": "O2 T=0 H=0", "outcome": "present"}
+{"seq": 15, "type": "action_requested", "origin": "agent", "label_by": "driver", "label": "P1", "descriptor": "probe O2 T=0 H=0", "prediction_ref": 14}
+{"seq": 16, "type": "probe_outcome", "origin": "none", "label_by": "none", "cell": "O2 T=0 H=0", "outcome": "present", "masked": false, "revealed": true}
+{"seq": 17, "type": "budget", "origin": "none", "label_by": "none", "cost": 1, "remaining": 15, "action_ref": 15}
+{"seq": 18, "type": "action_rejected", "origin": "none", "label_by": "none", "requested": "repeat", "reason": "predict_invalid"}
+{"seq": 19, "type": "prediction_pre", "origin": "agent", "label_by": "none", "cell": "O2 T=0 H=0", "outcome": "present"}
+{"seq": 20, "type": "action_requested", "origin": "agent", "label_by": "driver", "label": "P2", "descriptor": "repeat", "prediction_ref": 19}
+{"seq": 21, "type": "probe_outcome", "origin": "none", "label_by": "none", "cell": "O2 T=0 H=0", "outcome": "present", "masked": false, "revealed": true}
+{"seq": 22, "type": "budget", "origin": "none", "label_by": "none", "cost": 1, "remaining": 14, "action_ref": 20}
+{"seq": 23, "type": "prediction_pre", "origin": "agent", "label_by": "none", "cell": "O2 T=0 H=0", "outcome": "present"}
+{"seq": 24, "type": "action_requested", "origin": "agent", "label_by": "driver", "label": "P3", "descriptor": "repeat", "prediction_ref": 23}
+{"seq": 25, "type": "probe_outcome", "origin": "none", "label_by": "none", "cell": "O2 T=0 H=0", "outcome": "present", "masked": false, "revealed": true}
+{"seq": 26, "type": "budget", "origin": "none", "label_by": "none", "cost": 1, "remaining": 13, "action_ref": 24}
+{"seq": 27, "type": "prediction_pre", "origin": "agent", "label_by": "none", "cell": "O2 T=0 H=0", "outcome": "present"}
+{"seq": 28, "type": "action_requested", "origin": "agent", "label_by": "driver", "label": "P4", "descriptor": "repeat", "prediction_ref": 27}
+{"seq": 29, "type": "probe_outcome", "origin": "none", "label_by": "none", "cell": "O2 T=0 H=0", "outcome": "present", "masked": false, "revealed": true}
+{"seq": 30, "type": "budget", "origin": "none", "label_by": "none", "cost": 1, "remaining": 12, "action_ref": 28}
+{"seq": 31, "type": "prediction_pre", "origin": "agent", "label_by": "none", "cell": "O2 T=0 H=0", "outcome": "present"}
+{"seq": 32, "type": "action_requested", "origin": "agent", "label_by": "driver", "label": "P5", "descriptor": "repeat", "prediction_ref": 31}
+{"seq": 33, "type": "probe_outcome", "origin": "none", "label_by": "none", "cell": "O2 T=0 H=0", "outcome": "present", "masked": false, "revealed": true}
+{"seq": 34, "type": "budget", "origin": "none", "label_by": "none", "cost": 1, "remaining": 11, "action_ref": 32}
+{"seq": 35, "type": "prediction_pre", "origin": "agent", "label_by": "none", "cell": "O2 T=0 H=0", "outcome": "present"}
+{"seq": 36, "type": "action_requested", "origin": "agent", "label_by": "driver", "label": "P6", "descriptor": "repeat", "prediction_ref": 35}
+{"seq": 37, "type": "probe_outcome", "origin": "none", "label_by": "none", "cell": "O2 T=0 H=0", "outcome": "present", "masked": false, "revealed": true}
+{"seq": 38, "type": "budget", "origin": "none", "label_by": "none", "cost": 1, "remaining": 10, "action_ref": 36}
+{"seq": 39, "type": "prediction_pre", "origin": "agent", "label_by": "none", "cell": "O2 T=0 H=0", "outcome": "present"}
+{"seq": 40, "type": "action_requested", "origin": "agent", "label_by": "driver", "label": "P7", "descriptor": "repeat", "prediction_ref": 39}
+{"seq": 41, "type": "probe_outcome", "origin": "none", "label_by": "none", "cell": "O2 T=0 H=0", "outcome": "present", "masked": false, "revealed": true}
+{"seq": 42, "type": "budget", "origin": "none", "label_by": "none", "cost": 1, "remaining": 9, "action_ref": 40}
+{"seq": 43, "type": "prediction_pre", "origin": "agent", "label_by": "none", "cell": "O2 T=0 H=0", "outcome": "present"}
+{"seq": 44, "type": "action_requested", "origin": "agent", "label_by": "driver", "label": "P8", "descriptor": "repeat", "prediction_ref": 43}
+{"seq": 45, "type": "probe_outcome", "origin": "none", "label_by": "none", "cell": "O2 T=0 H=0", "outcome": "present", "masked": false, "revealed": true}
+{"seq": 46, "type": "budget", "origin": "none", "label_by": "none", "cost": 1, "remaining": 8, "action_ref": 44}
+{"seq": 47, "type": "prediction_pre", "origin": "agent", "label_by": "none", "cell": "O2 T=0 H=0", "outcome": "present"}
+{"seq": 48, "type": "action_requested", "origin": "agent", "label_by": "driver", "label": "P9", "descriptor": "repeat", "prediction_ref": 47}
+{"seq": 49, "type": "probe_outcome", "origin": "none", "label_by": "none", "cell": "O2 T=0 H=0", "outcome": "present", "masked": false, "revealed": true}
+{"seq": 50, "type": "budget", "origin": "none", "label_by": "none", "cost": 1, "remaining": 7, "action_ref": 48}
+{"seq": 51, "type": "prediction_pre", "origin": "agent", "label_by": "none", "cell": "O2 T=0 H=0", "outcome": "present"}
+{"seq": 52, "type": "action_requested", "origin": "agent", "label_by": "driver", "label": "P10", "descriptor": "repeat", "prediction_ref": 51}
+{"seq": 53, "type": "probe_outcome", "origin": "none", "label_by": "none", "cell": "O2 T=0 H=0", "outcome": "present", "masked": false, "revealed": true}
+{"seq": 54, "type": "budget", "origin": "none", "label_by": "none", "cost": 1, "remaining": 6, "action_ref": 52}
+{"seq": 55, "type": "prediction_pre", "origin": "agent", "label_by": "none", "cell": "O2 T=0 H=0", "outcome": "present"}
+{"seq": 56, "type": "action_requested", "origin": "agent", "label_by": "driver", "label": "P11", "descriptor": "repeat", "prediction_ref": 55}
+{"seq": 57, "type": "probe_outcome", "origin": "none", "label_by": "none", "cell": "O2 T=0 H=0", "outcome": "present", "masked": false, "revealed": true}
+{"seq": 58, "type": "budget", "origin": "none", "label_by": "none", "cost": 1, "remaining": 5, "action_ref": 56}
+{"seq": 59, "type": "action_rejected", "origin": "none", "label_by": "none", "requested": "probe O2 T=0 H=0", "reason": "predict_invalid"}
+{"seq": 60, "type": "stop", "origin": "none", "label_by": "none", "reason": "response_loop"}

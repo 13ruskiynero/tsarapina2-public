@@ -1,0 +1,55 @@
+{
+ "series": "K0-M3",
+ "seed": 101,
+ "mode": "K0-M3",
+ "status": "halted",
+ "stop_reason": "response_loop",
+ "respond_calls": 26,
+ "malformed": 2,
+ "n_E": 9,
+ "protocol_version": "v31",
+ "protocol_sha256": "5f76896455c68867f074b71edf4a66ccd1feb537a3c119a3a38d89650fcabca5",
+ "protocol_base_sha256": "3d2ab37dff795a61d5b50c768608ce91a854718abffd4e6c2c1b6d716c77893b",
+ "protocol_diff_sha256": "5d09b2e33ed8254287185780368afab9b27e73a6f801f57ace5a2f696e879e00",
+ "spec_sha256": "b260b24f0e92167f96c189bd84a5201d5597509ad8709190fada71dc4f22c944",
+ "package_sha256": "8e9307e998052c98856cdcdb9464426a70cdc53a49403b741e0c3d70ca511970",
+ "prompts_sha256": "0d31989bfd127509a3edacf9720f70369b7ed6b4d19a6b08a0e2cb8ba2b60e10",
+ "driver_sha256": {
+  "world.py": "054709565396ac89a9d9a2eb972556f1a9155f3ebfda75bc963d2096c558e38a",
+  "parser.py": "39ce6c8c03383ff3e4ffe53aaf0d92be9dc68e308aa7de83572fab473ee4ccb0",
+  "journal.py": "2014343dfe74bb44a37292beed44b1f1013e140b36f22a049566e95714d9533c",
+  "auditor.py": "c716ccca97df9f60f07e6b727de82f4372a10067e2e73c3d575c310d4dfe83c9",
+  "session.py": "c6399af23f7b87b01c531516f8606b486daa495c79994a929fd63bd9d5a6f9f9",
+  "calls.py": "4a43aa8dc1d4f4cd5c11d00b1a338d1dad2d1a6e230a586d8230c8e235c9bf75",
+  "channel.py": "f7d21e28870340b0e4b793a8b1aea99bebabbacca03a56523111abfc89dbd91e",
+  "prompts.py": "0d31989bfd127509a3edacf9720f70369b7ed6b4d19a6b08a0e2cb8ba2b60e10"
+ },
+ "t0_params": {
+  "model": "gemma4-e4b-heretic:q4km",
+  "temperature": 0,
+  "seed": 1729,
+  "think": false,
+  "num_predict": 256,
+  "num_ctx": 4096,
+  "keep_alive": "30m"
+ },
+ "limits": {
+  "max_calls": 30,
+  "max_seconds": 2700.0,
+  "max_total_tokens": 100000,
+  "max_prompt_tokens": 4000,
+  "require_token_counts": true
+ },
+ "total_tokens": 38719,
+ "context": {
+  "approx_tokens_max": 2109,
+  "approx_tokens_last": 2109,
+  "warn_threshold": 3900,
+  "warn_calls": []
+ },
+ "artifacts": {
+  "heldout_battery.json": "a6fd7089daeeb740f2eab9cce2bd7b8d461de29eeafe394d486246964fe232ae",
+  "history_101.jsonl": "7c1587a7ba577ef34e6114722a96092f8f3fae69bf2338e0757f070efe325cbf"
+ },
+ "written_utc": "2026-10-16T18:42:02Z"
+}

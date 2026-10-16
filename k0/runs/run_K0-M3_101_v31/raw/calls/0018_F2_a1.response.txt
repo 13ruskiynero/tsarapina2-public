@@ -1,0 +1,3 @@
+QUESTION Q1: Является ли состояние объекта O2 при T=0, H=0 постоянным? REF: t01
+HYPOTHESIS H1 OF Q1: Состояние O2 при T=0, H=0 всегда 'present'. PREDICT: O2 T=0 H=0 = present
+ACTION: probe O2 T=0 H=0

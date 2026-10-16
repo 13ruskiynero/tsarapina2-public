@@ -1,0 +1,2 @@
+QUESTION Q1: Является ли состояние объекта O2 при T=0, H=0 зависимым от параметра T? REF: t01
+HYPOTHESIS H1 OF Q1: Если объект O2 в состоянии T=0, H=0, то он всегда present. PREDICT: O2 T=0 H=0 = present

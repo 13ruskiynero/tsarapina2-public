@@ -1,0 +1,2 @@
+PREDICT: O2 T=0 H=0 = present
+ACTION: repeat
