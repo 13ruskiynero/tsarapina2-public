@@ -1,6 +1,6 @@
 {
  "project": "tsarapina",
- "generated_at": "2026-10-16T15:38:59Z",
+ "generated_at": "2026-10-16T15:44:16Z",
  "policy": {
   "allow_ext": [
    ".md",
@@ -10,8 +10,8 @@
   "max_file_bytes": 65536,
   "include_jsonl": false
  },
- "count": 366,
- "total_bytes": 2603672,
+ "count": 367,
+ "total_bytes": 2613969,
  "files": [
   {
    "path": "MVP1_IMPLEMENTATION_PLAN.md",
@@ -1538,6 +1538,12 @@
    "sha256": "80810d942d34190cd91e1f5c19c5084d21c11537763ebeb98a5aabb399cf52c8"
   },
   {
+   "path": "k0/K0_M2_DESIGN_DRAFT.md",
+   "size": 9977,
+   "mtime": 1792165445,
+   "sha256": "9d5938bae68e129b8892f48462b0097f4d02d1c961b2a08b3a249a03f8b3faa4"
+  },
+  {
    "path": "k0/K0_PROMPTS_v27_to_v28.diff",
    "size": 951,
    "mtime": 1792163711,
@@ -1575,9 +1581,9 @@
   },
   {
    "path": "k0/README.md",
-   "size": 2957,
-   "mtime": 1792165126,
-   "sha256": "181a73a5ec8826ae84bc0393d13ec13eb6d2e3eeb6f6179c80d7461853d5c3d4"
+   "size": 3277,
+   "mtime": 1792165454,
+   "sha256": "b28264ff54fad727ae2d923b30d1231017eac75a4ec0b8b085c0c65a039fddd8"
   },
   {
    "path": "k0/runs/run_K0-M1_101_v28/derived/audit.json",
