@@ -1,6 +1,6 @@
 {
  "project": "tsarapina",
- "generated_at": "2026-10-16T18:51:20Z",
+ "generated_at": "2026-10-16T19:09:14Z",
  "policy": {
   "allow_ext": [
    ".md",
@@ -10,8 +10,8 @@
   "max_file_bytes": 65536,
   "include_jsonl": false
  },
- "count": 601,
- "total_bytes": 2999427,
+ "count": 616,
+ "total_bytes": 3017292,
  "files": [
   {
    "path": "MVP1_IMPLEMENTATION_PLAN.md",
@@ -1586,6 +1586,12 @@
    "sha256": "7657b9087a86a251ab94519dabfb9e84207726cf675c2c9dbd0a83bbebdd199f"
   },
   {
+   "path": "k0/K0_M3_V32_RUN_REPORT.md",
+   "size": 6454,
+   "mtime": 1792177746,
+   "sha256": "9fef478ae415383014337a77322285bb495d15b534a99ad78b8a9ce1887fd5f2"
+  },
+  {
    "path": "k0/K0_PROMPTS_v27_to_v28.diff",
    "size": 951,
    "mtime": 1792163711,
@@ -1725,9 +1731,9 @@
   },
   {
    "path": "k0/README.md",
-   "size": 9105,
-   "mtime": 1792176679,
-   "sha256": "bf30b3ef5597b785f4638d7dbd701f494613f8fb599327499b04121a43c3d63a"
+   "size": 9829,
+   "mtime": 1792177753,
+   "sha256": "fd229cd8d919b2167e5d3e9922f7cd899eca082960b4cc1f9bdf3b365ab123b2"
   },
   {
    "path": "k0/runs/run_K0-M1_101_v28/derived/audit.json",
@@ -3378,6 +3384,90 @@
    "size": 8101,
    "mtime": 1792176122,
    "sha256": "7551e6f254e72527069b2c38b9868d18e0f56bd1cd403fb13936216b326e017b"
+  },
+  {
+   "path": "k0/runs/run_K0-M3_101_v32/derived/forecasts.json",
+   "size": 124,
+   "mtime": 1792177603,
+   "sha256": "16a4059ebe31a89191a1d58f550a3dae12400ebadd29bdc11bd6291450b2d928"
+  },
+  {
+   "path": "k0/runs/run_K0-M3_101_v32/derived/rejections.json",
+   "size": 2,
+   "mtime": 1792177603,
+   "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  {
+   "path": "k0/runs/run_K0-M3_101_v32/passport/passport.json",
+   "size": 2123,
+   "mtime": 1792177603,
+   "sha256": "2027879cc790052e8c4a0864a8adbcec8c6db88f4ac0ffe15d275694e0e3e82f"
+  },
+  {
+   "path": "k0/runs/run_K0-M3_101_v32/preflight_canary.json",
+   "size": 540,
+   "mtime": 1792177571,
+   "sha256": "99df7543defc2cd7c7b4af416f7a883b76f10f456772f3fa84b553b134f4f0ac"
+  },
+  {
+   "path": "k0/runs/run_K0-M3_101_v32/raw/calls/0001_F1_a1.meta.json",
+   "size": 71,
+   "mtime": 1792177582,
+   "sha256": "5b883d7706094e84baf148c44af8ab2dd333bad29cc17c81ec8492d895008704"
+  },
+  {
+   "path": "k0/runs/run_K0-M3_101_v32/raw/calls/0001_F1_a1.request.txt",
+   "size": 2078,
+   "mtime": 1792177571,
+   "sha256": "1956685a190914bca6ec881d4d9f6c221571394938a7a5b0410098db5e9dc882"
+  },
+  {
+   "path": "k0/runs/run_K0-M3_101_v32/raw/calls/0001_F1_a1.response.txt",
+   "size": 259,
+   "mtime": 1792177582,
+   "sha256": "f94316f49cc5b5ced885448b121fcada3fc679e6322dd736ba1c43f37f31147d"
+  },
+  {
+   "path": "k0/runs/run_K0-M3_101_v32/raw/calls/0002_F1_a2.meta.json",
+   "size": 71,
+   "mtime": 1792177593,
+   "sha256": "5b883d7706094e84baf148c44af8ab2dd333bad29cc17c81ec8492d895008704"
+  },
+  {
+   "path": "k0/runs/run_K0-M3_101_v32/raw/calls/0002_F1_a2.request.txt",
+   "size": 2078,
+   "mtime": 1792177582,
+   "sha256": "1956685a190914bca6ec881d4d9f6c221571394938a7a5b0410098db5e9dc882"
+  },
+  {
+   "path": "k0/runs/run_K0-M3_101_v32/raw/calls/0002_F1_a2.response.txt",
+   "size": 259,
+   "mtime": 1792177593,
+   "sha256": "f94316f49cc5b5ced885448b121fcada3fc679e6322dd736ba1c43f37f31147d"
+  },
+  {
+   "path": "k0/runs/run_K0-M3_101_v32/raw/calls/0003_F1_a3.meta.json",
+   "size": 71,
+   "mtime": 1792177603,
+   "sha256": "5b883d7706094e84baf148c44af8ab2dd333bad29cc17c81ec8492d895008704"
+  },
+  {
+   "path": "k0/runs/run_K0-M3_101_v32/raw/calls/0003_F1_a3.request.txt",
+   "size": 2078,
+   "mtime": 1792177593,
+   "sha256": "1956685a190914bca6ec881d4d9f6c221571394938a7a5b0410098db5e9dc882"
+  },
+  {
+   "path": "k0/runs/run_K0-M3_101_v32/raw/calls/0003_F1_a3.response.txt",
+   "size": 259,
+   "mtime": 1792177603,
+   "sha256": "f94316f49cc5b5ced885448b121fcada3fc679e6322dd736ba1c43f37f31147d"
+  },
+  {
+   "path": "k0/runs/run_K0-M3_101_v32/raw/journal.jsonl",
+   "size": 674,
+   "mtime": 1792177603,
+   "sha256": "21f66ae50d6f9dc411f84f5fb8225c185bc52225ab4fed31051fa6fe82c11f3b"
   },
   {
    "path": "knowledge/__init__.py",
