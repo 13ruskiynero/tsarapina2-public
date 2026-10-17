@@ -1,0 +1,68 @@
+--- version-history/K0_SESSION_v32.py
++++ code/session.py
+@@ -4,7 +4,8 @@
+ 
+ Прогон K0-M1 одной сессии:
+ - F1: история наблюдений (показана агенту) + 9 прогнозов батареи
+-  (до 3 попыток; 1+2 повтора — тот же промпт; исчерпание → invalid_final);
++  (до 3 попыток; 1+2 повтора — тот же промпт; v33: начиная со 2-й попытки —
++  блок [ОТКАЗ F1] с перечнем невалидных строк; исчерпание → invalid_final);
+ - F2: цикл действий (бюджет 16): каждый ход — полный разбор ответа (§7),
+   валидация блоков ДО исполнения (§7.2), записи §11 в порядке строк;
+ - F3: новые 9 прогнозов без обратной связи (те же правила повторов);
+@@ -134,6 +135,7 @@
+     battery: tuple = ()      # перечень клеток батареи (F1/F3; без исходов)
+     last_labels: tuple = (0, 0, 0, 0)   # (Q, H, P, V) — §7 «эхо меток»
+     hypotheses: tuple = ()   # v32: зарегистрированные гипотезы — ({"n","cell","prediction"}, …)
++    f1_rejection: tuple = ()   # v33: причина отказа F1 (для попытки ≥2)
+ 
+ 
+ @dataclass
+@@ -187,6 +189,7 @@
+         self.f1_pred: dict = {}
+         self.f3_pred: dict = {}
+         self.f1_status: Optional[str] = None
++        self.f1_rejection: tuple = ()   # v33: причина отказа F1 для повтора
+         self.f3_status: Optional[str] = None
+         self.observations: list = []      # [(Cell, outcome)] — раскрытые пробы
+         self.rejections: list = []        # [{"requested", "reason"}]
+@@ -362,7 +365,9 @@
+                             battery=(tuple(c.as_text() for c in self.cells)
+                                      if phase in ("F1", "F3") else ()),
+                             last_labels=labels,
+-                            hypotheses=(hyp if phase == "F2" else ()))
++                            hypotheses=(hyp if phase == "F2" else ()),
++                            f1_rejection=(tuple(self.f1_rejection)
++                                          if phase == "F1" else ()))
+ 
+     # --- F1 / F3 --------------------------------------------------------------
+ 
+@@ -385,8 +390,13 @@
+                     self.f1_pred, self.f1_status = fc.predictions, "ok"
+                 else:
+                     self.f3_pred, self.f3_status = fc.predictions, "ok"
++                self.f1_rejection = ()
+                 return
+             last = (attempt == 3)
++            if phase == "F1":
++                self.f1_rejection = (tuple(fc.problems)
++                                     + tuple(f"строка {i}: {raw}"
++                                             for i, raw in fc.bad_raw))
+             self.journal.forecast_status(phase, attempt,
+                                          "invalid_final" if last else "invalid_retry")
+             if last:
+@@ -613,11 +623,11 @@
+             "status": status, "stop_reason": self.stop_reason,
+             "respond_calls": self.respond_calls, "malformed": self.malformed,
+             "n_E": (len(self.world.e_set()["E"]) if self.world is not None else None),
+-            "protocol_version": "v32",
+-            "protocol_sha256": file_sha(ARTIFACTS.parent / "K0_PROTOCOL_v32.md"),
++            "protocol_version": "v33",
++            "protocol_sha256": file_sha(ARTIFACTS.parent / "K0_PROTOCOL_v33.md"),
+             "protocol_base_sha256": file_sha(ARTIFACTS.parent / "K0_PROTOCOL.md"),
+             "protocol_diff_sha256": file_sha(ARTIFACTS.parent / "version-history"
+-                                             / "K0_PROTOCOL_v31_to_v32.diff"),
++                                             / "K0_PROTOCOL_v32_to_v33.diff"),
+             "spec_sha256": file_sha(autonomy / "WORLD_C_SPEC.md"),
+             "package_sha256": file_sha(autonomy / "WORLD_C_DECISIONS_PACKAGE.md"),
+             "prompts_sha256": file_sha(code_dir / "prompts.py"),

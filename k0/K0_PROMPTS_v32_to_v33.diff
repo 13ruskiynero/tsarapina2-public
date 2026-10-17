@@ -1,0 +1,53 @@
+--- version-history/K0_PROMPTS_v32.py
++++ code/prompts.py
+@@ -101,13 +101,18 @@
+                 "Проверь именно эту клетку: строка PREDICT: {cell} = {pred}, "
+                 "затем строка ACTION: probe {cell}.")
+ 
++F1_REJ_HEAD = "[ОТКАЗ F1] предыдущий ответ невалиден:"
++F1_REJ_TAIL = ("Допустимы только значения present или disappeared; повтори ровно "
++               "9 строк формата PREDICT: <объект> T=<t> H=<h> = "
++               "<present|disappeared>; другие строки недопустимы.")
++
+ 
+ def static_text() -> str:
+     """Все статические тексты шаблонов (для лексикон-аудита)."""
+     return "\n".join([WORLD_TEXT, F1_HEAD, F3_HEAD, F4_HEAD, HIST_HEAD, BATT_HEAD,
+                       OBS_HEAD, REJ_HEAD, NOTE_HEAD, LABELS_HEAD, F1_TASK,
+                       F3_TASK, F4_TASK, F2_HEAD, F2_SCOPE, F2_ACTIONS,
+-                      F2_NEXT_STEP])
++                      F2_NEXT_STEP, F1_REJ_HEAD, F1_REJ_TAIL])
+ 
+ 
+ FORBIDDEN_SUBSTRINGS = (
+@@ -161,14 +166,16 @@
+ 
+ # --- сборка фаз ----------------------------------------------------------------
+ 
+-def build_f1(ctx) -> str:
+-    return "\n".join([
+-        WORLD_TEXT, "",
+-        F1_HEAD, "",
+-        HIST_HEAD, _hist_lines(ctx), "",
+-        BATT_HEAD, _battery_lines(ctx), "",
+-        F1_TASK,
+-    ])
++def build_f1(ctx, attempt: int = 1) -> str:
++    parts = [WORLD_TEXT, "", F1_HEAD, "",
++             HIST_HEAD, _hist_lines(ctx), "",
++             BATT_HEAD, _battery_lines(ctx), "",
++             F1_TASK]
++    if attempt >= 2 and ctx.f1_rejection:   # v33: явный отказ для повтора
++        parts += ["", F1_REJ_HEAD,
++                  "\n".join(f"- {x}" for x in ctx.f1_rejection),
++                  "", F1_REJ_TAIL]
++    return "\n".join(parts)
+ 
+ 
+ def build_f2(ctx) -> str:
+@@ -222,4 +229,4 @@
+         builder = _BUILDERS[phase]
+     except KeyError:
+         raise ValueError(f"нет шаблона для фазы {phase!r}") from None
+-    return builder(ctx)
++    return builder(ctx, attempt) if phase == "F1" else builder(ctx)

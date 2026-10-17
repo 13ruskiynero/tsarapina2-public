@@ -1,0 +1,13 @@
+--- version-history/K0_CALLS_v32.py
++++ code/calls.py
+@@ -51,6 +51,10 @@
+     }
+     if ctx.phase == "F2":   # v32: вход секции «СЛЕДУЮЩИЙ ШАГ» — виден в артефакте
+         payload["hypotheses"] = [dict(h) for h in getattr(ctx, "hypotheses", ())]
++    if ctx.phase == "F1":   # v33: причина отказа F1 — виден в артефакте
++        _f1r = getattr(ctx, "f1_rejection", ())
++        if _f1r:
++            payload["f1_rejection"] = list(_f1r)
+     return json.dumps(payload, ensure_ascii=False, indent=1)
+ 
+ 

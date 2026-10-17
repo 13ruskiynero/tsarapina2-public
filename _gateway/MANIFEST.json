@@ -1,6 +1,6 @@
 {
  "project": "tsarapina",
- "generated_at": "2026-10-17T03:56:15Z",
+ "generated_at": "2026-10-17T04:02:42Z",
  "policy": {
   "allow_ext": [
    ".md",
@@ -10,8 +10,8 @@
   "max_file_bytes": 65536,
   "include_jsonl": false
  },
- "count": 619,
- "total_bytes": 3038227,
+ "count": 624,
+ "total_bytes": 3060048,
  "files": [
   {
    "path": "MVP1_IMPLEMENTATION_PLAN.md",
@@ -1538,6 +1538,12 @@
    "sha256": "b590fbfdfac5ee9b0f586a379d4f2cf5cf9da10da43ccd5c391602002ca34d39"
   },
   {
+   "path": "k0/K0_CALLS_v32_to_v33.diff",
+   "size": 575,
+   "mtime": 1792209688,
+   "sha256": "6f791a9e4ec04c07a0cd794499a3f48c8eb595b84327f0195272072d024a2414"
+  },
+  {
    "path": "k0/K0_EXPERIENCE_CHAIN_FACTS.md",
    "size": 8080,
    "mtime": 1792165113,
@@ -1628,6 +1634,12 @@
    "sha256": "5c8954836e7ca6e3588e3185ff8d505890070220c94ee4374cdab2495b843d35"
   },
   {
+   "path": "k0/K0_PROMPTS_v32_to_v33.diff",
+   "size": 2237,
+   "mtime": 1792209688,
+   "sha256": "5d30bd3be39208a7e68f9ca3e32608ab0b700bdb1e8dca71a43913241e8ce679"
+  },
+  {
    "path": "k0/K0_PROTOCOL_v27_to_v28.diff",
    "size": 993,
    "mtime": 1792163711,
@@ -1694,6 +1706,18 @@
    "sha256": "6d68d5860e612412d8489ff73ec6fbe48ca3c4bbe2466b2f69b75dccbf8166ac"
   },
   {
+   "path": "k0/K0_PROTOCOL_v32_to_v33.diff",
+   "size": 3918,
+   "mtime": 1792209623,
+   "sha256": "07f9bc1d8bd63fd98fbc58c65bdace8d1305804c98a7594a817c2a10bde7dac8"
+  },
+  {
+   "path": "k0/K0_PROTOCOL_v33_ACT.md",
+   "size": 10598,
+   "mtime": 1792209753,
+   "sha256": "d9d5f006e9bbc6f78cc4ab1f6d25acb2bca8ec19d9ae20420587d30e38e35785"
+  },
+  {
    "path": "k0/K0_RESULT_FIXATION.md",
    "size": 4713,
    "mtime": 1792165113,
@@ -1718,6 +1742,12 @@
    "sha256": "0c8dfd913b536e2cf478151bda200a258422eec8c758b541333b9b6bb75e2399"
   },
   {
+   "path": "k0/K0_SESSION_v32_to_v33.diff",
+   "size": 4183,
+   "mtime": 1792209688,
+   "sha256": "6cddb5d920a841643697e08e9f51812b535ee0bb0f84aaebd88f3c6b131cc024"
+  },
+  {
    "path": "k0/K0_THIRD_RUN_REPORT.md",
    "size": 7831,
    "mtime": 1792164294,
@@ -1737,15 +1767,15 @@
   },
   {
    "path": "k0/K0_V32_F1_ANOMALY_FACTS.md",
-   "size": 7541,
-   "mtime": 1792209351,
-   "sha256": "403b727afee70340d3a7081d5838a4f20ea9b9dbe36731db4279342797738a99"
+   "size": 7709,
+   "mtime": 1792209737,
+   "sha256": "e7673cce2cedd4003a4b4af82c842d3839350bf3bed63a80fb73a63c8fdc281c"
   },
   {
    "path": "k0/K0_V33_DESIGN_DRAFT.md",
-   "size": 8125,
-   "mtime": 1792209366,
-   "sha256": "28db41ec556080e1f9742d6b5a017eda4d2948ae804421c75220cf9ade145370"
+   "size": 8267,
+   "mtime": 1792209737,
+   "sha256": "730684476efea42cd72702c8af001fc4ba1d780a01ffd1f92f290babf836ae1f"
   },
   {
    "path": "k0/README.md",
