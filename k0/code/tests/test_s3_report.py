@@ -7,7 +7,11 @@ T1: возврат после state_change объекта клетки — об�
 T2: возврат с PREDICT, отличающимся от наблюдённого исхода — обоснован;
 T3: возврат с тем же PREDICT и без изменений состояния — необоснован;
 T4: отклонённая попытка возврата считается отдельно и НЕ считается возвратом;
-T5: возвратов нет — критерий вакуумно (s3_note заполнен).
+T5: возвратов нет — критерий вакуумно (s3_note заполнен);
+T6: оба основания выполнены одновременно — оба счётчика по 1, общий = 1 (без
+    задвоения);
+T7: отклонённая попытка ДО более поздней пробы той же клетки — состояние
+    берётся на момент попытки (а не из будущих записей журнала).
 """
 from __future__ import annotations
 
@@ -95,6 +99,39 @@ class TestS3Report(unittest.TestCase):
         rep = s3_report.analyze(rows)
         self.assertEqual(rep["returns_executed"], 0)
         self.assertTrue(rep["s3_note"])
+
+    def test_t6_both_grounds_counted_independently(self):
+        # state_change (между P1 и P3) И новый PREDICT — оба основания сразу
+        rows = [row(1, "hypothesis", label="H1", cell="O3 T=2 H=0")]
+        rows += probe_rows(2, "O3 T=2 H=0", "present", "present")
+        rows += probe_rows(10, "O3 T=1 H=0", "disappeared", "disappeared")
+        rows += [row(14, "state_change",
+                     changes=[{"object_id": "O3", "from": "present",
+                               "to": "disappeared"}])]
+        rows += probe_rows(20, "O3 T=2 H=0", "disappeared", "disappeared")
+        rows += [row(90, "verdict", h_label="H1", resolution="refuted")]
+        rep = s3_report.analyze(rows)
+        self.assertEqual(rep["returns_executed"], 1)
+        self.assertEqual(rep["returns_justified_state_change"], 1)
+        self.assertEqual(rep["returns_justified_new_prediction"], 1)
+        self.assertEqual(rep["returns_justified_total"], 1)   # объединение, без задвоения
+        self.assertEqual(rep["returns_unjustified"], 0)
+
+    def test_t7_attempt_uses_state_at_attempt_time(self):
+        # попытка (seq 8) ДО более поздней пробы той же клетки (seq 22);
+        # state_change (seq 6) должен учитываться для попытки.
+        rows = [row(1, "hypothesis", label="H1", cell="O3 T=2 H=0")]
+        rows += probe_rows(2, "O3 T=2 H=0", "present", "present")
+        rows += [row(6, "state_change",
+                     changes=[{"object_id": "O3", "from": "present",
+                               "to": "disappeared"}])]
+        rows += [row(8, "action_rejected", requested="probe O3 T=2 H=0",
+                     reason="predict_invalid")]
+        rows += probe_rows(20, "O3 T=2 H=0", "disappeared", "present")
+        rows += [row(90, "verdict", h_label="H1", resolution="refuted")]
+        rep = s3_report.analyze(rows)
+        self.assertEqual(rep["attempts_rejected_total"], 1)
+        self.assertTrue(rep["attempts_detail"][0]["state_changed_since"])
 
 
 if __name__ == "__main__":
