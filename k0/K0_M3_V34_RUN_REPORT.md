@@ -91,8 +91,9 @@
   - `passport/passport.json` — `02f71e28bcfafd28ec0826e3d400361e400d5029b81a32e526eb48d4857f298e`;
   - `derived/rejections.json` — `652f4501ace3de35e686b7cb98118b1e1b155d2f73685f8a5e7bd8f682e9d555`;
   - `preflight_canary.json` — `99df7543defc2cd7c7b4af416f7a883b76f10f456772f3fa84b553b134f4f0ac`;
-  - ответ 0001 (F1) — `f47c2d99…`; ответ 0003 — `b6b6a98e…`; **ответ 0004
-    (вердикт) — `e923cc4a…`**; запрос 0004 — JSON-контекст с `verdict_step`.
+  - ответ 0001 (F1) — `f47c2d99…`; ответ 0002 — `b6b6a98e…`; ответ 0003
+    — `fc5706c4…`; **ответ 0004 (вердикт) — `e923cc4a…`**; запрос 0004 — JSON-контекст
+    с `verdict_step`.
 
 ## 6. Ограничения вывода
 
