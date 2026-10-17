@@ -1,0 +1,4 @@
+QUESTION Q1: Какое влияние оказывает объект O3 на состояние клетки при T=2 и H=0? REF: t07
+HYPOTHESIS H1 OF Q1: Объект O3 в клетке T=2, H=0 всегда находится в состоянии present. PREDICT: O3 T=2 H=0 = present
+PREDICT: O3 T=2 H=0 = present
+ACTION: probe O3 T=2 H=0

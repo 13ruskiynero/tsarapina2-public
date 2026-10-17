@@ -1,0 +1,4 @@
+QUESTION Q1: Связан ли статус объекта O3 в клетке T=2 H=0 со статусом в клетке T=2 H=2? REF: t08
+HYPOTHESIS H1 OF Q1: Если объект O3 в клетке T=2 H=0 исчезает, то и в клетке T=2 H=2 он должен исчезнуть. PREDICT: O3 T=2 H=2 = disappeared
+ACTION: probe O3 T=2 H=2
+VERDICT: H1 refuted AFTER P15

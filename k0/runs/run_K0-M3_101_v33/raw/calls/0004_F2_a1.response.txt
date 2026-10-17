@@ -1,0 +1,4 @@
+QUESTION Q1: Зависит ли состояние объекта O3 от параметра T при H=2? REF: t07
+HYPOTHESIS H1 OF Q1: Если T меняется, то состояние O3 при H=2 будет одинаковым PREDICT: O3 T=1 H=2 = present
+ACTION: probe O3 T=2 H=2
+PREDICT: O3 T=2 H=2 = disappeared

@@ -1,0 +1,34 @@
+{"seq": 1, "type": "history_shown", "origin": "none", "label_by": "none", "seed": 101, "trials": ["t01", "t02", "t03", "t04", "t05", "t06", "t07", "t08", "t09", "t10", "t11", "t12"]}
+{"seq": 2, "type": "forecast_status", "origin": "none", "label_by": "none", "phase": "F1", "attempt": 1, "status": "ok"}
+{"seq": 3, "type": "prediction_before", "origin": "agent", "label_by": "none", "cell": "O1 T=1 H=0", "outcome": "disappeared"}
+{"seq": 4, "type": "prediction_before", "origin": "agent", "label_by": "none", "cell": "O1 T=2 H=1", "outcome": "disappeared"}
+{"seq": 5, "type": "prediction_before", "origin": "agent", "label_by": "none", "cell": "O2 T=2 H=1", "outcome": "present"}
+{"seq": 6, "type": "prediction_before", "origin": "agent", "label_by": "none", "cell": "O2 T=2 H=2", "outcome": "present"}
+{"seq": 7, "type": "prediction_before", "origin": "agent", "label_by": "none", "cell": "O3 T=2 H=0", "outcome": "present"}
+{"seq": 8, "type": "prediction_before", "origin": "agent", "label_by": "none", "cell": "O3 T=2 H=1", "outcome": "present"}
+{"seq": 9, "type": "prediction_before", "origin": "agent", "label_by": "none", "cell": "O3 T=2 H=2", "outcome": "present"}
+{"seq": 10, "type": "prediction_before", "origin": "agent", "label_by": "none", "cell": "O4 T=2 H=1", "outcome": "present"}
+{"seq": 11, "type": "prediction_before", "origin": "agent", "label_by": "none", "cell": "O4 T=2 H=2", "outcome": "present"}
+{"seq": 12, "type": "question", "origin": "agent", "label_by": "agent", "label": "Q1", "text": "Какое влияние оказывает объект O3 при T=2 H=0?", "ref": "t07"}
+{"seq": 13, "type": "hypothesis", "origin": "agent", "label_by": "agent", "label": "H1", "of": "Q1", "text": "Если объект O3 находится в клетке с параметрами T=2 и H=0, он будет present.", "cell": "O3 T=2 H=0", "prediction": "present"}
+{"seq": 14, "type": "prediction_pre", "origin": "agent", "label_by": "none", "cell": "O3 T=2 H=0", "outcome": "present"}
+{"seq": 15, "type": "action_requested", "origin": "agent", "label_by": "driver", "label": "P1", "descriptor": "probe O3 T=2 H=0", "prediction_ref": 14}
+{"seq": 16, "type": "probe_outcome", "origin": "none", "label_by": "none", "cell": "O3 T=2 H=0", "outcome": "disappeared", "masked": false, "revealed": true}
+{"seq": 17, "type": "state_change", "origin": "none", "label_by": "none", "action_ref": 15, "changes": [{"object_id": "O3", "from": "present", "to": "disappeared"}]}
+{"seq": 18, "type": "budget", "origin": "none", "label_by": "none", "cost": 1, "remaining": 15, "action_ref": 15}
+{"seq": 19, "type": "prediction_pre", "origin": "agent", "label_by": "none", "cell": "O3 T=2 H=2", "outcome": "disappeared"}
+{"seq": 20, "type": "action_requested", "origin": "agent", "label_by": "driver", "label": "P2", "descriptor": "probe O3 T=2 H=2", "prediction_ref": 19}
+{"seq": 21, "type": "probe_outcome", "origin": "none", "label_by": "none", "cell": "O3 T=2 H=2", "outcome": "disappeared", "masked": true, "revealed": false}
+{"seq": 22, "type": "budget", "origin": "none", "label_by": "none", "cost": 1, "remaining": 14, "action_ref": 20}
+{"seq": 23, "type": "action_rejected", "origin": "none", "label_by": "none", "requested": "probe O3 T=2 H=0", "reason": "predict_invalid"}
+{"seq": 24, "type": "action_rejected", "origin": "none", "label_by": "none", "requested": "probe O3 T=2 H=2", "reason": "predict_invalid"}
+{"seq": 25, "type": "prediction_pre", "origin": "agent", "label_by": "none", "cell": "O3 T=2 H=2", "outcome": "disappeared"}
+{"seq": 26, "type": "action_requested", "origin": "agent", "label_by": "driver", "label": "P3", "descriptor": "probe O3 T=2 H=2", "prediction_ref": 25}
+{"seq": 27, "type": "probe_outcome", "origin": "none", "label_by": "none", "cell": "O3 T=2 H=2", "outcome": "disappeared", "masked": true, "revealed": false}
+{"seq": 28, "type": "budget", "origin": "none", "label_by": "none", "cost": 1, "remaining": 13, "action_ref": 26}
+{"seq": 29, "type": "action_rejected", "origin": "none", "label_by": "none", "requested": "probe O3 T=2 H=2", "reason": "predict_invalid"}
+{"seq": 30, "type": "action_rejected", "origin": "none", "label_by": "none", "requested": "probe O3 T=2 H=2", "reason": "predict_invalid"}
+{"seq": 31, "type": "action_rejected", "origin": "none", "label_by": "none", "requested": "probe O3 T=2 H=2", "reason": "predict_invalid"}
+{"seq": 32, "type": "action_rejected", "origin": "none", "label_by": "none", "requested": "probe O3 T=2 H=2", "reason": "predict_invalid"}
+{"seq": 33, "type": "action_rejected", "origin": "none", "label_by": "none", "requested": "probe O3 T=2 H=2", "reason": "predict_invalid"}
+{"seq": 34, "type": "stop", "origin": "none", "label_by": "none", "reason": "response_loop"}
