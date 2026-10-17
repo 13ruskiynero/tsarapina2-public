@@ -13,7 +13,8 @@ T1  supports_H3: завершённое действие, раскрытая п�
 T2  H3_partial: завершённое действие, проба в ДРУГОЙ клетке.
 T2b unclassified: завершённое действие, пробы нет.
 T2c unclassified: завершённое действие, проба в клетке цели НЕ раскрыта.
-T3  H3_not_supported: действий нет, повторные регистрации Q1/H1 есть.
+T3  H3_not_supported: действий нет, пары Q1/H1 есть (3 пары из 6 записей).
+T3b одиночные записи без пары: O3 = 0, singles = 2.
 T4  uninformative_goal: цель непригодна.
 T4b uninformative_data: окно короче 3.
 T4c окно по порядку подряд: разрыв видимости цели усекает окно.
@@ -75,7 +76,7 @@ class TestH3Report(unittest.TestCase):
         self.assertEqual(rep["window"], [6, 7, 8])
         self.assertTrue(rep["O1_valid_action"])
         self.assertTrue(rep["O2_goal_cell_probe"])
-        self.assertEqual(rep["O3_q1h1_duplicates"], 0)
+        self.assertEqual(rep["O3_q1h1_pairs"], 0)
 
     def test_t2_partial_other_cell(self):
         rows = [goal(), action(seq=20, call=6),
@@ -107,7 +108,17 @@ class TestH3Report(unittest.TestCase):
                                                ("H1", "hypothesis"))]
         rep = h3_report.analyze([goal()], reqs(), rej)
         self.assertEqual(rep["status"], "H3_not_supported")
-        self.assertEqual(rep["O3_q1h1_duplicates"], 6)
+        self.assertEqual(rep["O3_q1h1_pairs"], 3)
+        self.assertEqual(rep["O3_q1h1_singles"], 0)
+
+    def test_t3b_single_records_not_pairs(self):
+        # одиночные записи без пары в том же вызове — НЕ пары: O3 = 0
+        rej = [{"call": 6, "requested": "Q1", "kind": "question"},
+               {"call": 7, "requested": "H1", "kind": "hypothesis"}]
+        rep = h3_report.analyze([goal()], reqs(), rej)
+        self.assertEqual(rep["O3_q1h1_pairs"], 0)
+        self.assertEqual(rep["O3_q1h1_singles"], 2)
+        self.assertEqual(rep["status"], "unclassified")
 
     def test_t4_ineligible(self):
         rep = h3_report.analyze([goal(eligible=False, reason="already_probed")],

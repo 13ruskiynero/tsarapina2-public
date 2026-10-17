@@ -14,6 +14,9 @@
      не добавляет (окно не является фильтром по результату и не закрывается
      при отсутствии действий).
 
+Ред. 3 (2026-10-17, по замечанию ревью): O3 — число ПАР Q1/H1 по правилу
+связывания (Q1+H1 в одном вызове, пары = min; одиночные — отдельный счётчик).
+
 Вход: journal.jsonl, request-файлы, rejections.json. Только чтение.
 """
 from __future__ import annotations
@@ -108,8 +111,18 @@ def analyze(rows, requests, rejections):
     qh = [x for x in rejections if x.get("kind") in ("question", "hypothesis")]
     o1 = bool(pairs_in)                    # принятое действие (блок исполнен)
     o2 = bool(goal_revealed)               # раскрытая проба ровно в клетке цели
-    o3 = sum(1 for x in qh if _call_num(x) in window
-             and x.get("requested") in ("Q1", "H1"))
+    # O3 — число ПАР повторных попыток Q1/H1 (правило связывания, критерий §3):
+    # в пределах одного вызова одна отклонённая QUESTION Q1 + одна отклонённая
+    # HYPOTHESIS H1 = одна пара; пары = сумма min(Q,H) по вызовам; одиночные
+    # записи (без пары) считаются отдельно и в O3 не входят.
+    _qh = {}
+    for _x in qh:
+        _c = _call_num(_x)
+        if _c in window and _x.get("requested") in ("Q1", "H1"):
+            _d = _qh.setdefault(_c, {"Q": 0, "H": 0})
+            _d["Q" if _x.get("kind") == "question" else "H"] += 1
+    o3 = sum(min(_d["Q"], _d["H"]) for _d in _qh.values())
+    o3_singles = sum(abs(_d["Q"] - _d["H"]) for _d in _qh.values())
     o4 = 0
     for r in rows:
         if (r.get("type") in ("question", "hypothesis")
@@ -141,7 +154,8 @@ def analyze(rows, requests, rejections):
         "window_size": len(window),
         "O1_valid_action": bool(o1),
         "O2_goal_cell_probe": bool(o2),
-        "O3_q1h1_duplicates": o3,
+        "O3_q1h1_pairs": o3,
+        "O3_q1h1_singles": o3_singles,
         "O4_new_goal_attempts": o4,
         "pairs_in_window": len(pairs_in),   # только завершённые (есть budget)
         "probes_in_window": len(with_probe),
@@ -181,7 +195,7 @@ def main(argv=None):
     else:
         print("status:", rep["status"])
         for k in ("goal_call", "goal_cell", "window", "O1_valid_action",
-                  "O2_goal_cell_probe", "O3_q1h1_duplicates",
+                  "O2_goal_cell_probe", "O3_q1h1_pairs", "O3_q1h1_singles",
                   "O4_new_goal_attempts", "probes_in_window",
                   "goal_cell_probes_masked", "reason"):
             if k in rep:

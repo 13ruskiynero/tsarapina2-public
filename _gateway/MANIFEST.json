@@ -1,6 +1,6 @@
 {
  "project": "tsarapina",
- "generated_at": "2026-10-17T08:50:12Z",
+ "generated_at": "2026-10-17T09:29:24Z",
  "policy": {
   "allow_ext": [
    ".md",
@@ -10,8 +10,8 @@
   "max_file_bytes": 65536,
   "include_jsonl": false
  },
- "count": 1041,
- "total_bytes": 4865008,
+ "count": 1042,
+ "total_bytes": 4871909,
  "files": [
   {
    "path": "MVP1_IMPLEMENTATION_PLAN.md",
@@ -1611,9 +1611,9 @@
   },
   {
    "path": "k0/K0_M3_H3_CRITERION_DRAFT.md",
-   "size": 9865,
-   "mtime": 1792225160,
-   "sha256": "f4ecac7c95638865cc30f24c3f946654cca383225767d9c84c6e696263eedb9a"
+   "size": 10378,
+   "mtime": 1792229300,
+   "sha256": "11aff71299740af4b42de773ee0e3c9f75c73dede9a892d398411d2f87c09636"
   },
   {
    "path": "k0/K0_M3_V31_FIXATION.md",
@@ -1946,6 +1946,12 @@
    "sha256": "17ff94f252f273fbbd0ee5768a1a4b376e29cfec3a0236a5fcc6bf4d65e25b3d"
   },
   {
+   "path": "k0/K0_PROTOCOL_v37_ACT_ADDENDUM4.md",
+   "size": 4729,
+   "mtime": 1792229359,
+   "sha256": "2f394f4234046d6c2b470eb37fd15e3455e8e184617d293677d054582d46007a"
+  },
+  {
    "path": "k0/K0_RESULT_FIXATION.md",
    "size": 4713,
    "mtime": 1792165113,
@@ -2163,9 +2169,9 @@
   },
   {
    "path": "k0/code/tests/test_h3_report.py",
-   "size": 7618,
-   "mtime": 1792226888,
-   "sha256": "0d43c402c5680df2b764400d97c9b6e881a58c950d8928ceaf02360f8192db9a"
+   "size": 8247,
+   "mtime": 1792229300,
+   "sha256": "4bf64ffc5a60f14df7b940f6e4bb41329ecd1a2c7998ed834e6fb0db3463040a"
   },
   {
    "path": "k0/code/tests/test_journal.py",
@@ -6009,9 +6015,9 @@
   },
   {
    "path": "k0/scripts/h3_report.py",
-   "size": 8420,
-   "mtime": 1792226958,
-   "sha256": "86e38888fe95822f8c91cc3f9b372b6051e1c97e96d54b0ac4e7ea56ede6a089"
+   "size": 9450,
+   "mtime": 1792229289,
+   "sha256": "b2e6bddf0ec10dc3d85fa87daaa98c2b4edb11a53b77d81ff53d3c8a300fd52e"
   },
   {
    "path": "k0/scripts/s3_report.py",
