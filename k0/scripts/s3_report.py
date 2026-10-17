@@ -2,23 +2,25 @@
 # -*- coding: utf-8 -*-
 """K0 v36-A — механический анализ возвратов к клетке опровергнутой гипотезы (S3).
 
-Ред. 2 (2026-10-17, по замечаниям ревью):
-  (1) основания обоснованного возврата считаются НЕЗАВИСИМО: state_change и
-      new_prediction — два отдельных флага; общий счётчик обоснованных —
-      объединение (без задвоения);
-  (2) отклонённые попытки классифицируются по состоянию НА МОМЕНТ попытки:
-      журнал обходится строго по seq, «последняя исполненная проба» берётся
-      из уже пройденного префикса (а не из итогового словаря будущих проб).
+Ред. 3 (2026-10-17, по замечаниям повторного ревью):
+  * ОКНО S3: учитываются только события ПОСЛЕ принятого решения USING V<n>
+    (если решения нет — после принятого опровергающего вердикта). Повторные
+    попадания в клетку H1 до окна в S3 не входят и публикуются отдельно
+    (pre_window_repeats);
+  * (ред. 2) основания обоснованного возврата считаются независимо:
+    state_change и new_prediction — два флага; общий счётчик — объединение;
+  * (ред. 2) отклонённые попытки классифицируются по состоянию НА МОМЕНТ
+    попытки: журнал обходится строго по seq (префикс, без будущих записей).
 
 Читает raw/journal.jsonl прогона и считает:
-  * исполненные пробы; возвраты к клетке H1 (исполненные);
+  * исполненные пробы; возвраты к клетке H1 в окне S3;
   * обоснованные возвраты: (а) state_change объекта клетки случился между
     предыдущей пробой этой клетки и возвратом; (б) PREDICT возврата отличается
-    от ранее наблюдённого исхода (новая гипотеза, а не повтор);
+    от ранее наблюдённого исхода;
   * необоснованные возвраты (ни (а), ни (б));
-  * отклонённые попытки возврата (action_rejected с descriptor «probe <клетка>»
-    или «repeat», разрешённый в последнюю исполненную пробу НА ТОТ МОМЕНТ):
-    они НЕ исполнялись и классифицируются отдельно.
+  * отклонённые попытки возврата в окне (action_rejected с descriptor
+    «probe <клетка>» или «repeat»): они НЕ исполнялись; состояние — на момент
+    попытки.
 
 Только чтение журнала; сеть и модель не используются. Детерминированный отчёт.
 """
@@ -45,9 +47,22 @@ def analyze(rows):
     verdicts = [r for r in rows if r.get("type") == "verdict"]
     refuted = [v for v in verdicts if v.get("resolution") == "refuted"]
     h1_label, h1_cell = None, None
+    verdict_label, verdict_seq = None, None
     if refuted:
+        verdict_label = refuted[0].get("label")
+        verdict_seq = refuted[0].get("seq")
         h1_label = refuted[0].get("h_label")
         h1_cell = (hyps.get(h1_label) or {}).get("cell")
+
+    # окно S3: после принятого решения USING V<n> (строгая оценка H-M5),
+    # если решения нет — после принятого вердикта об опровержении.
+    decisions = [r for r in rows
+                 if r.get("type") == "decision" and r.get("using") == verdict_label]
+    decision_seq = decisions[0].get("seq") if decisions else None
+    if decision_seq is not None:
+        window_anchor, window_start = "decision", decision_seq
+    else:
+        window_anchor, window_start = "verdict", verdict_seq
 
     # state_change: seq-и по object_id
     sc = {}
@@ -58,8 +73,9 @@ def analyze(rows):
 
     returns = []
     attempts = []
+    pre_window = []
     probe_count = 0
-    prev_seq, prev_out = {}, {}      # только префикс журнала (строго по seq)
+    prev_seq, prev_out = {}, {}
     last_action = None
     last_cell = None
 
@@ -79,14 +95,19 @@ def analyze(rows):
                     pred = pr.get("outcome")
             if cell and h1_cell and cell == h1_cell and cell in prev_seq:
                 a, b = r["seq"], prev_seq[cell]
+                in_window = window_start is not None and a > window_start
                 obj = _parse_cell(cell)
                 changed = any(b < s < a for s in sc.get(obj, []))
                 pred_diff = pred is not None and pred != prev_out.get(cell)
-                returns.append({"seq": a, "cell": cell, "pred": pred,
-                                "prev_outcome": prev_out.get(cell),
-                                "state_changed_since": changed,
-                                "new_prediction": pred_diff,
-                                "justified": bool(changed or pred_diff)})
+                item = {"seq": a, "cell": cell, "pred": pred,
+                        "prev_outcome": prev_out.get(cell),
+                        "state_changed_since": changed,
+                        "new_prediction": pred_diff,
+                        "justified": bool(changed or pred_diff)}
+                if in_window:
+                    returns.append(item)
+                else:
+                    pre_window.append(item)
             if cell:
                 prev_seq[cell] = r["seq"]
                 prev_out[cell] = r["outcome"]
@@ -99,7 +120,8 @@ def analyze(rows):
                 cell = req[len("probe "):].strip()
             elif req == "repeat":
                 cell = last_cell
-            if cell and h1_cell and cell == h1_cell:
+            if (cell and h1_cell and cell == h1_cell
+                    and window_start is not None and r["seq"] > window_start):
                 obj = _parse_cell(cell)
                 b = prev_seq.get(cell)          # последняя проба ДО этой попытки
                 changed = (b is not None and any(
@@ -116,6 +138,8 @@ def analyze(rows):
     return {
         "h1_label": h1_label,
         "h1_cell": h1_cell,
+        "window_anchor": window_anchor,
+        "window_start_seq": window_start,
         "probes": probe_count,
         "returns_executed": len(returns),
         "returns_justified_state_change": justified_sc,
@@ -123,6 +147,8 @@ def analyze(rows):
         "returns_justified_total": justified_total,
         "returns_unjustified": unjustified,
         "returns_detail": returns,
+        "pre_window_repeats": len(pre_window),
+        "pre_window_detail": pre_window,
         "attempts_rejected_total": len(attempts),
         "attempts_rejected_with_state_change": sum(
             1 for x in attempts if x["state_changed_since"]),
@@ -132,7 +158,7 @@ def analyze(rows):
         "verdicts": len(verdicts),
         "decisions": sum(1 for r in rows if r.get("type") == "decision"),
         "s3_unjustified_returns": unjustified,
-        "s3_note": ("возвратов не было — критерий вакуумно"
+        "s3_note": ("возвратов в окне не было — критерий вакуумно"
                     if not returns else ""),
     }
 
@@ -153,15 +179,17 @@ def main(argv=None):
     args = ap.parse_args(argv)
     rep = analyze(load_journal(args.journal))
     if args.json:
-        print(json.dumps(rep, ensure_ascii=False, indent=1))
+        print(json.dumps(rep, ensure_ascii=False, indent=2))
     else:
-        print("h1_cell:", rep["h1_cell"], "| probes:", rep["probes"])
+        print("h1_cell:", rep["h1_cell"], "| окно:", rep["window_anchor"],
+              "seq", rep["window_start_seq"], "| probes:", rep["probes"])
         print("returns executed:", rep["returns_executed"],
               "| justified(state_change):", rep["returns_justified_state_change"],
               "| justified(new_prediction):", rep["returns_justified_new_prediction"],
               "| justified(total):", rep["returns_justified_total"],
               "| unjustified:", rep["returns_unjustified"])
-        print("attempts rejected:", rep["attempts_rejected_total"],
+        print("pre-window repeats:", rep["pre_window_repeats"],
+              "| attempts rejected:", rep["attempts_rejected_total"],
               "| with state change:", rep["attempts_rejected_with_state_change"],
               "| without:", rep["attempts_rejected_without_state_change"])
         print("verdicts:", rep["verdicts"], "| decisions:", rep["decisions"])
