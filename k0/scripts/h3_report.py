@@ -2,17 +2,19 @@
 # -*- coding: utf-8 -*-
 """K0 v37-A — механический анализ условия H3 (пригодная открытая цель).
 
-Читает артефакты прогона (journal.jsonl, request-файлы, rejections.json) и
-считает O1–O4 в окне W по предрегистрированному критерию (K0_M3_H3_CRITERION
-_DRAFT.md, ред. 2):
+Ред. 2 (2026-10-17, по замечаниям независимого ревью):
+  1) различаются три состояния: проба в целевой клетке / проба в другой клетке /
+     отсутствие исполненной пробы; последнее — unclassified (таблица критерия
+     такого случая не предусматривает);
+  2) успех проверяется по СВЯЗКЕ «принятое действие → исполненная проба» по
+     контракту журнала §11: action_requested → probe_outcome → budget
+     (action_ref = seq действия); проба должна быть раскрытой (revealed);
+  3) окно W — строго по определению критерия: подряд идущие вызовы после K,
+     каждый — фаза F2, цель видна в контексте (hypotheses); иных условий окно
+     не добавляет (окно не является фильтром по результату и не закрывается
+     при отсутствии действий).
 
-  O1 — валидный блок действия в окне (journal action_requested);
-  O2 — исполненная проба в клетке пригодной цели (journal probe_outcome);
-  O3 — повторные попытки регистрации Q1/H1 в окне (rejections);
-  O4 — попытки новых целей агентом в окне (journal + rejections).
-
-Классификация строго по таблице критерия; исходы вне таблицы — unclassified
-(без переклассификации). Только чтение; сеть/модель не используются.
+Вход: journal.jsonl, request-файлы, rejections.json. Только чтение.
 """
 from __future__ import annotations
 
@@ -33,6 +35,27 @@ def _call_num(entry):
         return None
 
 
+def _pairs(rows):
+    """Пары «действие → проба» по контракту §11.
+
+    probe_outcome не несёт action_ref; связка позиционно-контрактная:
+    action_requested(seq A) → [probe_outcome] → budget(action_ref=A).
+    """
+    budgets = {r.get("action_ref"): r for r in rows if r.get("type") == "budget"}
+    probes = [r for r in rows if r.get("type") == "probe_outcome"]
+    pairs = []
+    for a in rows:
+        if a.get("type") != "action_requested":
+            continue
+        b = budgets.get(a["seq"])
+        po = None
+        if b is not None:
+            cand = [p for p in probes if a["seq"] < p["seq"] < b["seq"]]
+            po = cand[-1] if cand else None
+        pairs.append({"action": a, "probe": po, "completed": b is not None})
+    return pairs
+
+
 def analyze(rows, requests, rejections):
     goal = next((r for r in rows if r.get("type") == "goal"), None)
     if goal is None:
@@ -48,13 +71,15 @@ def analyze(rows, requests, rejections):
         return {"status": "uninformative_no_call",
                 "reason": "у записи goal нет номера вызова", "goal": goal}
 
-    # окно W: первые до 5 подряд вызовов после внедрения цели, в контексте
-    # которых цель видна (список гипотез содержит клетку цели)
+    acts = [r for r in rows if r.get("type") == "action_requested"]
+    budgets = {r.get("action_ref"): r for r in rows if r.get("type") == "budget"}
+
+    # окно W: подряд идущие вызовы после K, все условия определения
     window = []
     n = goal_call + 1
     while len(window) < 5:
         d = requests.get(n)
-        if d is None:
+        if d is None or d.get("phase") != "F2":
             break
         hyps = d.get("hypotheses") or []
         if not any(h.get("cell") == goal_cell for h in hyps):
@@ -67,11 +92,20 @@ def analyze(rows, requests, rejections):
                 "goal_call": goal_call, "goal_cell": goal_cell,
                 "reason": "менее 3 вызовов с видимой пригодной целью"}
 
+    pairs = _pairs(rows)
+    pairs_in = [p for p in pairs if p["action"].get("call") in window]
+    with_probe = [p for p in pairs_in if p["probe"] is not None]
+    goal_revealed = [p for p in with_probe
+                     if p["probe"].get("cell") == goal_cell
+                     and p["probe"].get("revealed")]
+    goal_masked = [p for p in with_probe
+                   if p["probe"].get("cell") == goal_cell
+                   and not p["probe"].get("revealed")]
+    other_cell = [p for p in with_probe if p["probe"].get("cell") != goal_cell]
+
     qh = [x for x in rejections if x.get("kind") in ("question", "hypothesis")]
-    o1 = any(r.get("type") == "action_requested" and r.get("call") in window
-             for r in rows)
-    o2 = any(r.get("type") == "probe_outcome" and r.get("call") in window
-             and r.get("cell") == goal_cell for r in rows)
+    o1 = bool(pairs_in)                    # принятое действие (блок исполнен)
+    o2 = bool(goal_revealed)               # раскрытая проба ровно в клетке цели
     o3 = sum(1 for x in qh if _call_num(x) in window
              and x.get("requested") in ("Q1", "H1"))
     o4 = 0
@@ -86,13 +120,15 @@ def analyze(rows, requests, rejections):
 
     if o1 and o2 and o3 == 0:
         status = "supports_H3"
-    elif o1 and not o2 and o3 == 0:
-        status = "H3_partial"
     elif not o1 and o3 > 0:
         status = "H3_not_supported"
     elif not o1 and o3 == 0 and o4 > 0:
         status = "uninformative_behavior"
+    elif o1 and o3 == 0 and other_cell and not goal_revealed and not goal_masked:
+        status = "H3_partial"
     else:
+        # сюда попадают в т.ч.: действие без исполненной пробы; проба в клетке
+        # цели без раскрытия; действие + дубли Q1/H1; прочие непокрытые случаи
         status = "unclassified"
 
     return {
@@ -105,6 +141,11 @@ def analyze(rows, requests, rejections):
         "O2_goal_cell_probe": bool(o2),
         "O3_q1h1_duplicates": o3,
         "O4_new_goal_attempts": o4,
+        "pairs_in_window": len(pairs_in),
+        "probes_in_window": len(with_probe),
+        "goal_cell_probes": len(goal_revealed) + len(goal_masked),
+        "goal_cell_probes_masked": len(goal_masked),
+        "other_cell_probes": len(other_cell),
     }
 
 
@@ -139,7 +180,8 @@ def main(argv=None):
         print("status:", rep["status"])
         for k in ("goal_call", "goal_cell", "window", "O1_valid_action",
                   "O2_goal_cell_probe", "O3_q1h1_duplicates",
-                  "O4_new_goal_attempts", "reason"):
+                  "O4_new_goal_attempts", "probes_in_window",
+                  "goal_cell_probes_masked", "reason"):
             if k in rep:
                 print(f"  {k}: {rep[k]}")
     return 0
