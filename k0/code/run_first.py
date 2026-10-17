@@ -32,7 +32,7 @@ MODEL = "gemma4-e4b-heretic:q4km"
 HOST, PORT, API_PATH = "127.0.0.1", 11434, "/api/chat"
 SEED = 101
 BASE = K0 / "runs"
-RUN_NAME = "run_K0-M3_101_v33"   # новая серия того же сида: отдельный каталог
+RUN_NAME = "run_K0-M3_101_v34"   # новая серия того же сида: отдельный каталог
 ARTIFACTS = K0 / "artifacts"
 TOLERANCE = 0.10
 

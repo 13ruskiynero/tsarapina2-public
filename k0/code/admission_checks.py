@@ -79,7 +79,8 @@ vh29 = sha(K0 / "K0_PROTOCOL_v29.md")    # комплект v29 (база сер
 vh30 = sha(K0 / "K0_PROTOCOL_v30.md")    # комплект v30 (база серии v31)
 vh31 = sha(K0 / "K0_PROTOCOL_v31.md")    # комплект v31 (база серии v32)
 vh32 = sha(K0 / "K0_PROTOCOL_v32.md")    # протокол v32 (база серии v33)
-vh33 = sha(K0 / "K0_PROTOCOL_v33.md")    # действующий комплект v33
+vh33 = sha(K0 / "K0_PROTOCOL_v33.md")    # протокол v33 (база серии v34)
+vh34 = sha(K0 / "K0_PROTOCOL_v34.md")    # действующий комплект v34
 check("H0", "PASS" if vh.startswith("3d2ab37d") else "FAIL",
       f"K0_PROTOCOL.md (ред. 26) sha256={vh[:16]}…")
 
@@ -207,6 +208,54 @@ check("V30-S", "PASS" if s30_ok else "FAIL",
       "v30 (ред.2): session: фидбек+hint, предохранитель response_loop (K=3, без сброса на action_rejected); тесты R1–R4")
 
 
+
+# --- V34: явный переход «раскрытый исход → вердикт» (ветка v34-A) -------------
+_v34_base = (K0 / "K0_PROTOCOL_v33.md").read_text(encoding="utf-8").splitlines()
+_v34_path = K0 / "K0_PROTOCOL_v34.md"
+_d34_path = K0 / "version-history" / "K0_PROTOCOL_v33_to_v34.diff"
+v34_ok = False
+if _v34_path.exists() and _d34_path.exists():
+    _v34_lines = _v34_path.read_text(encoding="utf-8").splitlines()
+    _dl34 = [i for i, (x, y) in enumerate(zip(_v34_base, _v34_lines)) if x != y]
+    v34_ok = (len(_v34_base) == len(_v34_lines) and len(_dl34) == 1
+              and "v33" in _v34_base[_dl34[0]]
+              and "v34" in _v34_lines[_dl34[0]]
+              and "ВЕРДИКТ" in _v34_lines[_dl34[0]])
+check("V34", "PASS" if v34_ok else "FAIL",
+      "v34: от v33 отличается ровно строкой реестра ([ВЕРДИКТ]); диф существует")
+_d34p = K0 / "version-history" / "K0_PROMPTS_v33_to_v34.diff"
+_s33p = K0 / "version-history" / "K0_PROMPTS_v33.py"
+p34_ok = False
+if _d34p.exists() and _s33p.exists():
+    _o34 = _s33p.read_text(encoding="utf-8")
+    _n34 = (HERE / "prompts.py").read_text(encoding="utf-8")
+    _dl34p = _d34p.read_text(encoding="utf-8").splitlines()
+    _plus34 = [x for x in _dl34p if x.startswith("+") and not x.startswith("+++")]
+    _minus34 = [x for x in _dl34p if x.startswith("-") and not x.startswith("---")]
+    p34_ok = ("[ВЕРДИКТ]" not in _o34
+              and "[ВЕРДИКТ]" in _n34
+              and "F2_VERDICT_STEP" in _n34
+              and "ctx.verdict_step" in _n34
+              and len(_minus34) == 1 and len(_plus34) == 12)
+check("V34-P", "PASS" if p34_ok else "FAIL",
+      "v34: prompts.py — секция [ВЕРДИКТ] из записи (H, P, клетка, прогноз, исход)")
+_s33s = K0 / "version-history" / "K0_SESSION_v33.py"
+_c33s = K0 / "version-history" / "K0_CALLS_v33.py"
+s34_ok = False
+if _s33s.exists() and _c33s.exists():
+    _so34 = _s33s.read_text(encoding="utf-8")
+    _sn34 = (HERE / "session.py").read_text(encoding="utf-8")
+    _co34 = _c33s.read_text(encoding="utf-8")
+    _cn34 = (HERE / "calls.py").read_text(encoding="utf-8")
+    s34_ok = ("verdict_step" not in _so34 and "verdict_step" in _sn34
+              and '"protocol_version": "v34"' in _sn34
+              and "verdict_step" not in _co34 and 'payload["verdict_step"]' in _cn34
+              and (K0 / "version-history" / "K0_SESSION_v33_to_v34.diff").exists()
+              and (K0 / "version-history" / "K0_CALLS_v33_to_v34.diff").exists()
+              and (HERE / "tests" / "test_verdict_feedback.py").exists())
+check("V34-S", "PASS" if s34_ok else "FAIL",
+      "v34: session/calls — шаг вердикта в контексте и в JSON-артефакте; тесты вердикта")
+
 # --- V33: F1-feedback при повторной попытке (ветка A) --------------------------
 _v33_base = (K0 / "K0_PROTOCOL_v32.md").read_text(encoding="utf-8").splitlines()
 _v33_path = K0 / "K0_PROTOCOL_v33.md"
@@ -226,7 +275,7 @@ _s32p = K0 / "version-history" / "K0_PROMPTS_v32.py"
 p33_ok = False
 if _d33p.exists() and _s32p.exists():
     _o33 = _s32p.read_text(encoding="utf-8")
-    _n33 = (HERE / "prompts.py").read_text(encoding="utf-8")
+    _n33 = (K0 / "version-history" / "K0_PROMPTS_v33.py").read_text(encoding="utf-8")
     _dl33p = _d33p.read_text(encoding="utf-8").splitlines()
     _plus33 = [x for x in _dl33p if x.startswith("+") and not x.startswith("+++")]
     _minus33 = [x for x in _dl33p if x.startswith("-") and not x.startswith("---")]
@@ -242,9 +291,9 @@ _c32s = K0 / "version-history" / "K0_CALLS_v32.py"
 s33_ok = False
 if _s32s.exists() and _c32s.exists():
     _so33 = _s32s.read_text(encoding="utf-8")
-    _sn33 = (HERE / "session.py").read_text(encoding="utf-8")
+    _sn33 = (K0 / "version-history" / "K0_SESSION_v33.py").read_text(encoding="utf-8")
     _co33 = _c32s.read_text(encoding="utf-8")
-    _cn33 = (HERE / "calls.py").read_text(encoding="utf-8")
+    _cn33 = (K0 / "version-history" / "K0_CALLS_v33.py").read_text(encoding="utf-8")
     s33_ok = ("f1_rejection" not in _so33 and "f1_rejection" in _sn33
               and "fc.bad_raw" in _sn33
               and '"protocol_version": "v33"' in _sn33
@@ -793,10 +842,10 @@ pp = json.loads(pp_path.read_text(encoding="utf-8")) if pp_path.exists() else {}
 a20_ok = (len(names) == 60 and req_ok and resp_ok and meta_ok
           and (calls_dir / "0001_F1_a1.response.txt").read_text(encoding="utf-8") == F1
           and (calls_dir / "0020_F4_a1.response.txt").read_text(encoding="utf-8") == FINAL
-          and pp.get("protocol_version") == "v33"
-          and pp.get("protocol_sha256") == vh33
+          and pp.get("protocol_version") == "v34"
+          and pp.get("protocol_sha256") == vh34
           and pp.get("protocol_diff_sha256") == sha(
-              K0 / "version-history" / "K0_PROTOCOL_v32_to_v33.diff")
+              K0 / "version-history" / "K0_PROTOCOL_v33_to_v34.diff")
           and pp.get("driver_sha256", {}).get("parser.py") == sha(HERE / "parser.py")
           and pp.get("protocol_base_sha256") == vh
           and pp.get("status") == "completed"
@@ -805,7 +854,7 @@ a20_ok = (len(names) == 60 and req_ok and resp_ok and meta_ok
           and isinstance(pp.get("driver_sha256"), dict)
           and pp.get("t0_params", {}).get("seed") == 1729)
 check("A20", "PASS" if a20_ok else "FAIL",
-      "§11: calls 20×(request/response/meta); passport: v33+спека+промпты+драйвер+параметры")
+      "§11: calls 20×(request/response/meta); passport: v34+спека+промпты+драйвер+параметры")
 check("A20b", "OPEN",
       "реальные байты канала модели (сеть/вызовы) — до подключения канала и отдельного разрешения")
 

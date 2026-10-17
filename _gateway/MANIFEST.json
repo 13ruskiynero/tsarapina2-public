@@ -1,6 +1,6 @@
 {
  "project": "tsarapina",
- "generated_at": "2026-10-17T04:27:23Z",
+ "generated_at": "2026-10-17T04:41:13Z",
  "policy": {
   "allow_ext": [
    ".md",
@@ -10,8 +10,8 @@
   "max_file_bytes": 65536,
   "include_jsonl": false
  },
- "count": 712,
- "total_bytes": 3748427,
+ "count": 720,
+ "total_bytes": 3874594,
  "files": [
   {
    "path": "MVP1_IMPLEMENTATION_PLAN.md",
@@ -1544,6 +1544,12 @@
    "sha256": "6f791a9e4ec04c07a0cd794499a3f48c8eb595b84327f0195272072d024a2414"
   },
   {
+   "path": "k0/K0_CALLS_v33_to_v34.diff",
+   "size": 467,
+   "mtime": 1792211930,
+   "sha256": "c9abc2431a69f89d74ab8a94c6242ba5766e52a532c670981644ef55d7edb054"
+  },
+  {
    "path": "k0/K0_EXPERIENCE_CHAIN_FACTS.md",
    "size": 8080,
    "mtime": 1792165113,
@@ -1658,6 +1664,12 @@
    "sha256": "5d30bd3be39208a7e68f9ca3e32608ab0b700bdb1e8dca71a43913241e8ce679"
   },
   {
+   "path": "k0/K0_PROMPTS_v33_to_v34.diff",
+   "size": 2033,
+   "mtime": 1792211995,
+   "sha256": "73fb3a109e1d369ec74bdacd53b2e7b8fa19617126105823f79a02a637cdf17c"
+  },
+  {
    "path": "k0/K0_PROTOCOL_v27_to_v28.diff",
    "size": 993,
    "mtime": 1792163711,
@@ -1754,6 +1766,24 @@
    "sha256": "b48f5457530df376e156036810ef9857cafa37e7236fa9ac488523b1c77896fc"
   },
   {
+   "path": "k0/K0_PROTOCOL_v33_to_v34.diff",
+   "size": 4592,
+   "mtime": 1792211857,
+   "sha256": "b08f95b8a1ee9a4d216d627119f55ee889dbf4e343706f5f0afa62fd2170c56b"
+  },
+  {
+   "path": "k0/K0_PROTOCOL_v34.md",
+   "size": 85688,
+   "mtime": 1792211857,
+   "sha256": "58db5c81c373f390381b6e77ad540ffcd7fd802bf1b6662dc519fceb218bca27"
+  },
+  {
+   "path": "k0/K0_PROTOCOL_v34_ACT.md",
+   "size": 11065,
+   "mtime": 1792212062,
+   "sha256": "360c03bf2b772e53739fffc9db2776fc72fffff89f25e5486e1f8c134808cd92"
+  },
+  {
    "path": "k0/K0_RESULT_FIXATION.md",
    "size": 4713,
    "mtime": 1792165113,
@@ -1782,6 +1812,12 @@
    "size": 4183,
    "mtime": 1792209688,
    "sha256": "6cddb5d920a841643697e08e9f51812b535ee0bb0f84aaebd88f3c6b131cc024"
+  },
+  {
+   "path": "k0/K0_SESSION_v33_to_v34.diff",
+   "size": 3357,
+   "mtime": 1792211930,
+   "sha256": "473f1108dc6843ece660b82220b1c33f0e2a0ee0024963ab7d08c496afb0f2a4"
   },
   {
    "path": "k0/K0_THIRD_RUN_REPORT.md",
@@ -1814,6 +1850,12 @@
    "sha256": "730684476efea42cd72702c8af001fc4ba1d780a01ffd1f92f290babf836ae1f"
   },
   {
+   "path": "k0/K0_V34_DESIGN_DRAFT.md",
+   "size": 7706,
+   "mtime": 1792212049,
+   "sha256": "efc5700f35b354a2775f4d5ee7e741d01b9b4c4f26a744dfafd443d6567a61d5"
+  },
+  {
    "path": "k0/README.md",
    "size": 13409,
    "mtime": 1792211242,
@@ -1827,9 +1869,9 @@
   },
   {
    "path": "k0/code/admission_checks.py",
-   "size": 43035,
-   "mtime": 1792210185,
-   "sha256": "23c22a2ce8d7ae9c1210746c00a9ae47341aa96a598f7703b0add4f8d807fd95"
+   "size": 46033,
+   "mtime": 1792211995,
+   "sha256": "d4232e30a4fbb8d0cc35d53bf9ad07360bf1d3181ec995479f25b99938135342"
   },
   {
    "path": "k0/code/auditor.py",
@@ -1839,9 +1881,9 @@
   },
   {
    "path": "k0/code/calls.py",
-   "size": 5017,
-   "mtime": 1792209623,
-   "sha256": "7c6e927fdb94cee5b6773d044cb17778d0bc9ed5d8747abaf53cd8ae58de6aed"
+   "size": 5224,
+   "mtime": 1792211857,
+   "sha256": "a6330d1edf8c33d7b0e1ab0a9444b0a2a11b40487b1ce3db01975e7c09a9d228"
   },
   {
    "path": "k0/code/channel.py",
@@ -1869,15 +1911,15 @@
   },
   {
    "path": "k0/code/prompts.py",
-   "size": 12695,
-   "mtime": 1792209623,
-   "sha256": "57a40c829153331c37a0a35aa16ad18e3b9b3d2326182d7fe4722292a8927813"
+   "size": 13522,
+   "mtime": 1792211995,
+   "sha256": "61231017f8597264bce87acdc84d0e8c3ebf41abc8c00fa6f3fd245bb51e4d1a"
   },
   {
    "path": "k0/code/run_first.py",
    "size": 5378,
-   "mtime": 1792209623,
-   "sha256": "f38b2660affb0eee2558e68154fe1d4412f47a26860481aa39929dee2ff4965f"
+   "mtime": 1792211857,
+   "sha256": "61ee920a1a8e84b0ea356aecc23adcae754044fad81938551532f26836771b48"
   },
   {
    "path": "k0/code/secret_scan.py",
@@ -1887,9 +1929,9 @@
   },
   {
    "path": "k0/code/session.py",
-   "size": 36552,
-   "mtime": 1792209623,
-   "sha256": "13342a8340539f116693e7fbd104af30f1a9d828b5e5e858b6638c886908609c"
+   "size": 37578,
+   "mtime": 1792211857,
+   "sha256": "d2e4d0e6eaef4c73e231f3e811bb3206b452c87c9bab02e71ecb0dee7f419d91"
   },
   {
    "path": "k0/code/tests/test_auditor.py",
@@ -1900,8 +1942,8 @@
   {
    "path": "k0/code/tests/test_channel.py",
    "size": 30678,
-   "mtime": 1792209623,
-   "sha256": "aadbd8520c45fd52588c4cf5fbaed4c99e5502cd4b94b82b62801a42bfdae71e"
+   "mtime": 1792211857,
+   "sha256": "c612dd459a8b5ce0d00ade7a03e271b077c174880bc91a2e844a3dacb2f56b59"
   },
   {
    "path": "k0/code/tests/test_f1_feedback.py",
@@ -1942,14 +1984,20 @@
   {
    "path": "k0/code/tests/test_session.py",
    "size": 36418,
-   "mtime": 1792209623,
-   "sha256": "4f0af5f785f9ab4fb3cb0f1918e90023594718a947293fe564c6b07a324dbbee"
+   "mtime": 1792211857,
+   "sha256": "ef1b26c75bb03990c645d97455a091432f49cd44c7036bae8c10b66cc1b33ef0"
   },
   {
    "path": "k0/code/tests/test_transition.py",
    "size": 8371,
    "mtime": 1792176467,
    "sha256": "f639e01b2603ad6878aaf08a506c989a677fba9c02966a372780f5d30806fb56"
+  },
+  {
+   "path": "k0/code/tests/test_verdict_feedback.py",
+   "size": 6201,
+   "mtime": 1792211995,
+   "sha256": "97ed3bbe95f6e084deaa83e2b172bcb1fa79283529567aefbd6c2c717ae9f1b1"
   },
   {
    "path": "k0/code/tests/test_world.py",

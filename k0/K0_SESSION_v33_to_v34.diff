@@ -1,0 +1,58 @@
+--- version-history/K0_SESSION_v33.py
++++ code/session.py
+@@ -136,6 +136,7 @@
+     last_labels: tuple = (0, 0, 0, 0)   # (Q, H, P, V) — §7 «эхо меток»
+     hypotheses: tuple = ()   # v32: зарегистрированные гипотезы — ({"n","cell","prediction"}, …)
+     f1_rejection: tuple = ()   # v33: причина отказа F1 (для попытки ≥2)
++    verdict_step: tuple = ()   # v34: (H, P, клетка, прогноз, исход) — ждёт вердикта
+ 
+ 
+ @dataclass
+@@ -356,6 +357,22 @@
+         hyp = tuple({"n": n, "cell": h["cell"].as_text(),
+                      "prediction": h["prediction"]}
+                     for n, h in sorted(self.registry.hypotheses.items()))
++        vstep = ()                    # v34: раскрытая проба без вердикта
++        if phase == "F2" and self.registry is not None:
++            verdicted = {v["h"] for v in self.registry.verdicts.values()}
++            by_cell = {}
++            for pn, pr in sorted(self.registry.probes.items()):
++                if pr.get("revealed") and pr.get("cell") is not None:
++                    by_cell.setdefault(pr["cell"], []).append((pn, pr))
++            for hn, hr in sorted(self.registry.hypotheses.items()):
++                if hn in verdicted:
++                    continue
++                cand = by_cell.get(hr["cell"])
++                if cand:
++                    pn, pr = cand[0]
++                    vstep = (f"H{hn}", f"P{pn}", hr["cell"].as_text(),
++                             hr["prediction"], pr["outcome"])
++                    break
+         return AgentContext(phase=phase, history=self.history, observations=obs,
+                             rejections=tuple(self.rejections[-5:]),
+                             budget_remaining=self.world.remaining,
+@@ -367,7 +384,8 @@
+                             last_labels=labels,
+                             hypotheses=(hyp if phase == "F2" else ()),
+                             f1_rejection=(tuple(self.f1_rejection)
+-                                          if phase == "F1" else ()))
++                                          if phase == "F1" else ()),
++                            verdict_step=vstep)
+ 
+     # --- F1 / F3 --------------------------------------------------------------
+ 
+@@ -623,11 +641,11 @@
+             "status": status, "stop_reason": self.stop_reason,
+             "respond_calls": self.respond_calls, "malformed": self.malformed,
+             "n_E": (len(self.world.e_set()["E"]) if self.world is not None else None),
+-            "protocol_version": "v33",
+-            "protocol_sha256": file_sha(ARTIFACTS.parent / "K0_PROTOCOL_v33.md"),
++            "protocol_version": "v34",
++            "protocol_sha256": file_sha(ARTIFACTS.parent / "K0_PROTOCOL_v34.md"),
+             "protocol_base_sha256": file_sha(ARTIFACTS.parent / "K0_PROTOCOL.md"),
+             "protocol_diff_sha256": file_sha(ARTIFACTS.parent / "version-history"
+-                                             / "K0_PROTOCOL_v32_to_v33.diff"),
++                                             / "K0_PROTOCOL_v33_to_v34.diff"),
+             "spec_sha256": file_sha(autonomy / "WORLD_C_SPEC.md"),
+             "package_sha256": file_sha(autonomy / "WORLD_C_DECISIONS_PACKAGE.md"),
+             "prompts_sha256": file_sha(code_dir / "prompts.py"),

@@ -55,6 +55,10 @@ def render_context(ctx) -> str:
         _f1r = getattr(ctx, "f1_rejection", ())
         if _f1r:
             payload["f1_rejection"] = list(_f1r)
+    if ctx.phase == "F2":   # v34: шаг вердикта — виден в артефакте
+        _vs = getattr(ctx, "verdict_step", ())
+        if _vs:
+            payload["verdict_step"] = list(_vs)
     return json.dumps(payload, ensure_ascii=False, indent=1)
 
 

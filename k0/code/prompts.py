@@ -101,6 +101,12 @@ F2_NEXT_STEP = ("[СЛЕДУЮЩИЙ ШАГ] Гипотеза {label} зарег
                 "Проверь именно эту клетку: строка PREDICT: {cell} = {pred}, "
                 "затем строка ACTION: probe {cell}.")
 
+F2_VERDICT_STEP = ("[ВЕРДИКТ] Результат пробы {probe} тебе виден: клетка {cell} = "
+                   "{outcome}. Гипотеза {hyp} (прогноз: {pred}) ждёт вердикта; "
+                   "повторная регистрация Q/H отклоняется. Следующий шаг — строка "
+                   "VERDICT: {hyp} supported ИЛИ VERDICT: {hyp} refuted AFTER "
+                   "{probe}.")
+
 F1_REJ_HEAD = "[ОТКАЗ F1] предыдущий ответ невалиден:"
 F1_REJ_TAIL = ("Допустимы только значения present или disappeared; повтори ровно "
                "9 строк формата PREDICT: <объект> T=<t> H=<h> = "
@@ -112,7 +118,7 @@ def static_text() -> str:
     return "\n".join([WORLD_TEXT, F1_HEAD, F3_HEAD, F4_HEAD, HIST_HEAD, BATT_HEAD,
                       OBS_HEAD, REJ_HEAD, NOTE_HEAD, LABELS_HEAD, F1_TASK,
                       F3_TASK, F4_TASK, F2_HEAD, F2_SCOPE, F2_ACTIONS,
-                      F2_NEXT_STEP, F1_REJ_HEAD, F1_REJ_TAIL])
+                      F2_NEXT_STEP, F2_VERDICT_STEP, F1_REJ_HEAD, F1_REJ_TAIL])
 
 
 FORBIDDEN_SUBSTRINGS = (
@@ -195,6 +201,11 @@ def build_f2(ctx) -> str:
         _h0 = ctx.hypotheses[0]
         parts += ["", F2_NEXT_STEP.format(label=f"H{_h0['n']}", cell=_h0["cell"],
                                           pred=_h0["prediction"])]
+    if ctx.verdict_step:            # v34: раскрытая проба без вердикта
+        _vs = ctx.verdict_step
+        parts += ["", F2_VERDICT_STEP.format(probe=_vs[1], cell=_vs[2],
+                                             outcome=_vs[4], hyp=_vs[0],
+                                             pred=_vs[3])]
     return "\n".join(parts)
 
 
