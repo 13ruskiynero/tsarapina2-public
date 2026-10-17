@@ -93,7 +93,9 @@ def analyze(rows, requests, rejections):
                 "reason": "менее 3 вызовов с видимой пригодной целью"}
 
     pairs = _pairs(rows)
-    pairs_in = [p for p in pairs if p["action"].get("call") in window]
+    # O1 — только ЗАВЕРШЁННЫЕ действия по контракту §11 (есть budget)
+    pairs_in = [p for p in pairs if p["completed"]
+                and p["action"].get("call") in window]
     with_probe = [p for p in pairs_in if p["probe"] is not None]
     goal_revealed = [p for p in with_probe
                      if p["probe"].get("cell") == goal_cell
@@ -141,7 +143,7 @@ def analyze(rows, requests, rejections):
         "O2_goal_cell_probe": bool(o2),
         "O3_q1h1_duplicates": o3,
         "O4_new_goal_attempts": o4,
-        "pairs_in_window": len(pairs_in),
+        "pairs_in_window": len(pairs_in),   # только завершённые (есть budget)
         "probes_in_window": len(with_probe),
         "goal_cell_probes": len(goal_revealed) + len(goal_masked),
         "goal_cell_probes_masked": len(goal_masked),

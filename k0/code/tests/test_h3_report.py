@@ -1,21 +1,26 @@
 # -*- coding: utf-8 -*-
-"""Тесты классификатора H3 (scripts/h3_report.py) — v37-A, ред. 3.
+"""Тесты классификатора H3 (scripts/h3_report.py) — v37-A, ред. 4.
 
-Исправление по замечанию повторного ревью: действия и связанные записи
-пробы/бюджета находятся НА ВЫЗОВЕ В ОКНЕ (6), а не на вызове внедрения (5).
-Добавлен T6: действие ДО окна не влияет на классификацию.
+Исправления по замечаниям повторного ревью (ред. 3):
+  * порядок событий в фикстурах соответствует контракту §11:
+    action_requested(seq A) → probe_outcome → budget(action_ref=A);
+    (в ред. 3 проба стояла ПОСЛЕ бюджета — связка не находилась);
+  * O1 считается только по ЗАВЕРШЁННЫМ действиям (есть budget); добавлен T7 —
+    действие без budget не даёт O1 (в ред. 3 незавершённое действие
+    засчитывалось).
 
-T1  supports_H3: действие в окне (call 6), раскрытая проба ровно в клетке цели.
-T2  H3_partial: действие в окне, проба в ДРУГОЙ клетке.
-T2b unclassified: действие исполнено (call 6), но пробы нет.
-T2c unclassified: проба в клетке цели на call 6, но НЕ раскрыта (masked).
+T1  supports_H3: завершённое действие, раскрытая проба ровно в клетке цели.
+T2  H3_partial: завершённое действие, проба в ДРУГОЙ клетке.
+T2b unclassified: завершённое действие, пробы нет.
+T2c unclassified: завершённое действие, проба в клетке цели НЕ раскрыта.
 T3  H3_not_supported: действий нет, повторные регистрации Q1/H1 есть.
 T4  uninformative_goal: цель непригодна.
 T4b uninformative_data: окно короче 3.
 T4c окно по порядку подряд: разрыв видимости цели усекает окно.
 T4d uninformative_behavior: действий нет, O3=0, но есть O4>0.
 T5  uninformative_no_goal: записи goal нет.
-T6  действие до окна (call 5) не попадает в pairs_in и не влияет на статус.
+T6  действие до окна (call 5) не попадает в pairs_in.
+T7  действие без budget (незавершённое) не даёт O1 и не меняет статус.
 """
 import sys
 import unittest
@@ -40,13 +45,13 @@ def action(call, descriptor="probe O4 T=2 H=0", seq=20):
             "descriptor": descriptor}
 
 
-def budget(action_seq, seq=30, call=None):
-    return {"seq": seq, "type": "budget", "call": call, "action_ref": action_seq}
-
-
-def probe(cell="O4 T=2 H=1", revealed=True, seq=40, call=FIRST_WINDOW_CALL):
+def probe(cell="O4 T=2 H=1", revealed=True, seq=30, call=FIRST_WINDOW_CALL):
     return {"seq": seq, "type": "probe_outcome", "call": call, "cell": cell,
             "outcome": "present", "revealed": revealed, "masked": not revealed}
+
+
+def budget(action_seq, seq=40, call=None):
+    return {"seq": seq, "type": "budget", "call": call, "action_ref": action_seq}
 
 
 def reqs(goal_cell="O4 T=2 H=1", calls=(6, 7, 8), phase="F2", include_goal=True):
@@ -60,14 +65,11 @@ def reqs(goal_cell="O4 T=2 H=1", calls=(6, 7, 8), phase="F2", include_goal=True)
     return out
 
 
-def in_window_action(seq=20, call=FIRST_WINDOW_CALL, descriptor="probe O4 T=2 H=0"):
-    """Действие, исполненное на вызове В ОКНЕ (6) — корректная фикстура."""
-    return action(call=call, descriptor=descriptor, seq=seq)
-
-
 class TestH3Report(unittest.TestCase):
     def test_t1_supports_h3(self):
-        rows = [goal(), in_window_action(), budget(20, call=6), probe()]
+        # контракт §11: action(20) → probe(30) → budget(action_ref=20, seq=40)
+        rows = [goal(), action(seq=20, call=6), probe(seq=30, call=6),
+                budget(20, seq=40, call=6)]
         rep = h3_report.analyze(rows, reqs(), [])
         self.assertEqual(rep["status"], "supports_H3")
         self.assertEqual(rep["window"], [6, 7, 8])
@@ -76,22 +78,24 @@ class TestH3Report(unittest.TestCase):
         self.assertEqual(rep["O3_q1h1_duplicates"], 0)
 
     def test_t2_partial_other_cell(self):
-        rows = [goal(), in_window_action(),
-                budget(20, call=6), probe(cell="O3 T=2 H=0")]
+        rows = [goal(), action(seq=20, call=6),
+                probe(cell="O3 T=2 H=0", seq=30, call=6),
+                budget(20, seq=40, call=6)]
         rep = h3_report.analyze(rows, reqs(), [])
         self.assertEqual(rep["status"], "H3_partial")
         self.assertFalse(rep["O2_goal_cell_probe"])
 
     def test_t2b_action_without_probe_unclassified(self):
-        rows = [goal(), in_window_action(descriptor="reset"),
-                budget(20, call=6)]
+        rows = [goal(), action(descriptor="reset", seq=20, call=6),
+                budget(20, seq=40, call=6)]
         rep = h3_report.analyze(rows, reqs(), [])
         self.assertEqual(rep["status"], "unclassified")
         self.assertEqual(rep["probes_in_window"], 0)
 
     def test_t2c_masked_goal_probe_unclassified(self):
-        rows = [goal(), in_window_action(), budget(20, call=6),
-                probe(revealed=False)]
+        rows = [goal(), action(seq=20, call=6),
+                probe(revealed=False, seq=30, call=6),
+                budget(20, seq=40, call=6)]
         rep = h3_report.analyze(rows, reqs(), [])
         self.assertEqual(rep["status"], "unclassified")
         self.assertFalse(rep["O2_goal_cell_probe"])
@@ -133,11 +137,18 @@ class TestH3Report(unittest.TestCase):
         self.assertEqual(rep["status"], "uninformative_no_goal")
 
     def test_t6_action_before_window_ignored(self):
-        # действие и раскрытая проба цели — НА ВЫЗОВЕ 5 (вне окна [6,7,8])
+        # действие и проба — на вызове 5 (вне окна [6,7,8]); порядок по §11
         rows = [goal(call=5),
                 action(call=5, descriptor="probe O4 T=2 H=1", seq=20),
-                budget(20, call=5),
-                probe(call=5, revealed=True, seq=40)]
+                probe(call=5, seq=30), budget(20, seq=40, call=5)]
+        rep = h3_report.analyze(rows, reqs(), [])
+        self.assertFalse(rep["O1_valid_action"])
+        self.assertEqual(rep["pairs_in_window"], 0)
+        self.assertEqual(rep["status"], "unclassified")
+
+    def test_t7_incomplete_action_no_o1(self):
+        # действие на call 6 БЕЗ budget: пара не завершена → O1 = false
+        rows = [goal(), action(seq=20, call=6)]
         rep = h3_report.analyze(rows, reqs(), [])
         self.assertFalse(rep["O1_valid_action"])
         self.assertEqual(rep["pairs_in_window"], 0)
