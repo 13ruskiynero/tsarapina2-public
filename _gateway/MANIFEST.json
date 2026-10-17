@@ -1,6 +1,6 @@
 {
  "project": "tsarapina",
- "generated_at": "2026-10-17T05:22:50Z",
+ "generated_at": "2026-10-17T05:23:08Z",
  "policy": {
   "allow_ext": [
    ".md",
@@ -1618,8 +1618,8 @@
   {
    "path": "k0/K0_M3_V34_RUN_REPORT.md",
    "size": 8495,
-   "mtime": 1792214559,
-   "sha256": "a282e9733f3803b0b9118e1278b5b06761ea9558759f83cc1be3dfcba88618a6"
+   "mtime": 1792214586,
+   "sha256": "ae8a813e2cf6627bee9a5b8f6d803003712997112fba5b606b3538a054b6b458"
   },
   {
    "path": "k0/K0_PARSER_v32.py",
