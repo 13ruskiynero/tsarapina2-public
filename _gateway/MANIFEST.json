@@ -1,6 +1,6 @@
 {
  "project": "tsarapina",
- "generated_at": "2026-10-17T07:50:23Z",
+ "generated_at": "2026-10-17T07:53:58Z",
  "policy": {
   "allow_ext": [
    ".md",
@@ -11,7 +11,7 @@
   "include_jsonl": false
  },
  "count": 1022,
- "total_bytes": 4604985,
+ "total_bytes": 4606315,
  "files": [
   {
    "path": "MVP1_IMPLEMENTATION_PLAN.md",
@@ -1635,15 +1635,15 @@
   },
   {
    "path": "k0/K0_M3_V36_RUN_REPORT.md",
-   "size": 7489,
-   "mtime": 1792223376,
-   "sha256": "03346be9e106ad92cb79a40a2ea9c4cab5b3bbbe5d777c3c2a18361f86322c5c"
+   "size": 8430,
+   "mtime": 1792223631,
+   "sha256": "337960b41c4c817e072ec6ce620b3a9dd32456f3605abc228ac23ed06e38cc41"
   },
   {
    "path": "k0/K0_M3_V36_S3.json",
-   "size": 1315,
-   "mtime": 1792223353,
-   "sha256": "4acb5741e8a46a67e8da4fd64df247f45c5ddd7e0bd30da4763243314fbbcdcb"
+   "size": 1365,
+   "mtime": 1792223631,
+   "sha256": "e949cae05e9b9d777b2d17ed9ff45c4e9b84958868ae0766c699039390bf7902"
   },
   {
    "path": "k0/K0_M4_DESIGN_DRAFT.md",
@@ -5901,9 +5901,9 @@
   },
   {
    "path": "k0/scripts/s3_report.py",
-   "size": 10045,
-   "mtime": 1792221946,
-   "sha256": "9f38c0fef7c9b5af48d31f582372fe0dd2968ae8bf9146b811194c6f63597628"
+   "size": 10384,
+   "mtime": 1792223631,
+   "sha256": "27ec3400dfa5cc71818126a4463c8f7a95043a0ba241ed32f10d85e8eb30a5ad"
   },
   {
    "path": "knowledge/__init__.py",
