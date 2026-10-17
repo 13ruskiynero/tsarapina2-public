@@ -56,6 +56,7 @@
 - `K0_PROTOCOL_v32_to_v33.diff`, `K0_PROMPTS_v32_to_v33.diff`, `K0_SESSION_v32_to_v33.diff`, `K0_CALLS_v32_to_v33.diff` — диффы v33-A.
 - `K0_PROTOCOL_v33_ACT_ADDENDUM1.md` — дополнение №1 к акту v33-A: дифф parser.py, снимок исходников, тесты T1–T7, паспортные хэши; запуск НЕ выполнялся.
 - `K0_PARSER_v32_to_v33.diff` (и база `K0_PARSER_v32.py`) — дифф парсера от замороженного v32 (`bad_raw`).
+- `K0_PROTOCOL_v33.md` и база `K0_PROTOCOL_v32.md` — сам протокол: действующий контракт (sha256 в акте §7) и база для диффа §13.
 - `code/` — полный снимок исходников и тестов k0 (23 файла; пять файлов — по публичному allowlist `scan_allow` — см. дополнение №1 и `SCAN_ALLOW.json`).
 
 ## Контекст
