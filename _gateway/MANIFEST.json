@@ -1,6 +1,6 @@
 {
  "project": "tsarapina",
- "generated_at": "2026-10-17T15:06:58Z",
+ "generated_at": "2026-10-17T15:21:38Z",
  "policy": {
   "allow_ext": [
    ".md",
@@ -10,8 +10,8 @@
   "max_file_bytes": 65536,
   "include_jsonl": false
  },
- "count": 1043,
- "total_bytes": 4878806,
+ "count": 1045,
+ "total_bytes": 4891998,
  "files": [
   {
    "path": "MVP1_IMPLEMENTATION_PLAN.md",
@@ -1958,6 +1958,12 @@
    "sha256": "5e7f24282ee9a4bee41ea1cd3513e4a5923741a84b2116ad9ff9404269186877"
   },
   {
+   "path": "k0/K0_PROTOCOL_v37_ACT_ADDENDUM6.md",
+   "size": 5207,
+   "mtime": 1792250492,
+   "sha256": "d1a6ea357ca74af866d3d9351387d99cf2d7cea21809131383c4e817e8d062a7"
+  },
+  {
    "path": "k0/K0_RESULT_FIXATION.md",
    "size": 4713,
    "mtime": 1792165113,
@@ -2127,9 +2133,9 @@
   },
   {
    "path": "k0/code/run_first.py",
-   "size": 5381,
-   "mtime": 1792225500,
-   "sha256": "a9af315b3d85fd05c55fa164f9de2d66e877742cb850182f21b64f40ff1cba33"
+   "size": 8882,
+   "mtime": 1792250431,
+   "sha256": "43efdcfb59a710597d1bdd9521ea30e7e2c0e6b1d565605cdc8669bfcef904de"
   },
   {
    "path": "k0/code/secret_scan.py",
@@ -2190,6 +2196,12 @@
    "size": 23174,
    "mtime": 1792047019,
    "sha256": "7a3f3b9e887ffe313d8cc0fdcde02949a13c1a0eae85c8c2bfa92293e3db112a"
+  },
+  {
+   "path": "k0/code/tests/test_preflight.py",
+   "size": 4484,
+   "mtime": 1792250439,
+   "sha256": "4a757c8bfab1820834da2a17e5f3220fd03bbb254d2fb5364c3efeeab9bd5c96"
   },
   {
    "path": "k0/code/tests/test_prompts.py",
