@@ -1,6 +1,6 @@
 {
  "project": "tsarapina",
- "generated_at": "2026-10-17T06:12:35Z",
+ "generated_at": "2026-10-17T06:52:45Z",
  "policy": {
   "allow_ext": [
    ".md",
@@ -10,8 +10,8 @@
   "max_file_bytes": 65536,
   "include_jsonl": false
  },
- "count": 919,
- "total_bytes": 4316875,
+ "count": 926,
+ "total_bytes": 4443597,
  "files": [
   {
    "path": "MVP1_IMPLEMENTATION_PLAN.md",
@@ -1838,6 +1838,24 @@
    "sha256": "af695f3b9ebba6e52fc0e26d8459799799c75a76ddf800f7d1886e989959e21f"
   },
   {
+   "path": "k0/K0_PROTOCOL_v35_to_v36.diff",
+   "size": 6006,
+   "mtime": 1792219845,
+   "sha256": "77dba7448570ea66640a0fff37979e96b40360fffee0ebb1414e3769551d83e3"
+  },
+  {
+   "path": "k0/K0_PROTOCOL_v36.md",
+   "size": 86368,
+   "mtime": 1792219845,
+   "sha256": "b8cb0b4fb42ef9ff2f918c39574aa83c700f211ebd89a00c55b5f8ed5b1da8a9"
+  },
+  {
+   "path": "k0/K0_PROTOCOL_v36_ACT.md",
+   "size": 10048,
+   "mtime": 1792219955,
+   "sha256": "620cf966feea7a1957213db0a2ca239262c5d8fdff9d7bca1261914e441c2577"
+  },
+  {
    "path": "k0/K0_RESULT_FIXATION.md",
    "size": 4713,
    "mtime": 1792165113,
@@ -1880,6 +1898,12 @@
    "sha256": "dfbcde3ef44099305d704b1bb0d943c464ddaa95067acae6271708289bcc4a7c"
   },
   {
+   "path": "k0/K0_SESSION_v35_to_v36.diff",
+   "size": 1102,
+   "mtime": 1792219845,
+   "sha256": "0e1f6a229515e754c8b3c98af695cfdf44a0c055834ff79cf6db23639c907e08"
+  },
+  {
    "path": "k0/K0_THIRD_RUN_REPORT.md",
    "size": 7831,
    "mtime": 1792164294,
@@ -1916,10 +1940,16 @@
    "sha256": "efc5700f35b354a2775f4d5ee7e741d01b9b4c4f26a744dfafd443d6567a61d5"
   },
   {
+   "path": "k0/K0_V36_DESIGN_DRAFT.md",
+   "size": 7154,
+   "mtime": 1792219944,
+   "sha256": "bb97967f26ce77d73cc4204c0226f911304ae0cf3366570bca5d23bf6b9c3c31"
+  },
+  {
    "path": "k0/README.md",
-   "size": 17548,
-   "mtime": 1792217554,
-   "sha256": "77bb38c2b7620c7c826e23c034a418d7706d0acc13ee2e7482524519569d4d0c"
+   "size": 19041,
+   "mtime": 1792219963,
+   "sha256": "e63255268ade37f1ed693c38620cbe88786e260a98cb99a087d50c2a0952eb15"
   },
   {
    "path": "k0/SCAN_ALLOW.json",
@@ -1929,9 +1959,9 @@
   },
   {
    "path": "k0/code/admission_checks.py",
-   "size": 49063,
-   "mtime": 1792215598,
-   "sha256": "5a204a1f49ffca96c31f210499c621c039afbfb2bf4f06cda0a35c18da9961db"
+   "size": 51285,
+   "mtime": 1792219845,
+   "sha256": "1b2ad898a6e66494b04f7bf812825172cd02cd1331c655787637c997465f866f"
   },
   {
    "path": "k0/code/auditor.py",
@@ -1977,9 +2007,9 @@
   },
   {
    "path": "k0/code/run_first.py",
-   "size": 5394,
-   "mtime": 1792215872,
-   "sha256": "00e8147c52246776780be751bb09e37913aa65bab6a7954e9ea51eeeadd88318"
+   "size": 5378,
+   "mtime": 1792219845,
+   "sha256": "f74384638b704eaea4bbd486a780c480643da39dedad670456bd3d917074afeb"
   },
   {
    "path": "k0/code/secret_scan.py",
@@ -1990,8 +2020,8 @@
   {
    "path": "k0/code/session.py",
    "size": 38562,
-   "mtime": 1792215598,
-   "sha256": "db0de1df52337e4f611d31237298949d91f31cc9a793862fcd89da27601222cf"
+   "mtime": 1792219845,
+   "sha256": "f5462def09c372f2f88ede2c73205dafc3df10f1530fb29bacb3605bc3d65ba9"
   },
   {
    "path": "k0/code/tests/test_auditor.py",
@@ -2002,8 +2032,8 @@
   {
    "path": "k0/code/tests/test_channel.py",
    "size": 30678,
-   "mtime": 1792215598,
-   "sha256": "99929a11aa33cac509ddf21a92a3da78f128bdc38c04b5dcfab331577d96ec7a"
+   "mtime": 1792219845,
+   "sha256": "0f7e0264bb50630b092998dc884d210c6508c3466f1a80b7e07db1e8cc80ba4b"
   },
   {
    "path": "k0/code/tests/test_decision_feedback.py",
@@ -2042,6 +2072,12 @@
    "sha256": "fea1206fbd83103d32610d81fa4bd7c32d2252f1bf16270c512536a9c3f3d857"
   },
   {
+   "path": "k0/code/tests/test_s3_report.py",
+   "size": 4781,
+   "mtime": 1792219888,
+   "sha256": "9d4a1c3ff9c391d17decd97821fae8b3234189d677551351a43d82d82b3945db"
+  },
+  {
    "path": "k0/code/tests/test_secret_scan.py",
    "size": 3547,
    "mtime": 1792055330,
@@ -2050,8 +2086,8 @@
   {
    "path": "k0/code/tests/test_session.py",
    "size": 36418,
-   "mtime": 1792215598,
-   "sha256": "13b052442e7d4eaeefff88345d0abfbd300a01b72744f50b3b71959d2e96a854"
+   "mtime": 1792219845,
+   "sha256": "a2b8d9b3fd3151de75b4af626f9ef6a445078550a6c5138cd270618f5723fed2"
   },
   {
    "path": "k0/code/tests/test_transition.py",
@@ -5286,6 +5322,12 @@
    "size": 4434,
    "mtime": 1792217495,
    "sha256": "87520c0c33edca413dad997bb3c7e6e7e13287d6bbebb779404ca5242702a896"
+  },
+  {
+   "path": "k0/scripts/s3_report.py",
+   "size": 7564,
+   "mtime": 1792219805,
+   "sha256": "d3d85974625bdb4c7fd6dc1173f73e3f1ba7d587752a86d2eba0f640dd67d183"
   },
   {
    "path": "knowledge/__init__.py",

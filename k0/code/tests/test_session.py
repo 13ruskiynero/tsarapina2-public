@@ -556,9 +556,9 @@ class TestCallLogAndPassport(SessionCase):
         self.assertEqual(pp["respond_calls"], 20)
         self.assertEqual(pp["n_E"], 7)
         self.assertEqual(pp["malformed"], 0)
-        self.assertEqual(pp["protocol_version"], "v35")
+        self.assertEqual(pp["protocol_version"], "v36")
         self.assertEqual(pp["protocol_sha256"],
-                         hashlib.sha256((K0_DIR / "K0_PROTOCOL_v35.md").read_bytes()).hexdigest())
+                         hashlib.sha256((K0_DIR / "K0_PROTOCOL_v36.md").read_bytes()).hexdigest())
         self.assertEqual(pp["protocol_base_sha256"],
                          hashlib.sha256((K0_DIR / "K0_PROTOCOL.md").read_bytes()).hexdigest())
 

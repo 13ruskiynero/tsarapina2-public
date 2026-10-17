@@ -1,0 +1,17 @@
+--- version-history/K0_SESSION_v35.py
++++ code/session.py
+@@ -655,11 +655,11 @@
+             "status": status, "stop_reason": self.stop_reason,
+             "respond_calls": self.respond_calls, "malformed": self.malformed,
+             "n_E": (len(self.world.e_set()["E"]) if self.world is not None else None),
+-            "protocol_version": "v35",
+-            "protocol_sha256": file_sha(ARTIFACTS.parent / "K0_PROTOCOL_v35.md"),
++            "protocol_version": "v36",
++            "protocol_sha256": file_sha(ARTIFACTS.parent / "K0_PROTOCOL_v36.md"),
+             "protocol_base_sha256": file_sha(ARTIFACTS.parent / "K0_PROTOCOL.md"),
+             "protocol_diff_sha256": file_sha(ARTIFACTS.parent / "version-history"
+-                                             / "K0_PROTOCOL_v34_to_v35.diff"),
++                                             / "K0_PROTOCOL_v35_to_v36.diff"),
+             "spec_sha256": file_sha(autonomy / "WORLD_C_SPEC.md"),
+             "package_sha256": file_sha(autonomy / "WORLD_C_DECISIONS_PACKAGE.md"),
+             "prompts_sha256": file_sha(code_dir / "prompts.py"),
