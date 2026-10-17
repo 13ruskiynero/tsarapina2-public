@@ -1,0 +1,45 @@
+--- version-history/K0_PARSER_v32.py
++++ code/parser.py
+@@ -474,33 +474,40 @@
+     ok: bool
+     predictions: dict      # Cell -> outcome
+     problems: tuple
++    bad_raw: tuple = ()    # v33: (index, raw) строки, привязанные к problems
+ 
+ 
+ def validate_forecast(parsed: list, battery_cells) -> ForecastResult:
+     """Валидация ответа F1/F3 (§7.1): ровно 9 прогнозов по клеткам батареи;
+     дубликат/пропуск/лишняя или невалидная строка → invalid_forecast."""
+     battery = set(battery_cells)
+-    problems, preds = [], {}
++    problems, preds, bad_raw, line_of = [], {}, [], {}
+     for l in parsed:
+         if l.kind == "blank":
+             continue
+         if l.kind != "predict":
+             problems.append(f"строка {l.index}: лишняя конструкция ({l.kind})")
++            bad_raw.append((l.index, l.raw))
+             continue
+         if l.data.get("error"):
+             problems.append(f"строка {l.index}: невалидный PREDICT")
++            bad_raw.append((l.index, l.raw))
+             continue
+         c = l.data["cell"]
+         if c in preds:
+             problems.append(f"строка {l.index}: дубликат клетки {c.as_text()}")
++            bad_raw.append((l.index, l.raw))
+             continue
+         preds[c] = l.data["outcome"]
++        line_of[c] = (l.index, l.raw)
+     for c in sorted(battery - set(preds)):
+         problems.append(f"пропуск клетки {c.as_text()}")
+     for c in sorted(set(preds) - battery):
+         problems.append(f"лишняя клетка {c.as_text()}")
++        bad_raw.append(line_of[c])
+     ok = (not problems) and (len(preds) == len(battery))
+-    return ForecastResult(ok=ok, predictions=preds, problems=tuple(problems))
++    return ForecastResult(ok=ok, predictions=preds, problems=tuple(problems),
++                          bad_raw=tuple(bad_raw))
+ 
+ 
+ # --- F2: полная валидация ответа (проверки (а)–(г), §7; атомарность NOTE) ----

@@ -1,6 +1,6 @@
 {
  "project": "tsarapina",
- "generated_at": "2026-10-17T04:03:03Z",
+ "generated_at": "2026-10-17T04:10:48Z",
  "policy": {
   "allow_ext": [
    ".md",
@@ -10,8 +10,8 @@
   "max_file_bytes": 65536,
   "include_jsonl": false
  },
- "count": 624,
- "total_bytes": 3060623,
+ "count": 644,
+ "total_bytes": 3385594,
  "files": [
   {
    "path": "MVP1_IMPLEMENTATION_PLAN.md",
@@ -1604,6 +1604,18 @@
    "sha256": "9fef478ae415383014337a77322285bb495d15b534a99ad78b8a9ce1887fd5f2"
   },
   {
+   "path": "k0/K0_PARSER_v32.py",
+   "size": 29785,
+   "mtime": 1792210185,
+   "sha256": "39ce6c8c03383ff3e4ffe53aaf0d92be9dc68e308aa7de83572fab473ee4ccb0"
+  },
+  {
+   "path": "k0/K0_PARSER_v32_to_v33.diff",
+   "size": 2116,
+   "mtime": 1792210185,
+   "sha256": "8fa488f3c74fca4f110d64d71d4a6cd3fff8b000c7730322ac7006cdecb36d71"
+  },
+  {
    "path": "k0/K0_PROMPTS_v27_to_v28.diff",
    "size": 951,
    "mtime": 1792163711,
@@ -1779,9 +1791,117 @@
   },
   {
    "path": "k0/README.md",
-   "size": 11741,
-   "mtime": 1792209782,
-   "sha256": "b5899d716533fdef146ec4ad123da3178a53cbbb46b73744d73d27d62f40d13a"
+   "size": 12404,
+   "mtime": 1792210247,
+   "sha256": "6bc23d6a4317d968af75357f458837e6b16bf5702ce2af198f5630a1b885e926"
+  },
+  {
+   "path": "k0/code/auditor.py",
+   "size": 22017,
+   "mtime": 1792047479,
+   "sha256": "c716ccca97df9f60f07e6b727de82f4372a10067e2e73c3d575c310d4dfe83c9"
+  },
+  {
+   "path": "k0/code/calls.py",
+   "size": 5017,
+   "mtime": 1792209623,
+   "sha256": "7c6e927fdb94cee5b6773d044cb17778d0bc9ed5d8747abaf53cd8ae58de6aed"
+  },
+  {
+   "path": "k0/code/channel.py",
+   "size": 17395,
+   "mtime": 1792130027,
+   "sha256": "f7d21e28870340b0e4b793a8b1aea99bebabbacca03a56523111abfc89dbd91e"
+  },
+  {
+   "path": "k0/code/journal.py",
+   "size": 13091,
+   "mtime": 1791956536,
+   "sha256": "2014343dfe74bb44a37292beed44b1f1013e140b36f22a049566e95714d9533c"
+  },
+  {
+   "path": "k0/code/parser.py",
+   "size": 30165,
+   "mtime": 1792209623,
+   "sha256": "d21b426e064beabdf448a1f7e86592341d8ed4094d79cb9f928bfbd0de6a2d86"
+  },
+  {
+   "path": "k0/code/prompts.py",
+   "size": 12695,
+   "mtime": 1792209623,
+   "sha256": "57a40c829153331c37a0a35aa16ad18e3b9b3d2326182d7fe4722292a8927813"
+  },
+  {
+   "path": "k0/code/run_first.py",
+   "size": 5378,
+   "mtime": 1792209623,
+   "sha256": "f38b2660affb0eee2558e68154fe1d4412f47a26860481aa39929dee2ff4965f"
+  },
+  {
+   "path": "k0/code/session.py",
+   "size": 36552,
+   "mtime": 1792209623,
+   "sha256": "13342a8340539f116693e7fbd104af30f1a9d828b5e5e858b6638c886908609c"
+  },
+  {
+   "path": "k0/code/tests/test_auditor.py",
+   "size": 22927,
+   "mtime": 1792047480,
+   "sha256": "98169f98e13b1e1db53e29402221892f56503ebbb0371fc800e3bdead2018f76"
+  },
+  {
+   "path": "k0/code/tests/test_f1_feedback.py",
+   "size": 8133,
+   "mtime": 1792210185,
+   "sha256": "25b5497e32ef392b91ac38e25581a42ece144ea9cd70893883c742992461f9f1"
+  },
+  {
+   "path": "k0/code/tests/test_journal.py",
+   "size": 9736,
+   "mtime": 1791952509,
+   "sha256": "1c423760375a897488fee999939de74b2ee5ab09723b98a11b48da78a06f3bb7"
+  },
+  {
+   "path": "k0/code/tests/test_parser.py",
+   "size": 23174,
+   "mtime": 1792047019,
+   "sha256": "7a3f3b9e887ffe313d8cc0fdcde02949a13c1a0eae85c8c2bfa92293e3db112a"
+  },
+  {
+   "path": "k0/code/tests/test_prompts.py",
+   "size": 5857,
+   "mtime": 1792165881,
+   "sha256": "0cae2989dc4a1db8fe48d587f4354006431f9bc38fb990c64d9746932303bd6b"
+  },
+  {
+   "path": "k0/code/tests/test_recovery.py",
+   "size": 5200,
+   "mtime": 1792168169,
+   "sha256": "fea1206fbd83103d32610d81fa4bd7c32d2252f1bf16270c512536a9c3f3d857"
+  },
+  {
+   "path": "k0/code/tests/test_session.py",
+   "size": 36418,
+   "mtime": 1792209623,
+   "sha256": "4f0af5f785f9ab4fb3cb0f1918e90023594718a947293fe564c6b07a324dbbee"
+  },
+  {
+   "path": "k0/code/tests/test_transition.py",
+   "size": 8371,
+   "mtime": 1792176467,
+   "sha256": "f639e01b2603ad6878aaf08a506c989a677fba9c02966a372780f5d30806fb56"
+  },
+  {
+   "path": "k0/code/tests/test_world.py",
+   "size": 14962,
+   "mtime": 1792037913,
+   "sha256": "dafd82fea9f7100c6a132661f3e5906fd3e03f4ba01490439454b82e4500370d"
+  },
+  {
+   "path": "k0/code/world.py",
+   "size": 15319,
+   "mtime": 1791868840,
+   "sha256": "054709565396ac89a9d9a2eb972556f1a9155f3ebfda75bc963d2096c558e38a"
   },
   {
    "path": "k0/runs/run_K0-M1_101_v28/derived/audit.json",
