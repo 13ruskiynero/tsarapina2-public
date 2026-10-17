@@ -4,6 +4,9 @@
 Статус: **v34-A подготовлен; проверки пройдены; публикуется ДО запуска.
 Запуск НЕ ВЫПОЛНЕН и будет выполнен только по отдельному решению после ревью
 (без автоперезапусков).** v26–v33 и их артефакты — заморожены.
+**Ред. 2 (2026-10-17):** пути в §7 приведены к путям публичного зеркала
+(k0/…); добавлено явное соответствие исходных и публичных путей. Содержимое
+и контрольные суммы не менялись.
 
 ## 1. Основание
 
@@ -110,23 +113,28 @@
 
 ## 7. Контрольные суммы (на момент публикации)
 
-    K0_PROTOCOL_v34.md                     58db5c81c373f390381b6e77ad540ffcd7fd802bf1b6662dc519fceb218bca27  (85688 Б)
-    K0_PROTOCOL_v33.md (база, не измен.)   51160d4011d0621da957f3b5ad00d9df8b05d80d9dfae4fe70177438bbc8130a
-    version-history/K0_PROTOCOL_v33_to_v34.diff  b08f95b8a1ee9a4d216d627119f55ee889dbf4e343706f5f0afa62fd2170c56b
-    version-history/K0_PROMPTS_v33.py      57a40c829153331c37a0a35aa16ad18e3b9b3d2326182d7fe4722292a8927813
-    version-history/K0_PROMPTS_v33_to_v34.diff  73fb3a109e1d369ec74bdacd53b2e7b8fa19617126105823f79a02a637cdf17c  (−1/+12)
-    version-history/K0_SESSION_v33.py      13342a8340539f116693e7fbd104af30f1a9d828b5e5e858b6638c886908609c
-    version-history/K0_SESSION_v33_to_v34.diff  473f1108dc6843ece660b82220b1c33f0e2a0ee0024963ab7d08c496afb0f2a4
-    version-history/K0_CALLS_v33.py        7c6e927fdb94cee5b6773d044cb17778d0bc9ed5d8747abaf53cd8ae58de6aed
-    version-history/K0_CALLS_v33_to_v34.diff    c9abc2431a69f89d74ab8a94c6242ba5766e52a532c670981644ef55d7edb054
-    code/prompts.py                        61231017f8597264bce87acdc84d0e8c3ebf41abc8c00fa6f3fd245bb51e4d1a
-    code/session.py                        d2e4d0e6eaef4c73e231f3e811bb3206b452c87c9bab02e71ecb0dee7f419d91
-    code/calls.py                          a6330d1edf8c33d7b0e1ab0a9444b0a2a11b40487b1ce3db01975e7c09a9d228
-    code/run_first.py                      61ee920a1a8e84b0ea356aecc23adcae754044fad81938551532f26836771b48
-    code/admission_checks.py               d4232e30a4fbb8d0cc35d53bf9ad07360bf1d3181ec995479f25b99938135342
-    code/tests/test_channel.py             c612dd459a8b5ce0d00ade7a03e271b077c174880bc91a2e844a3dacb2f56b59
-    code/tests/test_session.py             ef1b26c75bb03990c645d97455a091432f49cd44c7036bae8c10b66cc1b33ef0
-    code/tests/test_verdict_feedback.py    97ed3bbe95f6e084deaa83e2b172bcb1fa79283529567aefbd6c2c717ae9f1b1
+Соответствие путей: исходные файлы рабочего дерева K0 лежат как
+`version-history/<имя>` (диффы и фрозен-копии) и `code/<имя>` (исходники);
+в публичном зеркале те же файлы — `k0/<имя>` и `k0/code/<имя>` (копии
+байт-в-байт, sha256 совпадают). Ниже — публичные пути.
+
+    k0/K0_PROTOCOL_v34.md                  58db5c81c373f390381b6e77ad540ffcd7fd802bf1b6662dc519fceb218bca27  (85688 Б)
+    k0/K0_PROTOCOL_v33.md (база, не измен.) 51160d4011d0621da957f3b5ad00d9df8b05d80d9dfae4fe70177438bbc8130a
+    k0/K0_PROTOCOL_v33_to_v34.diff  b08f95b8a1ee9a4d216d627119f55ee889dbf4e343706f5f0afa62fd2170c56b
+    k0/K0_PROMPTS_v33.py      57a40c829153331c37a0a35aa16ad18e3b9b3d2326182d7fe4722292a8927813
+    k0/K0_PROMPTS_v33_to_v34.diff  73fb3a109e1d369ec74bdacd53b2e7b8fa19617126105823f79a02a637cdf17c  (−1/+12)
+    k0/K0_SESSION_v33.py      13342a8340539f116693e7fbd104af30f1a9d828b5e5e858b6638c886908609c
+    k0/K0_SESSION_v33_to_v34.diff  473f1108dc6843ece660b82220b1c33f0e2a0ee0024963ab7d08c496afb0f2a4
+    k0/K0_CALLS_v33.py        7c6e927fdb94cee5b6773d044cb17778d0bc9ed5d8747abaf53cd8ae58de6aed
+    k0/K0_CALLS_v33_to_v34.diff    c9abc2431a69f89d74ab8a94c6242ba5766e52a532c670981644ef55d7edb054
+    k0/code/prompts.py                     61231017f8597264bce87acdc84d0e8c3ebf41abc8c00fa6f3fd245bb51e4d1a
+    k0/code/session.py                     d2e4d0e6eaef4c73e231f3e811bb3206b452c87c9bab02e71ecb0dee7f419d91
+    k0/code/calls.py                       a6330d1edf8c33d7b0e1ab0a9444b0a2a11b40487b1ce3db01975e7c09a9d228
+    k0/code/run_first.py                   61ee920a1a8e84b0ea356aecc23adcae754044fad81938551532f26836771b48
+    k0/code/admission_checks.py           d4232e30a4fbb8d0cc35d53bf9ad07360bf1d3181ec995479f25b99938135342
+    k0/code/tests/test_channel.py         c612dd459a8b5ce0d00ade7a03e271b077c174880bc91a2e844a3dacb2f56b59
+    k0/code/tests/test_session.py         ef1b26c75bb03990c645d97455a091432f49cd44c7036bae8c10b66cc1b33ef0
+    k0/code/tests/test_verdict_feedback.py 97ed3bbe95f6e084deaa83e2b172bcb1fa79283529567aefbd6c2c717ae9f1b1
 
 Порядок: публикация (эта) → ревью комплекта → отдельное разрешение на один прогон
 K0-M3/101 (v34) → прогон → отчёт (шесть пунктов v32 + П1/П2 раздельно).
