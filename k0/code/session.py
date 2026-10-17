@@ -137,6 +137,7 @@ class AgentContext:
     hypotheses: tuple = ()   # v32: зарегистрированные гипотезы — ({"n","cell","prediction"}, …)
     f1_rejection: tuple = ()   # v33: причина отказа F1 (для попытки ≥2)
     verdict_step: tuple = ()   # v34: (H, P, клетка, прогноз, исход) — ждёт вердикта
+    decision_step: tuple = ()  # v35: (V, H, P, клетка, прогноз, исход, res) — ждёт решения
 
 
 @dataclass
@@ -178,6 +179,7 @@ class Session:
         self.last_response: Optional[str] = None      # v30: предохранитель цикла
         self.last_progress: Optional[int] = None      # v30 ред.2: seq−malformed
         self.loop_streak = 0                          # v30
+        self.decisions = 0                            # v35
         self.journal: Optional[Journal] = None
         self.world: Optional[World] = None
         self.registry: Optional[LabelRegistry] = None
@@ -373,6 +375,16 @@ class Session:
                     vstep = (f"H{hn}", f"P{pn}", hr["cell"].as_text(),
                              hr["prediction"], pr["outcome"])
                     break
+        dstep = ()                    # v35: принятый вердикт без решения
+        if phase == "F2" and self.registry is not None and self.decisions == 0:
+            if self.registry.verdicts:
+                _vn, _v = max(self.registry.verdicts.items())
+                _h = self.registry.hypotheses.get(_v["h"])
+                _p = self.registry.probes.get(_v["after_p"])
+                if _h is not None and _p is not None:
+                    dstep = (f"V{_vn}", f"H{_v['h']}", f"P{_v['after_p']}",
+                             _h["cell"].as_text(), _h["prediction"],
+                             _p["outcome"], _v["resolution"])
         return AgentContext(phase=phase, history=self.history, observations=obs,
                             rejections=tuple(self.rejections[-5:]),
                             budget_remaining=self.world.remaining,
@@ -385,7 +397,8 @@ class Session:
                             hypotheses=(hyp if phase == "F2" else ()),
                             f1_rejection=(tuple(self.f1_rejection)
                                           if phase == "F1" else ()),
-                            verdict_step=vstep)
+                            verdict_step=vstep,
+                            decision_step=dstep)
 
     # --- F1 / F3 --------------------------------------------------------------
 
@@ -563,6 +576,7 @@ class Session:
         plan = b.plan
         if plan.get("decision"):
             self.journal.decision(plan["decision"], plan["using_v"])
+            self.decisions += 1                     # v35: принятое решение
         kind = plan["action"]
         if kind in ("probe", "repeat"):
             cell = plan["prediction"]["cell"]
@@ -641,11 +655,11 @@ class Session:
             "status": status, "stop_reason": self.stop_reason,
             "respond_calls": self.respond_calls, "malformed": self.malformed,
             "n_E": (len(self.world.e_set()["E"]) if self.world is not None else None),
-            "protocol_version": "v34",
-            "protocol_sha256": file_sha(ARTIFACTS.parent / "K0_PROTOCOL_v34.md"),
+            "protocol_version": "v35",
+            "protocol_sha256": file_sha(ARTIFACTS.parent / "K0_PROTOCOL_v35.md"),
             "protocol_base_sha256": file_sha(ARTIFACTS.parent / "K0_PROTOCOL.md"),
             "protocol_diff_sha256": file_sha(ARTIFACTS.parent / "version-history"
-                                             / "K0_PROTOCOL_v33_to_v34.diff"),
+                                             / "K0_PROTOCOL_v34_to_v35.diff"),
             "spec_sha256": file_sha(autonomy / "WORLD_C_SPEC.md"),
             "package_sha256": file_sha(autonomy / "WORLD_C_DECISIONS_PACKAGE.md"),
             "prompts_sha256": file_sha(code_dir / "prompts.py"),

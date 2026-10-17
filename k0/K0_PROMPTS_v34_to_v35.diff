@@ -1,0 +1,38 @@
+--- version-history/K0_PROMPTS_v34.py
++++ code/prompts.py
+@@ -107,6 +107,11 @@
+                    "VERDICT: {hyp} supported ИЛИ VERDICT: {hyp} refuted AFTER "
+                    "{probe}.")
+ 
++F2_DECISION_STEP = ("[РЕШЕНИЕ] Вердикт {v}: гипотеза {h} {res_word} после пробы "
++                    "{p}. Прогноз {pred} для клетки {cell} {res2}: результат "
++                    "пробы — {outcome}. При следующем действии укажи DECISION с "
++                    "USING {v}. Затем укажи PREDICT для выбранной клетки и ACTION.")
++
+ F1_REJ_HEAD = "[ОТКАЗ F1] предыдущий ответ невалиден:"
+ F1_REJ_TAIL = ("Допустимы только значения present или disappeared; повтори ровно "
+                "9 строк формата PREDICT: <объект> T=<t> H=<h> = "
+@@ -118,7 +123,7 @@
+     return "\n".join([WORLD_TEXT, F1_HEAD, F3_HEAD, F4_HEAD, HIST_HEAD, BATT_HEAD,
+                       OBS_HEAD, REJ_HEAD, NOTE_HEAD, LABELS_HEAD, F1_TASK,
+                       F3_TASK, F4_TASK, F2_HEAD, F2_SCOPE, F2_ACTIONS,
+-                      F2_NEXT_STEP, F2_VERDICT_STEP, F1_REJ_HEAD, F1_REJ_TAIL])
++                      F2_NEXT_STEP, F2_VERDICT_STEP, F2_DECISION_STEP, F1_REJ_HEAD, F1_REJ_TAIL])
+ 
+ 
+ FORBIDDEN_SUBSTRINGS = (
+@@ -206,6 +211,14 @@
+         parts += ["", F2_VERDICT_STEP.format(probe=_vs[1], cell=_vs[2],
+                                              outcome=_vs[4], hyp=_vs[0],
+                                              pred=_vs[3])]
++    if ctx.decision_step:           # v35: принятый вердикт без решения
++        _ds = ctx.decision_step
++        _ref = _ds[6] == "refuted"
++        parts += ["", F2_DECISION_STEP.format(
++            v=_ds[0], h=_ds[1], p=_ds[2], cell=_ds[3], pred=_ds[4],
++            outcome=_ds[5],
++            res_word=("опровергнута" if _ref else "подтверждена"),
++            res2=("не подтвердился" if _ref else "подтвердился"))]
+     return "\n".join(parts)
+ 
+ 

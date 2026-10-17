@@ -1,11 +1,12 @@
 # Актуальное состояние зеркала
 
-- Обновлено: 2026-10-17T05:27:15Z
-- Файлов проекта: 815
+- Обновлено: 2026-10-17T05:46:01Z
+- Файлов проекта: 823
 
 ## Изменения в этом обновлении
 
-Изменены (1): k0/K0_M3_V34_RUN_REPORT.md
+Добавлены (8): k0/K0_CALLS_v34_to_v35.diff, k0/K0_M4_DESIGN_DRAFT.md, k0/K0_PROMPTS_v34_to_v35.diff, k0/K0_PROTOCOL_v34_to_v35.diff, k0/K0_PROTOCOL_v35.md, k0/K0_PROTOCOL_v35_ACT.md, k0/K0_SESSION_v34_to_v35.diff, k0/code/tests/test_decision_feedback.py
+Изменены (8): k0/README.md, k0/code/admission_checks.py, k0/code/calls.py, k0/code/prompts.py, k0/code/run_first.py, k0/code/session.py, k0/code/tests/test_channel.py, k0/code/tests/test_session.py
 
 ## Главное по проекту
 
