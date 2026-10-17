@@ -16,6 +16,9 @@
 
 Ред. 3 (2026-10-17, по замечанию ревью): O3 — число ПАР Q1/H1 по правилу
 связывания (Q1+H1 в одном вызове, пары = min; одиночные — отдельный счётчик).
+Ред. 4 (2026-10-17, по замечанию ревью): отказы читаются по ФАКТИЧЕСКОЙ схеме
+derived/rejections.json — поле label (requested — запасной вариант); отказы
+вердиктов (kind=verdict, label=None) не попадают ни в O3, ни в O4.
 
 Вход: journal.jsonl, request-файлы, rejections.json. Только чтение.
 """
@@ -36,6 +39,12 @@ def _call_num(entry):
         return int(str(c).split("_")[0])
     except ValueError:
         return None
+
+
+def _rej_label(x):
+    """Метка отказа: фактическая схема derived/rejections.json — label;
+    requested принимается как запасной вариант (совместимость)."""
+    return x.get("label") or x.get("requested")
 
 
 def _pairs(rows):
@@ -118,7 +127,7 @@ def analyze(rows, requests, rejections):
     _qh = {}
     for _x in qh:
         _c = _call_num(_x)
-        if _c in window and _x.get("requested") in ("Q1", "H1"):
+        if _c in window and _rej_label(_x) in ("Q1", "H1"):
             _d = _qh.setdefault(_c, {"Q": 0, "H": 0})
             _d["Q" if _x.get("kind") == "question" else "H"] += 1
     o3 = sum(min(_d["Q"], _d["H"]) for _d in _qh.values())
@@ -130,7 +139,8 @@ def analyze(rows, requests, rejections):
                 and r.get("origin") == "agent"):
             o4 += 1
     for x in qh:
-        if _call_num(x) in window and x.get("requested") not in ("Q1", "H1"):
+        _l = _rej_label(x)
+        if _call_num(x) in window and _l and _l not in ("Q1", "H1"):
             o4 += 1
 
     if o1 and o2 and o3 == 0:

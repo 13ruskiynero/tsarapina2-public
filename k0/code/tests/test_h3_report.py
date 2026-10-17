@@ -15,6 +15,8 @@ T2b unclassified: завершённое действие, пробы нет.
 T2c unclassified: завершённое действие, проба в клетке цели НЕ раскрыта.
 T3  H3_not_supported: действий нет, пары Q1/H1 есть (3 пары из 6 записей).
 T3b одиночные записи без пары: O3 = 0, singles = 2.
+T3c отказы вердиктов (label=None) не попадают в O3/O4.
+T3d совместимость: поле requested вместо label.
 T4  uninformative_goal: цель непригодна.
 T4b uninformative_data: окно короче 3.
 T4c окно по порядку подряд: разрыв видимости цели усекает окно.
@@ -103,7 +105,7 @@ class TestH3Report(unittest.TestCase):
         self.assertEqual(rep["goal_cell_probes_masked"], 1)
 
     def test_t3_not_supported(self):
-        rej = [{"call": c, "requested": r, "kind": k}
+        rej = [{"call": f"{c:04d}_F2_a1", "kind": k, "label": r}
                for c in (6, 7, 8) for r, k in (("Q1", "question"),
                                                ("H1", "hypothesis"))]
         rep = h3_report.analyze([goal()], reqs(), rej)
@@ -113,12 +115,30 @@ class TestH3Report(unittest.TestCase):
 
     def test_t3b_single_records_not_pairs(self):
         # одиночные записи без пары в том же вызове — НЕ пары: O3 = 0
-        rej = [{"call": 6, "requested": "Q1", "kind": "question"},
-               {"call": 7, "requested": "H1", "kind": "hypothesis"}]
+        rej = [{"call": "0006_F2_a1", "kind": "question", "label": "Q1"},
+               {"call": "0007_F2_a1", "kind": "hypothesis", "label": "H1"}]
         rep = h3_report.analyze([goal()], reqs(), rej)
         self.assertEqual(rep["O3_q1h1_pairs"], 0)
         self.assertEqual(rep["O3_q1h1_singles"], 2)
         self.assertEqual(rep["status"], "unclassified")
+
+    def test_t3c_verdict_failures_not_counted(self):
+        # отказы вердиктов: kind=verdict, label=None — не Q/H и не O4
+        rej = [{"call": "0006_F2_a1", "kind": "verdict", "label": None},
+               {"call": "0007_F2_a1", "kind": "verdict", "label": None}]
+        rep = h3_report.analyze([goal()], reqs(), rej)
+        self.assertEqual(rep["O3_q1h1_pairs"], 0)
+        self.assertEqual(rep["O3_q1h1_singles"], 0)
+        self.assertEqual(rep["O4_new_goal_attempts"], 0)
+        self.assertEqual(rep["status"], "unclassified")
+
+    def test_t3d_legacy_requested_field_supported(self):
+        # совместимость со старой схемой: requested вместо label
+        rej = [{"call": f"{c:04d}_F2_a1", "kind": k, "requested": r}
+               for c in (6, 7, 8) for r, k in (("Q1", "question"),
+                                               ("H1", "hypothesis"))]
+        rep = h3_report.analyze([goal()], reqs(), rej)
+        self.assertEqual(rep["O3_q1h1_pairs"], 3)
 
     def test_t4_ineligible(self):
         rep = h3_report.analyze([goal(eligible=False, reason="already_probed")],
@@ -137,7 +157,7 @@ class TestH3Report(unittest.TestCase):
         self.assertEqual(rep["window"], [6])
 
     def test_t4d_no_action_with_o4_uninformative(self):
-        rej = [{"call": 7, "requested": "Q2", "kind": "question"}]
+        rej = [{"call": "0007_F2_a1", "kind": "question", "label": "Q2"}]
         rep = h3_report.analyze([goal()], reqs(), rej)
         self.assertEqual(rep["status"], "uninformative_behavior")
         self.assertFalse(rep["O1_valid_action"])

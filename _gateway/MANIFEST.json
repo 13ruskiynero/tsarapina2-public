@@ -1,6 +1,6 @@
 {
  "project": "tsarapina",
- "generated_at": "2026-10-17T09:29:24Z",
+ "generated_at": "2026-10-17T15:06:58Z",
  "policy": {
   "allow_ext": [
    ".md",
@@ -10,8 +10,8 @@
   "max_file_bytes": 65536,
   "include_jsonl": false
  },
- "count": 1042,
- "total_bytes": 4871909,
+ "count": 1043,
+ "total_bytes": 4878806,
  "files": [
   {
    "path": "MVP1_IMPLEMENTATION_PLAN.md",
@@ -1952,6 +1952,12 @@
    "sha256": "2f394f4234046d6c2b470eb37fd15e3455e8e184617d293677d054582d46007a"
   },
   {
+   "path": "k0/K0_PROTOCOL_v37_ACT_ADDENDUM5.md",
+   "size": 5066,
+   "mtime": 1792249611,
+   "sha256": "5e7f24282ee9a4bee41ea1cd3513e4a5923741a84b2116ad9ff9404269186877"
+  },
+  {
    "path": "k0/K0_RESULT_FIXATION.md",
    "size": 4713,
    "mtime": 1792165113,
@@ -2169,9 +2175,9 @@
   },
   {
    "path": "k0/code/tests/test_h3_report.py",
-   "size": 8247,
-   "mtime": 1792229300,
-   "sha256": "4bf64ffc5a60f14df7b940f6e4bb41329ecd1a2c7998ed834e6fb0db3463040a"
+   "size": 9460,
+   "mtime": 1792249535,
+   "sha256": "508fd8bbfca4f908545b38f7ad4f1e4fbba65072417c9e5e7ce5c9183fe17a92"
   },
   {
    "path": "k0/code/tests/test_journal.py",
@@ -6015,9 +6021,9 @@
   },
   {
    "path": "k0/scripts/h3_report.py",
-   "size": 9450,
-   "mtime": 1792229289,
-   "sha256": "b2e6bddf0ec10dc3d85fa87daaa98c2b4edb11a53b77d81ff53d3c8a300fd52e"
+   "size": 10068,
+   "mtime": 1792249526,
+   "sha256": "2a349e8fea6211d3162bc352e37b84e1f67f99d49fb036cb7de98ec7f5271619"
   },
   {
    "path": "k0/scripts/s3_report.py",
