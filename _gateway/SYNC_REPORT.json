@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-10-17T04:10:48Z",
- "included": 644,
- "excluded_total": 896,
+ "generated_at": "2026-10-17T04:12:37Z",
+ "included": 651,
+ "excluded_total": 890,
  "included_by_ext": {
   ".diff": {
    "count": 19,
    "bytes": 41812
   },
   ".json": {
-   "count": 108,
-   "bytes": 45017
+   "count": 109,
+   "bytes": 46133
   },
   ".jsonl": {
    "count": 5,
    "bytes": 24665
   },
   ".md": {
-   "count": 155,
-   "bytes": 1224242
+   "count": 156,
+   "bytes": 1233003
   },
   ".py": {
-   "count": 179,
-   "bytes": 1782660
+   "count": 184,
+   "bytes": 1869737
   },
   ".sh": {
    "count": 2,
@@ -70,7 +70,7 @@
    ]
   },
   "public_scan": {
-   "count": 21,
+   "count": 16,
    "examples": [
     "README.md",
     "ACCESS_GATEWAY_PLAN.md",
@@ -82,12 +82,6 @@
     "experiments/event_sufficiency1/e2_recover.py",
     "experiments/relevance1/ab_cmp.py",
     "experiments/relevance1/ab_diag.py"
-   ]
-  },
-  "secret_pattern": {
-   "count": 1,
-   "examples": [
-    "k0/code/tests/test_channel.py"
    ]
   }
  }

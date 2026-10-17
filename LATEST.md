@@ -1,11 +1,11 @@
 # Актуальное состояние зеркала
 
-- Обновлено: 2026-10-17T04:10:48Z
-- Файлов проекта: 644
+- Обновлено: 2026-10-17T04:12:37Z
+- Файлов проекта: 651
 
 ## Изменения в этом обновлении
 
-Добавлены (3): k0/K0_PARSER_v32.py, k0/K0_PARSER_v32_to_v33.diff, k0/code/
+Добавлены (7): k0/K0_PROTOCOL_v33_ACT_ADDENDUM1.md, k0/SCAN_ALLOW.json, k0/code/admission_checks.py, k0/code/measure_prompts.py, k0/code/secret_scan.py, k0/code/tests/test_channel.py, k0/code/tests/test_secret_scan.py
 Изменены (1): k0/README.md
 
 ## Главное по проекту

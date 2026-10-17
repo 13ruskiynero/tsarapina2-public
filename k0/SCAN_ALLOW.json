@@ -1,0 +1,12 @@
+{
+ "scan_allow": [
+  "k0/code/admission_checks.py",
+  "k0/code/secret_scan.py",
+  "k0/code/measure_prompts.py",
+  "k0/code/tests/test_channel.py",
+  "k0/code/tests/test_secret_scan.py"
+ ],
+ "reason": "Публичный allowlist зеркала: файлы публикуются, несмотря на scan-попадания. Причины: определения секрет-паттернов (secret_scan.py, test_secret_scan.py), фейковая длинная фикстура в тесте канала (test_channel.py), строка с именем secret и двоеточием в admission_checks.py, служебный локальный путь токенизатора (measure_prompts.py). Секретов в файлах нет. Каждое попадание фиксируется в отчёте синхронизации строкой «allowlisted».",
+ "since": "2026-10-17",
+ "note": "Политика узкая: только перечисленные dst-пути; любые другие файлы с scan-попаданиями по-прежнему исключаются."
+}
