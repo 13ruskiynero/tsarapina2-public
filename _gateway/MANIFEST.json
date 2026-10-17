@@ -1,6 +1,6 @@
 {
  "project": "tsarapina",
- "generated_at": "2026-10-16T19:09:14Z",
+ "generated_at": "2026-10-17T03:56:15Z",
  "policy": {
   "allow_ext": [
    ".md",
@@ -10,8 +10,8 @@
   "max_file_bytes": 65536,
   "include_jsonl": false
  },
- "count": 616,
- "total_bytes": 3017292,
+ "count": 619,
+ "total_bytes": 3038227,
  "files": [
   {
    "path": "MVP1_IMPLEMENTATION_PLAN.md",
@@ -1586,6 +1586,12 @@
    "sha256": "7657b9087a86a251ab94519dabfb9e84207726cf675c2c9dbd0a83bbebdd199f"
   },
   {
+   "path": "k0/K0_M3_V32_FIXATION.md",
+   "size": 3932,
+   "mtime": 1792209351,
+   "sha256": "9d1e8619cf59b2e927c6f80093d5a0a76332423065bfb3ff41aace19876d1463"
+  },
+  {
    "path": "k0/K0_M3_V32_RUN_REPORT.md",
    "size": 6454,
    "mtime": 1792177746,
@@ -1730,10 +1736,22 @@
    "sha256": "d2c4c5bc5f21c4e94fb216c996b6d5a9418aebde7e0a119d7c2345736e4621da"
   },
   {
+   "path": "k0/K0_V32_F1_ANOMALY_FACTS.md",
+   "size": 7541,
+   "mtime": 1792209351,
+   "sha256": "403b727afee70340d3a7081d5838a4f20ea9b9dbe36731db4279342797738a99"
+  },
+  {
+   "path": "k0/K0_V33_DESIGN_DRAFT.md",
+   "size": 8125,
+   "mtime": 1792209366,
+   "sha256": "28db41ec556080e1f9742d6b5a017eda4d2948ae804421c75220cf9ade145370"
+  },
+  {
    "path": "k0/README.md",
-   "size": 9829,
-   "mtime": 1792177753,
-   "sha256": "fd229cd8d919b2167e5d3e9922f7cd899eca082960b4cc1f9bdf3b365ab123b2"
+   "size": 11166,
+   "mtime": 1792209374,
+   "sha256": "b56e9d47ca69ad7102b6e07f228ee5e891072fb435ec8ac2df0ea1adcb870dcf"
   },
   {
    "path": "k0/runs/run_K0-M1_101_v28/derived/audit.json",
