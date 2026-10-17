@@ -1,0 +1,2 @@
+QUESTION Q1: Является ли состояние объекта O3 при T=2, H=0 зависимым от предыдущих наблюдений? REF: t07
+HYPOTHESIS H1 OF Q1: Состояние O3 при T=2, H=0 будет 'disappeared' по аналогии с O4 T=2 H=0. PREDICT: O3 T=2 H=0 = disappeared

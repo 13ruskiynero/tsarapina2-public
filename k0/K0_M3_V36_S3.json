@@ -1,0 +1,54 @@
+{
+  "h1_label": "H1",
+  "h1_cell": "O3 T=2 H=0",
+  "window_anchor": "decision",
+  "window_start_seq": 21,
+  "probes": 2,
+  "returns_executed": 0,
+  "returns_justified_state_change": 0,
+  "returns_justified_new_prediction": 0,
+  "returns_justified_total": 0,
+  "returns_unjustified": 0,
+  "returns_detail": [],
+  "pre_window_repeats": 0,
+  "pre_window_detail": [],
+  "attempts_rejected_total": 5,
+  "attempts_rejected_with_state_change": 5,
+  "attempts_rejected_without_state_change": 0,
+  "attempts_detail": [
+    {
+      "seq": 27,
+      "cell": "O3 T=2 H=0",
+      "reason": "predict_invalid",
+      "state_changed_since": true
+    },
+    {
+      "seq": 28,
+      "cell": "O3 T=2 H=0",
+      "reason": "predict_invalid",
+      "state_changed_since": true
+    },
+    {
+      "seq": 29,
+      "cell": "O3 T=2 H=0",
+      "reason": "predict_invalid",
+      "state_changed_since": true
+    },
+    {
+      "seq": 30,
+      "cell": "O3 T=2 H=0",
+      "reason": "predict_invalid",
+      "state_changed_since": true
+    },
+    {
+      "seq": 31,
+      "cell": "O3 T=2 H=0",
+      "reason": "predict_invalid",
+      "state_changed_since": true
+    }
+  ],
+  "verdicts": 1,
+  "decisions": 1,
+  "s3_unjustified_returns": 0,
+  "s3_note": "возвратов в окне не было — критерий вакуумно"
+}
