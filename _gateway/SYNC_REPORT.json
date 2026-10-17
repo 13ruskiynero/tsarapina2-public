@@ -1,7 +1,7 @@
 {
- "generated_at": "2026-10-17T04:17:14Z",
- "included": 651,
- "excluded_total": 892,
+ "generated_at": "2026-10-17T04:17:48Z",
+ "included": 653,
+ "excluded_total": 890,
  "included_by_ext": {
   ".diff": {
    "count": 19,
@@ -16,8 +16,8 @@
    "bytes": 24665
   },
   ".md": {
-   "count": 156,
-   "bytes": 1233479
+   "count": 158,
+   "bytes": 1403804
   },
   ".py": {
    "count": 184,
@@ -82,13 +82,6 @@
     "experiments/event_sufficiency1/e2_recover.py",
     "experiments/relevance1/ab_cmp.py",
     "experiments/relevance1/ab_diag.py"
-   ]
-  },
-  "too_large": {
-   "count": 2,
-   "examples": [
-    "k0/K0_PROTOCOL_v32.md",
-    "k0/K0_PROTOCOL_v33.md"
    ]
   }
  }

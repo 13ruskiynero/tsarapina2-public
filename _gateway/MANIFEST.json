@@ -1,6 +1,6 @@
 {
  "project": "tsarapina",
- "generated_at": "2026-10-17T04:17:14Z",
+ "generated_at": "2026-10-17T04:17:48Z",
  "policy": {
   "allow_ext": [
    ".md",
@@ -10,8 +10,8 @@
   "max_file_bytes": 65536,
   "include_jsonl": false
  },
- "count": 651,
- "total_bytes": 3483024,
+ "count": 653,
+ "total_bytes": 3653349,
  "files": [
   {
    "path": "MVP1_IMPLEMENTATION_PLAN.md",
@@ -1712,6 +1712,12 @@
    "sha256": "3451e998a2e055fe892366ce68cc14e65fef6815af8ad9af538769dbbb696b8a"
   },
   {
+   "path": "k0/K0_PROTOCOL_v32.md",
+   "size": 85014,
+   "mtime": 1792176507,
+   "sha256": "a4e82b257bb575e218a717b53a1074b946399c211eb668b1b808876c2bbfc7d7"
+  },
+  {
    "path": "k0/K0_PROTOCOL_v32_ACT.md",
    "size": 9127,
    "mtime": 1792176670,
@@ -1722,6 +1728,12 @@
    "size": 3918,
    "mtime": 1792209623,
    "sha256": "07f9bc1d8bd63fd98fbc58c65bdace8d1305804c98a7594a817c2a10bde7dac8"
+  },
+  {
+   "path": "k0/K0_PROTOCOL_v33.md",
+   "size": 85311,
+   "mtime": 1792209623,
+   "sha256": "51160d4011d0621da957f3b5ad00d9df8b05d80d9dfae4fe70177438bbc8130a"
   },
   {
    "path": "k0/K0_PROTOCOL_v33_ACT.md",
