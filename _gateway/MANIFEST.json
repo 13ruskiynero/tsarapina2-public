@@ -1,6 +1,6 @@
 {
  "project": "tsarapina",
- "generated_at": "2026-10-17T08:43:51Z",
+ "generated_at": "2026-10-17T08:44:09Z",
  "policy": {
   "allow_ext": [
    ".md",
@@ -1936,8 +1936,8 @@
   {
    "path": "k0/K0_PROTOCOL_v37_ACT_ADDENDUM2.md",
    "size": 3860,
-   "mtime": 1792226625,
-   "sha256": "217d584658e962b0cdde5a09bf4dca4c9f64d0aafb4256396ba21c9cbc9140a1"
+   "mtime": 1792226647,
+   "sha256": "7765581b504d7db98bc1448db1a963e6be960bb2c54b418014104299f5df7058"
   },
   {
    "path": "k0/K0_RESULT_FIXATION.md",
