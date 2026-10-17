@@ -180,6 +180,7 @@ class Session:
         self.last_progress: Optional[int] = None      # v30 ред.2: seq−malformed
         self.loop_streak = 0                          # v30
         self.decisions = 0                            # v35
+        self._goal_done = False                       # v37: цель внедрена?
         self.journal: Optional[Journal] = None
         self.world: Optional[World] = None
         self.registry: Optional[LabelRegistry] = None
@@ -284,6 +285,7 @@ class Session:
             self._check_time_limit()
             self._check_call_limit()
             self.respond_calls += 1
+            self.journal.set_call(self.respond_calls)  # v37: номер вызова
             n = self.calls.request(phase, attempt, render_context(ctx))
             try:
                 text = self.respond(phase, ctx, attempt)
@@ -356,8 +358,14 @@ class Session:
         obs = tuple((c.as_text(), y) for c, y in self.observations)
         labels = (self.registry.last["Q"], self.registry.last["H"],
                   self.registry.last["P"], self.registry.last["V"])
+        _verd_by_h = {}
+        for _vn, _v in self.registry.verdicts.items():
+            _verd_by_h[_v["h"]] = (f"V{_vn}", _v["resolution"])
         hyp = tuple({"n": n, "cell": h["cell"].as_text(),
-                     "prediction": h["prediction"]}
+                     "prediction": h["prediction"],
+                     "status": ("verdicted" if n in _verd_by_h else "open"),
+                     "v": (_verd_by_h.get(n) or ("", ""))[0],
+                     "resolution": (_verd_by_h.get(n) or ("", ""))[1]}
                     for n, h in sorted(self.registry.hypotheses.items()))
         vstep = ()                    # v34: раскрытая проба без вердикта
         if phase == "F2" and self.registry is not None:
@@ -454,6 +462,54 @@ class Session:
         self._forecast_phase("F3")
         self.phase = "F4"
 
+
+    # --- v37: внедрение пригодной открытой цели (K0-M3/104) ------------------
+
+    GOAL_OBJECT = "O4"
+    GOAL_T = 2
+    GOAL_H = 1
+    GOAL_PREDICTION = "present"
+    GOAL_REF = "t07"
+    GOAL_QUESTION_TEXT = "Какое состояние у объекта O4 при T=2 H=1?"
+    GOAL_HYPOTHESIS_TEXT = "Объект O4 при T=2 H=1 будет present."
+
+    def _goal_eligible(self):
+        """Пригодность цели по ПРЕФИКСУ состояния (§2.1 критерия H3).
+
+        Только уже записанные факты: состояние мира и реестр проб; сведения
+        из будущих вызовов не используются.
+        """
+        cell = Cell(self.GOAL_OBJECT, self.GOAL_T, self.GOAL_H)
+        if self.world.state.get(self.GOAL_OBJECT) != "present":
+            return False, "object_disappeared"
+        for pr in self.registry.probes.values():
+            if pr.get("cell") == cell and pr.get("revealed"):
+                return False, "already_probed"
+        return True, ""
+
+    def _maybe_inject_goal(self):
+        """v37: после первого исполненного решения внедрить пригодную цель."""
+        if self._goal_done or self.decisions < 1:
+            return
+        self._goal_done = True
+        cell = Cell(self.GOAL_OBJECT, self.GOAL_T, self.GOAL_H)
+        ok, reason = self._goal_eligible()
+        if not ok:
+            self.journal.goal(cell, self.GOAL_PREDICTION, None, None, False, reason)
+            return
+        n_q = self.registry.last["Q"] + 1
+        n_h = self.registry.last["H"] + 1
+        ok_q, why_q = self.registry.register_question(
+            n_q, self.GOAL_QUESTION_TEXT, self.GOAL_REF, origin="driver")
+        ok_h, why_h = self.registry.register_hypothesis(
+            n_h, n_q, self.GOAL_HYPOTHESIS_TEXT, cell,
+            self.GOAL_PREDICTION, origin="driver")
+        if not (ok_q and ok_h):
+            self.journal.goal(cell, self.GOAL_PREDICTION, None, None, False,
+                              "register_failed:" + (why_q or why_h or ""))
+            return
+        self.journal.goal(cell, self.GOAL_PREDICTION, f"Q{n_q}", f"H{n_h}", True, "")
+
     # --- F2 -------------------------------------------------------------------
 
     def _f2(self):
@@ -479,6 +535,7 @@ class Session:
             self.invalid_f2 = 0
             self.registry = scratch        # регистрации Q/H/V переносятся разом
             self._apply_f2_response(v)
+            self._maybe_inject_goal()          # v37: цель после первого решения
 
             # --- v30 (ред.2): предохранитель цикла: K итераций без ПОЛЕЗНОГО
             # прогресса. Прогресс = записи журнала за вычетом action_rejected
@@ -655,11 +712,11 @@ class Session:
             "status": status, "stop_reason": self.stop_reason,
             "respond_calls": self.respond_calls, "malformed": self.malformed,
             "n_E": (len(self.world.e_set()["E"]) if self.world is not None else None),
-            "protocol_version": "v36",
-            "protocol_sha256": file_sha(ARTIFACTS.parent / "K0_PROTOCOL_v36.md"),
+            "protocol_version": "v37",
+            "protocol_sha256": file_sha(ARTIFACTS.parent / "K0_PROTOCOL_v37.md"),
             "protocol_base_sha256": file_sha(ARTIFACTS.parent / "K0_PROTOCOL.md"),
             "protocol_diff_sha256": file_sha(ARTIFACTS.parent / "version-history"
-                                             / "K0_PROTOCOL_v35_to_v36.diff"),
+                                             / "K0_PROTOCOL_v36_to_v37.diff"),
             "spec_sha256": file_sha(autonomy / "WORLD_C_SPEC.md"),
             "package_sha256": file_sha(autonomy / "WORLD_C_DECISIONS_PACKAGE.md"),
             "prompts_sha256": file_sha(code_dir / "prompts.py"),

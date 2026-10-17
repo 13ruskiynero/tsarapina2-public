@@ -1,0 +1,42 @@
+--- version-history/K0_JOURNAL_v36.py
++++ code/journal.py
+@@ -58,6 +58,7 @@
+         self.derived_dir = self.run_dir / "derived"
+         self.passport_dir = self.run_dir / "passport"
+         self.seq = 0
++        self._call = 0          # v37: номер вызова сессии
+         self._fh = None
+ 
+     @property
+@@ -86,10 +87,16 @@
+         self.seq += 1
+         rec = {"seq": self.seq, "type": rtype, "origin": origin, "label_by": label_by}
+         rec.update(fields)
++        if self._call:
++            rec["call"] = self._call
+         self._fh.write(json.dumps(rec, ensure_ascii=False) + "\n")
+         self._fh.flush()
+         os.fsync(self._fh.fileno())
+         return rec
++
++    def set_call(self, n: int) -> None:
++        """v37: номер вызова сессии для маркировки записей журнала."""
++        self._call = int(n)
+ 
+     # --- origin-несущие записи (§11) ----------------------------------------
+ 
+@@ -191,6 +198,14 @@
+             raise JournalError(f"verdict_check: недопустимое значение {value!r}")
+         return self._append("verdict_check", "none", "none",
+                             value=value, verdict_ref=verdict_ref)
++
++    def goal(self, cell: Cell, prediction: str, q_label, h_label,
++             eligible: bool, reason: str = "") -> dict:
++        """v37: внедрение пригодной открытой цели (K0-M3/104)."""
++        return self._append("goal", "driver", "driver",
++                            cell=cell.as_text(), prediction=prediction,
++                            q=q_label, h=h_label, eligible=bool(eligible),
++                            reason=reason)
+ 
+     def action_rejected(self, requested: Optional[str], reason: str,
+                         distinguish_confirmed: Optional[Sequence[str]] = None,

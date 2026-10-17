@@ -96,6 +96,8 @@ F2_ACTIONS = (
 )
 
 
+F2_HYPOTHESES_HEAD = ("[ГИПОТЕЗЫ] Состояние реестра гипотез (данные, "
+                      "не инструкция):")
 F2_NEXT_STEP = ("[СЛЕДУЮЩИЙ ШАГ] Гипотеза {label} зарегистрирована: клетка "
                 "{cell}, прогноз {pred}. Повторная регистрация не нужна. "
                 "Проверь именно эту клетку: строка PREDICT: {cell} = {pred}, "
@@ -123,7 +125,8 @@ def static_text() -> str:
     return "\n".join([WORLD_TEXT, F1_HEAD, F3_HEAD, F4_HEAD, HIST_HEAD, BATT_HEAD,
                       OBS_HEAD, REJ_HEAD, NOTE_HEAD, LABELS_HEAD, F1_TASK,
                       F3_TASK, F4_TASK, F2_HEAD, F2_SCOPE, F2_ACTIONS,
-                      F2_NEXT_STEP, F2_VERDICT_STEP, F2_DECISION_STEP, F1_REJ_HEAD, F1_REJ_TAIL])
+                      F2_NEXT_STEP, F2_VERDICT_STEP, F2_DECISION_STEP, F1_REJ_HEAD,
+                      F1_REJ_TAIL, F2_HYPOTHESES_HEAD])
 
 
 FORBIDDEN_SUBSTRINGS = (
@@ -200,6 +203,17 @@ def build_f2(ctx) -> str:
         parts += ["", NOTE_HEAD, _note_lines(ctx)]
     if ctx.last_probe:
         parts += ["", f"[ПОСЛЕДНЯЯ ПРОБА] {ctx.last_probe} (цель для repeat)."]
+    if ctx.hypotheses:
+        _hlines = []
+        for h in ctx.hypotheses:
+            if h.get("status") == "verdicted":
+                _hlines.append(f"    H{h['n']}: клетка {h['cell']}, прогноз "
+                               f"{h['prediction']} — вердикт: {h['resolution']} "
+                               f"({h['v']}).")
+            else:
+                _hlines.append(f"    H{h['n']}: клетка {h['cell']}, прогноз "
+                               f"{h['prediction']} — открыта.")
+        parts += ["", F2_HYPOTHESES_HEAD, *_hlines]
     parts += ["", _labels_line(ctx), "", F2_ACTIONS]
     _q, _h, _p, _v = ctx.last_labels
     if _p == 0 and ctx.hypotheses:

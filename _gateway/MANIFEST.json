@@ -1,6 +1,6 @@
 {
  "project": "tsarapina",
- "generated_at": "2026-10-17T08:19:26Z",
+ "generated_at": "2026-10-17T08:32:13Z",
  "policy": {
   "allow_ext": [
    ".md",
@@ -10,8 +10,8 @@
   "max_file_bytes": 65536,
   "include_jsonl": false
  },
- "count": 1024,
- "total_bytes": 4627964,
+ "count": 1038,
+ "total_bytes": 4843389,
  "files": [
   {
    "path": "MVP1_IMPLEMENTATION_PLAN.md",
@@ -1556,10 +1556,28 @@
    "sha256": "d41539fde93a7091be40f49378f46683087ef35be7fd94b26fd7de8fa5f46826"
   },
   {
+   "path": "k0/K0_CALLS_v36.py",
+   "size": 5431,
+   "mtime": 1792215598,
+   "sha256": "0e18e665cd833df1d0f54c05f28b0786edc8cf8c20622bc89297d3c7dcab8e3f"
+  },
+  {
    "path": "k0/K0_EXPERIENCE_CHAIN_FACTS.md",
    "size": 8080,
    "mtime": 1792165113,
    "sha256": "80810d942d34190cd91e1f5c19c5084d21c11537763ebeb98a5aabb399cf52c8"
+  },
+  {
+   "path": "k0/K0_JOURNAL_v36.py",
+   "size": 13091,
+   "mtime": 1791956536,
+   "sha256": "2014343dfe74bb44a37292beed44b1f1013e140b36f22a049566e95714d9533c"
+  },
+  {
+   "path": "k0/K0_JOURNAL_v36_to_v37.diff",
+   "size": 1861,
+   "mtime": 1792225899,
+   "sha256": "2ce6f54cd519edc294591d9af7204697beb368884c1432f19581842763509687"
   },
   {
    "path": "k0/K0_M2_DESIGN_DRAFT.md",
@@ -1730,6 +1748,18 @@
    "sha256": "35fefcf83880ae60de83e56a28a4c6b8e4067c44e5bf7702950ea9b2c240b5bf"
   },
   {
+   "path": "k0/K0_PROMPTS_v36.py",
+   "size": 14479,
+   "mtime": 1792215598,
+   "sha256": "2721179f54a2d5afe5688e304dfe197814ff902453821863b895cc48ab39d56a"
+  },
+  {
+   "path": "k0/K0_PROMPTS_v36_to_v37.diff",
+   "size": 2032,
+   "mtime": 1792225500,
+   "sha256": "886292b247d27feca6fe2c69768a43b2407c247ef5398a976bca919508b66c0f"
+  },
+  {
    "path": "k0/K0_PROTOCOL_v27_to_v28.diff",
    "size": 993,
    "mtime": 1792163711,
@@ -1880,6 +1910,24 @@
    "sha256": "f810849944fa28e7c34cc829aacc694f55735a03f351b0e68fb8b9aaaba74b3b"
   },
   {
+   "path": "k0/K0_PROTOCOL_v36_to_v37.diff",
+   "size": 7501,
+   "mtime": 1792225774,
+   "sha256": "a050886bc56164f8447ef933504e189b1efbc64f9fa05d66addf322e81bc4939"
+  },
+  {
+   "path": "k0/K0_PROTOCOL_v37.md",
+   "size": 86892,
+   "mtime": 1792225774,
+   "sha256": "918fac28586b2265119ef13af588b081daa73b3c80d6d8c7458d120a616d07f0"
+  },
+  {
+   "path": "k0/K0_PROTOCOL_v37_ACT.md",
+   "size": 7774,
+   "mtime": 1792225923,
+   "sha256": "7650773edc26e43a6a82da595a5f1a135435f578b60cae1b1641a9ac7546ed87"
+  },
+  {
    "path": "k0/K0_RESULT_FIXATION.md",
    "size": 4713,
    "mtime": 1792165113,
@@ -1928,6 +1976,18 @@
    "sha256": "0e1f6a229515e754c8b3c98af695cfdf44a0c055834ff79cf6db23639c907e08"
   },
   {
+   "path": "k0/K0_SESSION_v36.py",
+   "size": 38562,
+   "mtime": 1792219845,
+   "sha256": "f5462def09c372f2f88ede2c73205dafc3df10f1530fb29bacb3605bc3d65ba9"
+  },
+  {
+   "path": "k0/K0_SESSION_v36_to_v37.diff",
+   "size": 5980,
+   "mtime": 1792225899,
+   "sha256": "dc87f6e45a96264570661781ed8e476923c24c73df32f9d3f0b9ddbe2614ea8a"
+  },
+  {
    "path": "k0/K0_THIRD_RUN_REPORT.md",
    "size": 7831,
    "mtime": 1792164294,
@@ -1970,6 +2030,12 @@
    "sha256": "cec943f2c8f3eab340fccbc8072f8f32d85ff0e80fa0931373c929ead3a2632b"
   },
   {
+   "path": "k0/K0_V37_DESIGN_DRAFT.md",
+   "size": 8739,
+   "mtime": 1792225912,
+   "sha256": "815ab416fefd2dd134c0df8f5cd8960c79ebd3a77855c174d65ddb10cf9b0aa8"
+  },
+  {
    "path": "k0/README.md",
    "size": 20030,
    "mtime": 1792223397,
@@ -1983,9 +2049,9 @@
   },
   {
    "path": "k0/code/admission_checks.py",
-   "size": 51285,
-   "mtime": 1792219845,
-   "sha256": "1b2ad898a6e66494b04f7bf812825172cd02cd1331c655787637c997465f866f"
+   "size": 54355,
+   "mtime": 1792225831,
+   "sha256": "2fdf63d4f56c876bd27fadde943bd12c998827b77dbd2a088734f1514deb1fb0"
   },
   {
    "path": "k0/code/auditor.py",
@@ -2007,9 +2073,9 @@
   },
   {
    "path": "k0/code/journal.py",
-   "size": 13091,
-   "mtime": 1791956536,
-   "sha256": "2014343dfe74bb44a37292beed44b1f1013e140b36f22a049566e95714d9533c"
+   "size": 13876,
+   "mtime": 1792225748,
+   "sha256": "b19de14a7fe16c2a444e9b2b3dad99a0dce68457e0b1cbb9c0c9975fc3e7652d"
   },
   {
    "path": "k0/code/measure_prompts.py",
@@ -2025,15 +2091,15 @@
   },
   {
    "path": "k0/code/prompts.py",
-   "size": 14479,
-   "mtime": 1792215598,
-   "sha256": "2721179f54a2d5afe5688e304dfe197814ff902453821863b895cc48ab39d56a"
+   "size": 15269,
+   "mtime": 1792225500,
+   "sha256": "c79c28d6f6383f91f63dbf94d958b52742fab9fcec83144db7ce5d78293bce51"
   },
   {
    "path": "k0/code/run_first.py",
-   "size": 5378,
-   "mtime": 1792219845,
-   "sha256": "f74384638b704eaea4bbd486a780c480643da39dedad670456bd3d917074afeb"
+   "size": 5381,
+   "mtime": 1792225500,
+   "sha256": "a9af315b3d85fd05c55fa164f9de2d66e877742cb850182f21b64f40ff1cba33"
   },
   {
    "path": "k0/code/secret_scan.py",
@@ -2043,9 +2109,9 @@
   },
   {
    "path": "k0/code/session.py",
-   "size": 38562,
-   "mtime": 1792219845,
-   "sha256": "f5462def09c372f2f88ede2c73205dafc3df10f1530fb29bacb3605bc3d65ba9"
+   "size": 41467,
+   "mtime": 1792225748,
+   "sha256": "c06f9ec5e1a501b2927b1a7490035ffd89f4437e94dad4bf96016a1ef541a6f8"
   },
   {
    "path": "k0/code/tests/test_auditor.py",
@@ -2056,8 +2122,8 @@
   {
    "path": "k0/code/tests/test_channel.py",
    "size": 30678,
-   "mtime": 1792219845,
-   "sha256": "0f7e0264bb50630b092998dc884d210c6508c3466f1a80b7e07db1e8cc80ba4b"
+   "mtime": 1792225500,
+   "sha256": "44689c5dbe0966aa76288b72991c0a280eaff791d276af3d69c4dbf4362c4061"
   },
   {
    "path": "k0/code/tests/test_decision_feedback.py",
@@ -2070,6 +2136,18 @@
    "size": 8133,
    "mtime": 1792210185,
    "sha256": "25b5497e32ef392b91ac38e25581a42ece144ea9cd70893883c742992461f9f1"
+  },
+  {
+   "path": "k0/code/tests/test_goal_injection.py",
+   "size": 5786,
+   "mtime": 1792225648,
+   "sha256": "522620e3ee2abbe34ef2171ca74204db8146ee7a98019e0795add903618819fe"
+  },
+  {
+   "path": "k0/code/tests/test_h3_report.py",
+   "size": 3965,
+   "mtime": 1792225434,
+   "sha256": "9cfbd82625ff3b4c7468812181518315c1d118b82cedfb44c6c2bd5f0234229a"
   },
   {
    "path": "k0/code/tests/test_journal.py",
@@ -2110,8 +2188,8 @@
   {
    "path": "k0/code/tests/test_session.py",
    "size": 36418,
-   "mtime": 1792219845,
-   "sha256": "a2b8d9b3fd3151de75b4af626f9ef6a445078550a6c5138cd270618f5723fed2"
+   "mtime": 1792225500,
+   "sha256": "1b3102d55d904cf4f857910523ceb144990f5a447ec91588618390b1fe4c9e6e"
   },
   {
    "path": "k0/code/tests/test_transition.py",
@@ -5910,6 +5988,12 @@
    "size": 4434,
    "mtime": 1792223328,
    "sha256": "87520c0c33edca413dad997bb3c7e6e7e13287d6bbebb779404ca5242702a896"
+  },
+  {
+   "path": "k0/scripts/h3_report.py",
+   "size": 5779,
+   "mtime": 1792225428,
+   "sha256": "2183cfb6ee1df949767b56a6b2689cd3ba61aa43dfcfd21e2959a77e77b480b3"
   },
   {
    "path": "k0/scripts/s3_report.py",

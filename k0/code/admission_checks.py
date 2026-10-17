@@ -12,6 +12,7 @@
 """
 from __future__ import annotations
 
+import difflib
 import hashlib
 import json
 import ssl
@@ -38,7 +39,7 @@ CLOSED_TYPES = {
     "prediction_pre", "prediction_before", "prediction_after", "verdict",
     "decision", "final", "history_shown", "probe_outcome", "budget", "stop",
     "state_change", "mode_violation", "verdict_check", "action_rejected",
-    "forecast_status",
+    "forecast_status", "goal",
 }
 
 RESULTS = []
@@ -82,7 +83,8 @@ vh32 = sha(K0 / "K0_PROTOCOL_v32.md")    # протокол v32 (база сер
 vh33 = sha(K0 / "K0_PROTOCOL_v33.md")    # протокол v33 (база серии v34)
 vh34 = sha(K0 / "K0_PROTOCOL_v34.md")    # протокол v34 (база серии v35)
 vh35 = sha(K0 / "K0_PROTOCOL_v35.md")    # протокол v35 (база серии v36)
-vh36 = sha(K0 / "K0_PROTOCOL_v36.md")    # действующий комплект v36
+vh36 = sha(K0 / "K0_PROTOCOL_v36.md")    # протокол v36 (база серии v37)
+vh37 = sha(K0 / "K0_PROTOCOL_v37.md")    # действующий комплект v37
 check("H0", "PASS" if vh.startswith("3d2ab37d") else "FAIL",
       f"K0_PROTOCOL.md (ред. 26) sha256={vh[:16]}…")
 
@@ -228,7 +230,7 @@ if _v36_path.exists() and _d36_path.exists():
 check("V36", "PASS" if v36_ok else "FAIL",
       "v36: от v35 отличается ровно строкой реестра (S1–S3); диф существует")
 _p35 = K0 / "version-history" / "K0_PROMPTS_v35.py"
-_p36_live = HERE / "prompts.py"
+_p36_live = K0 / "version-history" / "K0_PROMPTS_v36.py"
 p36_ok = False
 if _p35.exists():
     p36_ok = (sha(_p35) == sha(_p36_live)
@@ -239,7 +241,7 @@ check("V36-P", "PASS" if p36_ok else "FAIL",
 _c35 = K0 / "version-history" / "K0_CALLS_v35.py"
 s36_ok = False
 if _c35.exists():
-    _sn36 = (HERE / "session.py").read_text(encoding="utf-8")
+    _sn36 = (K0 / "version-history" / "K0_SESSION_v36.py").read_text(encoding="utf-8")
     s36_ok = (sha(_c35) == sha(HERE / "calls.py")
               and '"protocol_version": "v36"' in _sn36
               and "decision_step" in _sn36
@@ -248,6 +250,56 @@ if _c35.exists():
               and (HERE / "tests" / "test_s3_report.py").exists())
 check("V36-S", "PASS" if s36_ok else "FAIL",
       "v36: calls не изменялись; сессия — метки v36; классификатор S3 и его тесты")
+
+# --- V37: пригодная открытая цель после первого решения (H3) -------------------
+_v37_base = (K0 / "K0_PROTOCOL_v36.md").read_text(encoding="utf-8").splitlines()
+_v37_path = K0 / "K0_PROTOCOL_v37.md"
+_d37_path = K0 / "version-history" / "K0_PROTOCOL_v36_to_v37.diff"
+v37_ok = False
+if _v37_path.exists() and _d37_path.exists():
+    _v37_lines = _v37_path.read_text(encoding="utf-8").splitlines()
+    _dl37 = [i for i, (x, y) in enumerate(zip(_v37_base, _v37_lines)) if x != y]
+    _d37 = list(difflib.unified_diff(_v37_base, _v37_lines, n=0))
+    _rem37 = [l for l in _d37 if l.startswith("-") and not l.startswith("---")]
+    _add37 = [l for l in _d37 if l.startswith("+") and not l.startswith("+++")]
+    v37_ok = (len(_rem37) == 2
+              and any("final`;" in l for l in _rem37)
+              and any("K0_PROTOCOL_v36_ACT.md" in l for l in _rem37)
+              and any("v37" in l and "пригодн" in l for l in _add37)
+              and any("`goal`" in l for l in _add37))
+check("V37", "PASS" if v37_ok else "FAIL",
+      "v37: от v36 — две правки (§11: тип goal; §13: реестр v37); диф существует")
+_p37 = (HERE / "prompts.py")
+p37_ok = False
+if _p37.exists():
+    _p37_txt = _p37.read_text(encoding="utf-8")
+    p37_ok = ("F2_HYPOTHESES_HEAD" in _p37_txt
+              and "[ГИПОТЕЗЫ]" in _p37_txt
+              and '"не инструкция):"' in _p37_txt
+              and (K0 / "version-history" / "K0_PROMPTS_v36_to_v37.diff").exists())
+check("V37-P", "PASS" if p37_ok else "FAIL",
+      "v37: секция [ГИПОТЕЗЫ] — только состояние (без слов действия); диф промптов")
+_c36 = K0 / "version-history" / "K0_CALLS_v36.py"
+_j36 = K0 / "version-history" / "K0_JOURNAL_v36.py"
+s37_ok = False
+if _c36.exists() and _j36.exists():
+    _sn37 = (HERE / "session.py").read_text(encoding="utf-8")
+    _jn37 = (HERE / "journal.py").read_text(encoding="utf-8")
+    s37_ok = (sha(_c36) == sha(HERE / "calls.py")
+              and '"protocol_version": "v37"' in _sn37
+              and "_maybe_inject_goal" in _sn37
+              and "_goal_eligible" in _sn37
+              and "self.registry.probes" in _sn37
+              and "self.world.state" in _sn37
+              and "def set_call" in _jn37
+              and "def goal" in _jn37
+              and (K0 / "version-history" / "K0_SESSION_v36_to_v37.diff").exists()
+              and (K0 / "version-history" / "K0_JOURNAL_v36_to_v37.diff").exists()
+              and (K0 / "scripts" / "h3_report.py").exists()
+              and (HERE / "tests" / "test_goal_injection.py").exists()
+              and (HERE / "tests" / "test_h3_report.py").exists())
+check("V37-S", "PASS" if s37_ok else "FAIL",
+      "v37: внедрение цели (session/journal), calls не изменялись; h3_report и тесты")
 
 # --- V35: переход «принятый вердикт → DECISION» (ветка v35-A) ------------------
 _v35_base = (K0 / "K0_PROTOCOL_v34.md").read_text(encoding="utf-8").splitlines()
@@ -532,7 +584,7 @@ check("A1", "PASS" if res.status == "completed" and calls ==
       f"сквозной F1→F4: status={res.status}, вызовы={calls}")
 
 check("A2", "PASS" if set(types) <= CLOSED_TYPES else "FAIL",
-      "типы записей ⊆ закрытого списка §11 (20 типов)")
+      "типы записей ⊆ закрытого списка §11 (21 тип)")
 
 pre_ok = True
 for r in rows:
@@ -930,10 +982,10 @@ pp = json.loads(pp_path.read_text(encoding="utf-8")) if pp_path.exists() else {}
 a20_ok = (len(names) == 60 and req_ok and resp_ok and meta_ok
           and (calls_dir / "0001_F1_a1.response.txt").read_text(encoding="utf-8") == F1
           and (calls_dir / "0020_F4_a1.response.txt").read_text(encoding="utf-8") == FINAL
-          and pp.get("protocol_version") == "v36"
-          and pp.get("protocol_sha256") == vh36
+          and pp.get("protocol_version") == "v37"
+          and pp.get("protocol_sha256") == vh37
           and pp.get("protocol_diff_sha256") == sha(
-              K0 / "version-history" / "K0_PROTOCOL_v35_to_v36.diff")
+              K0 / "version-history" / "K0_PROTOCOL_v36_to_v37.diff")
           and pp.get("driver_sha256", {}).get("parser.py") == sha(HERE / "parser.py")
           and pp.get("protocol_base_sha256") == vh
           and pp.get("status") == "completed"
@@ -942,7 +994,7 @@ a20_ok = (len(names) == 60 and req_ok and resp_ok and meta_ok
           and isinstance(pp.get("driver_sha256"), dict)
           and pp.get("t0_params", {}).get("seed") == 1729)
 check("A20", "PASS" if a20_ok else "FAIL",
-      "§11: calls 20×(request/response/meta); passport: v36+спека+промпты+драйвер+параметры")
+      "§11: calls 20×(request/response/meta); passport: v37+спека+промпты+драйвер+параметры")
 check("A20b", "OPEN",
       "реальные байты канала модели (сеть/вызовы) — до подключения канала и отдельного разрешения")
 

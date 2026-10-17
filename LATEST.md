@@ -1,11 +1,12 @@
 # Актуальное состояние зеркала
 
-- Обновлено: 2026-10-17T08:19:26Z
-- Файлов проекта: 1024
+- Обновлено: 2026-10-17T08:32:13Z
+- Файлов проекта: 1038
 
 ## Изменения в этом обновлении
 
-Изменены (1): k0/K0_M3_H3_CRITERION_DRAFT.md
+Добавлены (14): k0/K0_CALLS_v36.py, k0/K0_JOURNAL_v36.py, k0/K0_JOURNAL_v36_to_v37.diff, k0/K0_PROMPTS_v36.py, k0/K0_PROMPTS_v36_to_v37.diff, k0/K0_PROTOCOL_v36_to_v37.diff, k0/K0_PROTOCOL_v37.md, k0/K0_PROTOCOL_v37_ACT.md, k0/K0_SESSION_v36.py, k0/K0_SESSION_v36_to_v37.diff, k0/K0_V37_DESIGN_DRAFT.md, k0/code/tests/test_goal_injection.py, k0/code/tests/test_h3_report.py, k0/scripts/h3_report.py
+Изменены (7): k0/code/admission_checks.py, k0/code/journal.py, k0/code/prompts.py, k0/code/run_first.py, k0/code/session.py, k0/code/tests/test_channel.py, k0/code/tests/test_session.py
 
 ## Главное по проекту
 
