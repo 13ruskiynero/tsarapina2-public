@@ -2,6 +2,9 @@
 # -*- coding: utf-8 -*-
 """K0 v36-A — механический анализ возвратов к клетке опровергнутой гипотезы (S3).
 
+Ред. 4 (2026-10-17, по замечаниям третьего ревью): якорь-решение
+принимается только если его seq СТРОГО больше seq вердикта об
+опровержении; иначе окно привязано к вердикту (резервный якорь).
 Ред. 3 (2026-10-17, по замечаниям повторного ревью):
   * ОКНО S3: учитываются только события ПОСЛЕ принятого решения USING V<n>
     (если решения нет — после принятого опровергающего вердикта). Повторные
@@ -58,7 +61,11 @@ def analyze(rows):
     # если решения нет — после принятого вердикта об опровержении.
     decisions = [r for r in rows
                  if r.get("type") == "decision" and r.get("using") == verdict_label]
-    decision_seq = decisions[0].get("seq") if decisions else None
+    # якорь-решение принимается только если оно записано СТРОГО ПОСЛЕ вердикта
+    decisions_after = [d for d in decisions
+                       if verdict_seq is not None
+                       and d.get("seq", 0) > verdict_seq]
+    decision_seq = decisions_after[0].get("seq") if decisions_after else None
     if decision_seq is not None:
         window_anchor, window_start = "decision", decision_seq
     else:

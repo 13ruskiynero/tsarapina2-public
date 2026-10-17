@@ -1,6 +1,6 @@
 {
  "project": "tsarapina",
- "generated_at": "2026-10-17T07:16:04Z",
+ "generated_at": "2026-10-17T07:26:34Z",
  "policy": {
   "allow_ext": [
    ".md",
@@ -11,7 +11,7 @@
   "include_jsonl": false
  },
  "count": 926,
- "total_bytes": 4450631,
+ "total_bytes": 4453168,
  "files": [
   {
    "path": "MVP1_IMPLEMENTATION_PLAN.md",
@@ -1851,9 +1851,9 @@
   },
   {
    "path": "k0/K0_PROTOCOL_v36_ACT.md",
-   "size": 11434,
-   "mtime": 1792221363,
-   "sha256": "3c140489fc5eda526f30dfbcbf9c52deb014bcce72d30a1fa5be99ea8e0a5216"
+   "size": 11953,
+   "mtime": 1792221993,
+   "sha256": "f810849944fa28e7c34cc829aacc694f55735a03f351b0e68fb8b9aaaba74b3b"
   },
   {
    "path": "k0/K0_RESULT_FIXATION.md",
@@ -1941,15 +1941,15 @@
   },
   {
    "path": "k0/K0_V36_DESIGN_DRAFT.md",
-   "size": 7909,
-   "mtime": 1792221363,
-   "sha256": "c890736d602a6dc6fe31d4ff63443ba49f151fa255c41b66956a918f37a6dd20"
+   "size": 8118,
+   "mtime": 1792221993,
+   "sha256": "cec943f2c8f3eab340fccbc8072f8f32d85ff0e80fa0931373c929ead3a2632b"
   },
   {
    "path": "k0/README.md",
-   "size": 19118,
-   "mtime": 1792221363,
-   "sha256": "5b2e4b745b1732e4a536d47fdd25bccccd8809eaae4193a85341cbff9156fa0d"
+   "size": 19135,
+   "mtime": 1792221993,
+   "sha256": "4e42187fb9cf36cbae885fbc50906c4179f34a71129a1a4b05d1f61374e79336"
   },
   {
    "path": "k0/SCAN_ALLOW.json",
@@ -2073,9 +2073,9 @@
   },
   {
    "path": "k0/code/tests/test_s3_report.py",
-   "size": 7753,
-   "mtime": 1792221315,
-   "sha256": "46bc12137388414569ee02defb7a8d7c9a96cb81c3b3a0a1aa714836bddd2fce"
+   "size": 8908,
+   "mtime": 1792221946,
+   "sha256": "7ffafac5d5ab8f3b27ff878b63a021f72af65a0165f6cbbcce9aae4d2ed6a46f"
   },
   {
    "path": "k0/code/tests/test_secret_scan.py",
@@ -5325,9 +5325,9 @@
   },
   {
    "path": "k0/scripts/s3_report.py",
-   "size": 9408,
-   "mtime": 1792221282,
-   "sha256": "547aad3aeab3f7756d350bae9b00ad87c61a33f7e946dc0daf92a4603d954469"
+   "size": 10045,
+   "mtime": 1792221946,
+   "sha256": "9f38c0fef7c9b5af48d31f582372fe0dd2968ae8bf9146b811194c6f63597628"
   },
   {
    "path": "knowledge/__init__.py",

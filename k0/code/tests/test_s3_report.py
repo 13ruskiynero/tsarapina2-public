@@ -13,7 +13,8 @@ T5: возвратов в окне нет — критерий вакуумно 
 T6: оба основания одновременно — оба счётчика по 1, общий = 1 (без задвоения);
 T7: отклонённая попытка ДО более поздней пробы той же клетки — состояние
     берётся на момент попытки;
-T8: повтор клетки H1 ДО принятого вердикта — НЕ возврат в S3 (pre_window).
+T8: повтор клетки H1 ДО принятого вердикта — НЕ возврат в S3 (pre_window);
+T9: решение, записанное ДО вердикта, не становится якорем окна S3.
 """
 from __future__ import annotations
 
@@ -145,6 +146,20 @@ class TestS3Report(unittest.TestCase):
         self.assertEqual(rep["window_anchor"], "decision")
         self.assertEqual(rep["returns_executed"], 0)          # в окне возвратов нет
         self.assertEqual(rep["pre_window_repeats"], 1)        # повтор до окна — отдельно
+
+    def test_t9_decision_before_verdict_not_an_anchor(self):
+        # решение записано ДО вердикта: якорем быть не может; окно — от вердикта.
+        rows = [row(1, "hypothesis", label="H1", cell="O3 T=2 H=0")]
+        rows += probe_rows(2, "O3 T=2 H=0", "present", "present")     # P1 (4)
+        rows += [row(6, "decision", descriptor="probe O4 T=2 H=0", using="V1")]
+        rows += probe_rows(8, "O3 T=2 H=0", "present", "present")     # до вердикта
+        rows += [row(14, "verdict", label="V1", h_label="H1", resolution="refuted")]
+        rows += probe_rows(16, "O3 T=2 H=0", "present", "present")    # после вердикта
+        rep = s3_report.analyze(rows)
+        self.assertEqual(rep["window_anchor"], "verdict")
+        self.assertEqual(rep["window_start_seq"], 14)
+        self.assertEqual(rep["pre_window_repeats"], 1)                # проба seq 10
+        self.assertEqual(rep["returns_executed"], 1)                  # проба seq 18
 
 
 if __name__ == "__main__":
