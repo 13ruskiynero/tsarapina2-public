@@ -1,0 +1,12 @@
+{
+ "model": "gemma4-e4b-heretic:q4km",
+ "host": "127.0.0.1",
+ "port": 11434,
+ "path": "/api/chat",
+ "prompt_bytes": 1725,
+ "local_tokens_with_bos": 578,
+ "server_prompt_eval_count": 578,
+ "server_eval_count": 126,
+ "response_head": "PREDICT: O1 T=2 H=1 = disappeared\nPREDICT: O3 T=2 H=0 = present\nPREDICT: O3 T=2 H=1 = present\nPREDICT: O3 T=2 H=2 = present\nPREDICT: O2 T=2 H=1 = present\nPREDICT: O2 T=2 H=2 = present\nPREDICT: O4 T=2 H=1 = present\nPREDICT: O4 T=2 H=2 = present\nPREDICT: O1 T=1 H=0 = disappeared",
+ "tolerance": 0.1
+}

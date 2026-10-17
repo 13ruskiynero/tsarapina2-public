@@ -1,0 +1,2 @@
+PREDICT: O3 T=2 H=0 = disappeared
+ACTION: repeat

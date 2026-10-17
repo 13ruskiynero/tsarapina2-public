@@ -1,0 +1,2 @@
+QUESTION Q1: Является ли состояние объекта O3 при T=2, H=0 зависимым от параметра T? REF: t08
+HYPOTHESIS H1 OF Q1: Если объект O3 в клетке O3 T=2 H=0 исчезает (disappeared), то это не зависит от значения T. PREDICT: O3 T=2 H=0 = disappeared

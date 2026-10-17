@@ -1,6 +1,6 @@
 {
- "generated_at": "2026-10-17T05:04:04Z",
- "included": 720,
+ "generated_at": "2026-10-17T05:22:50Z",
+ "included": 815,
  "excluded_total": 890,
  "included_by_ext": {
   ".diff": {
@@ -8,16 +8,16 @@
    "bytes": 52261
   },
   ".json": {
-   "count": 130,
-   "bytes": 56853
+   "count": 163,
+   "bytes": 70382
   },
   ".jsonl": {
-   "count": 6,
-   "bytes": 29432
+   "count": 7,
+   "bytes": 38506
   },
   ".md": {
-   "count": 162,
-   "bytes": 1518913
+   "count": 163,
+   "bytes": 1528043
   },
   ".py": {
    "count": 185,
@@ -28,8 +28,8 @@
    "bytes": 825
   },
   ".txt": {
-   "count": 212,
-   "bytes": 337079
+   "count": 272,
+   "bytes": 454706
   }
  },
  "excluded_by_reason": {

@@ -1,0 +1,55 @@
+{
+ "series": "K0-M3",
+ "seed": 101,
+ "mode": "K0-M3",
+ "status": "halted",
+ "stop_reason": "call_limit",
+ "respond_calls": 30,
+ "malformed": 9,
+ "n_E": 7,
+ "protocol_version": "v34",
+ "protocol_sha256": "58db5c81c373f390381b6e77ad540ffcd7fd802bf1b6662dc519fceb218bca27",
+ "protocol_base_sha256": "3d2ab37dff795a61d5b50c768608ce91a854718abffd4e6c2c1b6d716c77893b",
+ "protocol_diff_sha256": "b08f95b8a1ee9a4d216d627119f55ee889dbf4e343706f5f0afa62fd2170c56b",
+ "spec_sha256": "b260b24f0e92167f96c189bd84a5201d5597509ad8709190fada71dc4f22c944",
+ "package_sha256": "8e9307e998052c98856cdcdb9464426a70cdc53a49403b741e0c3d70ca511970",
+ "prompts_sha256": "61231017f8597264bce87acdc84d0e8c3ebf41abc8c00fa6f3fd245bb51e4d1a",
+ "driver_sha256": {
+  "world.py": "054709565396ac89a9d9a2eb972556f1a9155f3ebfda75bc963d2096c558e38a",
+  "parser.py": "d21b426e064beabdf448a1f7e86592341d8ed4094d79cb9f928bfbd0de6a2d86",
+  "journal.py": "2014343dfe74bb44a37292beed44b1f1013e140b36f22a049566e95714d9533c",
+  "auditor.py": "c716ccca97df9f60f07e6b727de82f4372a10067e2e73c3d575c310d4dfe83c9",
+  "session.py": "d2e4d0e6eaef4c73e231f3e811bb3206b452c87c9bab02e71ecb0dee7f419d91",
+  "calls.py": "a6330d1edf8c33d7b0e1ab0a9444b0a2a11b40487b1ce3db01975e7c09a9d228",
+  "channel.py": "f7d21e28870340b0e4b793a8b1aea99bebabbacca03a56523111abfc89dbd91e",
+  "prompts.py": "61231017f8597264bce87acdc84d0e8c3ebf41abc8c00fa6f3fd245bb51e4d1a"
+ },
+ "t0_params": {
+  "model": "gemma4-e4b-heretic:q4km",
+  "temperature": 0,
+  "seed": 1729,
+  "think": false,
+  "num_predict": 256,
+  "num_ctx": 4096,
+  "keep_alive": "30m"
+ },
+ "limits": {
+  "max_calls": 30,
+  "max_seconds": 2700.0,
+  "max_total_tokens": 100000,
+  "max_prompt_tokens": 4000,
+  "require_token_counts": true
+ },
+ "total_tokens": 43094,
+ "context": {
+  "approx_tokens_max": 2037,
+  "approx_tokens_last": 1982,
+  "warn_threshold": 3900,
+  "warn_calls": []
+ },
+ "artifacts": {
+  "heldout_battery.json": "a6fd7089daeeb740f2eab9cce2bd7b8d461de29eeafe394d486246964fe232ae",
+  "history_101.jsonl": "7c1587a7ba577ef34e6114722a96092f8f3fae69bf2338e0757f070efe325cbf"
+ },
+ "written_utc": "2026-10-17T05:19:22Z"
+}
