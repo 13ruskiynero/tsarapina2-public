@@ -1,12 +1,11 @@
 # Актуальное состояние зеркала
 
-- Обновлено: 2026-10-17T04:02:42Z
+- Обновлено: 2026-10-17T04:03:03Z
 - Файлов проекта: 624
 
 ## Изменения в этом обновлении
 
-Добавлены (5): k0/K0_CALLS_v32_to_v33.diff, k0/K0_PROMPTS_v32_to_v33.diff, k0/K0_PROTOCOL_v32_to_v33.diff, k0/K0_PROTOCOL_v33_ACT.md, k0/K0_SESSION_v32_to_v33.diff
-Изменены (2): k0/K0_V32_F1_ANOMALY_FACTS.md, k0/K0_V33_DESIGN_DRAFT.md
+Изменены (1): k0/README.md
 
 ## Главное по проекту
 

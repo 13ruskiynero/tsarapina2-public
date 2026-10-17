@@ -1,6 +1,6 @@
 {
  "project": "tsarapina",
- "generated_at": "2026-10-17T04:02:42Z",
+ "generated_at": "2026-10-17T04:03:03Z",
  "policy": {
   "allow_ext": [
    ".md",
@@ -11,7 +11,7 @@
   "include_jsonl": false
  },
  "count": 624,
- "total_bytes": 3060048,
+ "total_bytes": 3060623,
  "files": [
   {
    "path": "MVP1_IMPLEMENTATION_PLAN.md",
@@ -1779,9 +1779,9 @@
   },
   {
    "path": "k0/README.md",
-   "size": 11166,
-   "mtime": 1792209374,
-   "sha256": "b56e9d47ca69ad7102b6e07f228ee5e891072fb435ec8ac2df0ea1adcb870dcf"
+   "size": 11741,
+   "mtime": 1792209782,
+   "sha256": "b5899d716533fdef146ec4ad123da3178a53cbbb46b73744d73d27d62f40d13a"
   },
   {
    "path": "k0/runs/run_K0-M1_101_v28/derived/audit.json",
